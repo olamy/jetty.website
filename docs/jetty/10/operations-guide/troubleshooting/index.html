@@ -561,7 +561,7 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 |  += ContextHandlerCollection@57a3af25{STARTED} - STARTED
 |  += DefaultHandler@2b662a77{STARTED} - STARTED
 += ServerConnector@16ec5519{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED <i class="conum" data-value="4"></i><b>(4)</b>
-|  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59982ms,q=0}[ReservedThreadExecutor@6b927fb{reserved=0/20,pending=0}] - STARTED
+|  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59981ms,q=0}[ReservedThreadExecutor@6b927fb{reserved=0/20,pending=0}] - STARTED
 |  +~ ScheduledExecutorScheduler@69379752{STARTED} - STARTED
 |  +~ ArrayByteBufferPool@6d763516{minBufferCapacity=0, maxBufferCapacity=65536, maxQueueLength=-1, factor=4096}
 |  +- org.eclipse.jetty.io.ArrayByteBufferPool$Retained@52bf72b5{min=0,max=65536,buckets=16,heap=0/4204789760,direct=0/4204789760}
@@ -660,11 +660,11 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 |  |     +&gt; relativeRedirectAllowed=false
 |  += SelectorManager@ServerConnector@16ec5519{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED
 |  |  += ManagedSelector@4efbca5a{STARTED} id=0 keys=0 selected=0 updates=0 - STARTED <i class="conum" data-value="5"></i><b>(5)</b>
-|  |     += AdaptiveExecutionStrategy@1b7cc17c/SelectorProducer@59662a0b/PRODUCING/p=false/QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59978ms,q=0}[ReservedThreadExecutor@6b927fb{reserved=0/20,pending=0}][pc=0,pic=0,pec=0,epc=0]@2024-06-03T16:23:59.920407701+10:00 - STARTED
+|  |     += AdaptiveExecutionStrategy@1b7cc17c/SelectorProducer@59662a0b/PRODUCING/p=false/QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59975ms,q=0}[ReservedThreadExecutor@6b927fb{reserved=0/20,pending=0}][pc=0,pic=0,pec=0,epc=0]@2024-06-03T16:33:34.220290377+10:00 - STARTED
 |  |     |  +- SelectorProducer@59662a0b
-|  |     |  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59978ms,q=0}[ReservedThreadExecutor@6b927fb{reserved=0/20,pending=0}] - STARTED
-|  |     +&gt; updates @ 2024-06-03T16:23:59.919908209+10:00 size=0
-|  |     +&gt; keys @ 2024-06-03T16:23:59.920199445+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
+|  |     |  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59975ms,q=0}[ReservedThreadExecutor@6b927fb{reserved=0/20,pending=0}] - STARTED
+|  |     +&gt; updates @ 2024-06-03T16:33:34.219794528+10:00 size=0
+|  |     +&gt; keys @ 2024-06-03T16:33:34.220098964+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
 |  +- sun.nio.ch.ServerSocketChannelImpl[/[0:0:0:0:0:0:0:0]:8080]
 |  +- qtp1852584274-33-acceptor-0@1bbf99d3-ServerConnector@16ec5519{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
 +- org.eclipse.jetty.util.component.HaltLifeCycleListener@77fbd92c
@@ -906,8 +906,8 @@ Enables remote debugging
 <div class="content">
 <pre class="nowrap">WARN  : Forking second JVM due to forking module(s): [remote-debug]. Use --dry-run to generate the command line to avoid forking.
 <mark>Listening for transport dt_socket at address: 5005</mark>
-<strong>2024-06-03 16:24:01.050:</strong>INFO :oejs.Server:main: jetty-10.0.22-SNAPSHOT; built: 2024-06-03T06:22:21.895Z; git: 81ef1d2fb616ebd2ac18fdaf41cc38c707421f12; jvm 21.0.3+9-LTS
-<strong>2024-06-03 16:24:01.084:</strong>INFO :oejs.Server:main: Started Server@4d3167f4{STARTING}[10.0.22-SNAPSHOT,sto=5000] @262ms</pre>
+<strong>2024-06-03 16:33:35.215:</strong>INFO :oejs.Server:main: jetty-10.0.22-SNAPSHOT; built: 2024-06-03T06:32:03.468Z; git: 81ef1d2fb616ebd2ac18fdaf41cc38c707421f12; jvm 21.0.3+9-LTS
+<strong>2024-06-03 16:33:35.235:</strong>INFO :oejs.Server:main: Started Server@4d3167f4{STARTING}[10.0.22-SNAPSHOT,sto=5000] @157ms</pre>
 </div>
 </div>
 <div class="paragraph">
