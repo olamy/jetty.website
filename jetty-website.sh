@@ -198,6 +198,8 @@ function deploy_site() {
   fi
 
   if [[ $deploy_dir == "mvn" ]]; then
+    # this should be done via the site build
+    touch "target/site/.nojekyll"
     ./mvnw -B -e -V scm-publish:publish-scm
     exit 0;
   fi
