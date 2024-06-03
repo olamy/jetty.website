@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>WebSocket Server :: Eclipse Jetty</title>
+    <link rel="canonical" href="https://jetty.org/docs/jetty/12/programming-guide/server/websocket.html">
+    <link rel="prev" href="session.html">
+    <link rel="next" href="fastcgi.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="../../../../../_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="../../../../index.html">Documentation</a>
+        <a class="navbar-item" href="../../../../../support.html">Support</a>
+        <!--a class="navbar-item" href="../../../../../community.html">Community</a-->
+        <a class="navbar-item" href="../../../../../security.html">Security</a>
+        <a class="navbar-item" href="../../../../../download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="../../../../contribution-guide/index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="jetty" data-version="11">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../../index.html">Eclipse Jetty</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/index.html">Operations Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/begin/index.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/features/index.html">Eclipse Jetty Features</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/howtos/index.html">Eclipse Jetty How-Tos</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/arch/index.html">Architecture Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/start/index.html">Jetty Start Mechanism</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/start/start-jpms.html">Starting Jetty using JPMS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/modules/index.html">Jetty Modules</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/modules/custom.html">Custom Jetty Modules</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/modules/standard.html">Standard Modules</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/deploy/index.html">Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/server/index.html">Jetty Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/protocols/index.html">Jetty Connectors and Protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/keystore/index.html">Configuring SSL/TLS KeyStores</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/session/index.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/quickstart/index.html">Faster Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/annotations/index.html">Annotations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jsp/index.html">Java Server Pages</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jstl/index.html">JavaServer Pages Standard Tag Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jsf-taglibs/index.html">JavaServer Faces TagLibs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jndi/index.html">JNDI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jaas/index.html">JAAS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jaspi/index.html">JASPI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jmx/index.html">JMX Monitoring &amp; Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/troubleshooting/index.html">Troubleshooting</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/xml/index.html">Jetty XML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Programming Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../client/index.html">Client Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/io-arch.html">I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/http.html">HTTP Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/http2.html">HTTP/2 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/http3.html">HTTP/3 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/websocket.html">WebSocket Client</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Server Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compliance.html">Server Compliance Modes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http.html">HTTP Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http2.html">HTTP/2 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http3.html">HTTP/3 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="websocket.html">WebSocket Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fastcgi.html">FastCGI Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="io-arch.html">Server I/O Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Maven and Jetty</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-maven-helloworld.html">Using Maven</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-maven-plugin.html">Using the Jetty Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-jspc-maven-plugin.html">Jetty Jspc Maven Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jetty Architecture</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/bean.html">Jetty Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/threads.html">Jetty Threading Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/io.html">Jetty I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/listener.html">Jetty Listeners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/jmx.html">Jetty JMX Support</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../troubleshooting/index.html">Troubleshooting Jetty</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/thread-dump.html">JVM Thread Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/component-dump.html">Jetty Component Tree Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/debugging.html">Debugging</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration/94-to-10.html">Migrating from Jetty 9.4.x to Jetty 10.0.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Eclipse Jetty</span>
+    <span class="version">11</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../../../contribution-guide/index.html">Contribution Guide</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../../../12/index.html">Eclipse Jetty</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../12/index.html">12</a>
+        </li>
+        <li class="version is-current">
+          <a href="../../index.html">11</a>
+        </li>
+        <li class="version">
+          <a href="../../../10/index.html">10</a>
+        </li>
+      </ul>
+    </li>
+    </li>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Eclipse Jetty</a></li>
+    <li><a href="../index.html">Programming Guide</a></li>
+    <li><a href="index.html">Server Libraries</a></li>
+    <li><a href="websocket.html">WebSocket Server</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">11</button>
+  <div class="version-menu">
+    <a class="version" href="../../../12/programming-guide/server/websocket.html">12</a>
+    <a class="version is-current" href="websocket.html">11</a>
+    <a class="version" href="../../../10/programming-guide/server/websocket.html">10</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.project/edit/jetty-11.0.x/documentation/jetty/modules/programming-guide/pages/server/websocket.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">WebSocket Server</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jetty provides two API implementations of the WebSocket protocol:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An implementation for the standard <code>jakarta.websocket</code> APIs provided by <a href="https://jakarta.ee/specifications/websocket/2.0/">Jakarta WebSocket 2.0</a>, described in <a href="#standard">this section</a>.</p>
+</li>
+<li>
+<p>An implementation for Jetty-specific WebSocket APIs, described in <a href="#jetty">this section</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Using the standard <code>jakarta.websocket</code> APIs allows your applications to depend only on standard APIs, and your applications may be deployed in any compliant WebSocket Container that supports Jakarta WebSocket 2.0.</p>
+</div>
+<div class="paragraph">
+<p>The standard APIs provide these features that are not present in the Jetty WebSocket APIs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Encoders and Decoders for automatic conversion of text or binary messages to objects.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On the other hand, the Jetty WebSocket APIs are more efficient and offer greater and more fine-grained control, and provide these features that are not present in the standard APIs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suspend/resume to control backpressure.</p>
+</li>
+<li>
+<p>Remote socket address (IP address and port) information.</p>
+</li>
+<li>
+<p>WebSocket upgrade handling via Filter or Servlet.</p>
+</li>
+<li>
+<p>Advanced URI matching with Servlet WebSocket upgrade.</p>
+</li>
+<li>
+<p>Configuration of the network buffer capacity.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If your application needs specific features that are not provided by the standard APIs, the Jetty WebSocket APIs may provide such features&#8201;&#8212;&#8201;and if they do not, you may ask for these features by submitting an issue to the Jetty Project without waiting for the standard process to approve them.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="standard"><a class="anchor" href="#standard"></a>Standard APIs Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you write a WebSocket application using the standard <code>jakarta.websocket</code> APIs, your code typically need to depend on just the APIs to compile your application.
+However, at runtime you need to have an implementation of the standard APIs in your class-path (or module-path).</p>
+</div>
+<div class="paragraph">
+<p>The standard <code>jakarta.websocket</code> APIs are provided by the following Maven artifact:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;jakarta.websocket&lt;/groupId&gt;
+  &lt;artifactId&gt;jakarta.websocket-api&lt;/artifactId&gt;
+  &lt;version&gt;2.0.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, the artifact above lacks a proper JPMS <code>module-info.class</code> file, and therefore it is a little more difficult to use if you want to use of JPMS for your application.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use JPMS for your application, you can use this Maven artifact instead:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.eclipse.jetty.toolchain&lt;/groupId&gt;
+  &lt;artifactId&gt;jetty-jakarta-websocket-api&lt;/artifactId&gt;
+  &lt;version&gt;2.0.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This artifact is nothing more than the <code>jakarta.websocket:jakarta.websocket-api:2.0.0</code> artifact repackaged with a proper <code>module-info.class</code> file.</p>
+</div>
+<div class="paragraph">
+<p>At runtime, you also need an implementation of the standard <code>jakarta.websocket</code> APIs.</p>
+</div>
+<div class="paragraph">
+<p>Jetty&#8217;s implementation of the standard <code>jakarta.websocket</code> APIs is provided by the following Maven artifact (and its transitive dependencies):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.eclipse.jetty.websocket&lt;/groupId&gt;
+  &lt;artifactId&gt;websocket-jakarta-server&lt;/artifactId&gt;
+  &lt;version&gt;11.0.21-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>jakarta.websocket-api</code> artifact and the <code>websocket-jakarta-server</code> artifact (and its transitive dependencies) should be present in the server class-path (or module-path), and never in the web application&#8217;s <code>/WEB-INF/lib</code> directory.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To configure correctly your WebSocket application based on the standard <code>jakarta.websocket</code> APIs, you need two steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure that Jetty <a href="#standard-container">sets up</a> an instance of <code>jakarta.websocket.server.ServerContainer</code>.</p>
+</li>
+<li>
+<p><a href="#standard-endpoints">Configure</a> the WebSocket endpoints that implement your application logic, either by annotating their classes with the standard <code>jakarta.websocket</code> annotations, or by using the <code>ServerContainer</code> APIs to register them in your code.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="standard-container"><a class="anchor" href="#standard-container"></a>Setting Up <code>ServerContainer</code></h3>
+<div class="paragraph">
+<p>Jetty sets up a <code>ServerContainer</code> instance using <code>JakartaWebSocketServletContainerInitializer</code>.</p>
+</div>
+<div class="paragraph">
+<p>When you deploy web applications using <a href="http.html#handler-use-webapp-context" class="xref page"><code>WebAppContext</code></a>, then  <code>JakartaWebSocketServletContainerInitializer</code> is automatically discovered and initialized by Jetty when the web application starts, so that it sets up the <code>ServerContainer</code>.
+In this way, you do not need to write any additional code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a WebAppContext with the given context path.
+WebAppContext handler = new WebAppContext("/path/to/webapp", "/ctx");
+server.setHandler(handler);
+
+// Starting the Server will start the WebAppContext.
+server.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On the other hand, when you deploy web applications using <a href="http.html#handler-use-servlet-context" class="xref page"><code>ServletContextHandler</code></a>, you have to write the code to ensure that the <code>JakartaWebSocketServletContainerInitializer</code> is initialized, so that it sets up the <code>ServerContainer</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Ensure that JavaxWebSocketServletContainerInitializer is initialized,
+// to setup the ServerContainer for this web application context.
+JakartaWebSocketServletContainerInitializer.configure(handler, null);
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Calling <code>JakartaWebSocketServletContainerInitializer.configure(...)</code> must be done <em>before</em> the <code>ServletContextHandler</code> is started, and configures the <code>jakarta.websocket</code> implementation for that web application context.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="standard-endpoints"><a class="anchor" href="#standard-endpoints"></a>Configuring Endpoints</h3>
+<div class="paragraph">
+<p>Once you have <a href="#standard-container">setup</a> the <code>ServerContainer</code>, you can configure your WebSocket endpoints.</p>
+</div>
+<div class="paragraph">
+<p>The WebSocket endpoints classes may be either annotated with the standard <code>jakarta.websocket</code> annotations, extend the <code>jakarta.websocket.Endpoint</code> abstract class, or implement the <code>jakarta.websocket.server.ServerApplicationConfig</code> interface.</p>
+</div>
+<div class="paragraph">
+<p>When you deploy web applications using <a href="http.html#handler-use-webapp-context" class="xref page"><code>WebAppContext</code></a>, then annotated WebSocket endpoint classes are automatically discovered and registered.
+In this way, you do not need to write any additional code; you just need to ensure that your WebSocket endpoint classes are present in the web application&#8217;s <code>/WEB-INF/classes</code> directory, or in a <code>*.jar</code> file in <code>/WEB-INF/lib</code>.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, when you deploy web applications using <a href="http.html#handler-use-webapp-context" class="xref page"><code>WebAppContext</code></a> but you need to perform more advanced configuration of the <code>ServerContainer</code> or of the WebSocket endpoints, or when you deploy web applications using <a href="http.html#handler-use-servlet-context" class="xref page"><code>ServletContextHandler</code></a>, you need to access the <code>ServerContainer</code> APIs.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ServerContainer</code> instance is stored as a <code>ServletContext</code> attribute, so it can be retrieved when the <code>ServletContext</code> is initialized, either from a <code>ServletContextListener</code> or from a <code>HttpServlet</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Ensure that JavaxWebSocketServletContainerInitializer is initialized,
+// to setup the ServerContainer for this web application context.
+JakartaWebSocketServletContainerInitializer.configure(handler, null);
+
+// Add a WebSocket-initializer Servlet to register WebSocket endpoints.
+handler.addServlet(MyJavaxWebSocketInitializerServlet.class, "/*");
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyJavaxWebSocketInitializerServlet extends HttpServlet
+{
+    @Override
+    public void init() throws ServletException
+    {
+        try
+        {
+            // Retrieve the ServerContainer from the ServletContext attributes.
+            ServerContainer container = (ServerContainer)getServletContext().getAttribute(ServerContainer.class.getName());
+
+            // Configure the ServerContainer.
+            container.setDefaultMaxTextMessageBufferSize(128 * 1024);
+
+            // Simple registration of your WebSocket endpoints.
+            container.addEndpoint(MyJavaxWebSocketEndPoint.class);
+
+            // Advanced registration of your WebSocket endpoints.
+            container.addEndpoint(
+                ServerEndpointConfig.Builder.create(MyJavaxWebSocketEndPoint.class, "/ws")
+                    .subprotocols(List.of("my-ws-protocol"))
+                    .build()
+            );
+        }
+        catch (DeploymentException x)
+        {
+            throw new ServletException(x);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you deploy web applications using <a href="http.html#handler-use-servlet-context" class="xref page"><code>ServletContextHandler</code></a>, you can also use this variant to set up the <code>ServerContainer</code> and configure the WebSocket endpoints in one step:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Setup the ServerContainer and the WebSocket endpoints for this web application context.
+JakartaWebSocketServletContainerInitializer.configure(handler, (servletContext, container) -&gt;
+{
+    // Configure the ServerContainer.
+    container.setDefaultMaxTextMessageBufferSize(128 * 1024);
+
+    // Simple registration of your WebSocket endpoints.
+    container.addEndpoint(MyJavaxWebSocketEndPoint.class);
+
+    // Advanced registration of your WebSocket endpoints.
+    container.addEndpoint(
+        ServerEndpointConfig.Builder.create(MyJavaxWebSocketEndPoint.class, "/ws")
+            .subprotocols(List.of("my-ws-protocol"))
+            .build()
+    );
+});
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the <code>ServletContextHandler</code> is started, the <code>Configurator</code> lambda (the second parameter passed to <code>JakartaWebSocketServletContainerInitializer.configure(...)</code>) is invoked and allows you to explicitly configure the WebSocket endpoints using the standard APIs provided by <code>ServerContainer</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="standard-upgrade"><a class="anchor" href="#standard-upgrade"></a>Upgrade to WebSocket</h4>
+<div class="paragraph">
+<p>Under the hood, <code>JakartaWebSocketServletContainerInitializer</code> installs the <code>org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter</code>, which is the component that intercepts HTTP requests to upgrade to WebSocket, and performs the upgrade from the HTTP protocol to the WebSocket protocol.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>WebSocketUpgradeFilter</code> is installed under the filter name corresponding to its class name (that is, the string <code>"org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter"</code>) and with a filter mapping of <code>/*</code>.</p>
+</div>
+<div class="paragraph">
+<p>Refer to the <a href="#configure-filter">advanced <code>WebSocketUpgradeFilter</code> configuration section</a> for more information.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>With the default configuration, every HTTP request flows first through the <code>WebSocketUpgradeFilter</code>.</p>
+</div>
+<div class="paragraph">
+<p>If the HTTP request is a valid upgrade to WebSocket, then <code>WebSocketUpgradeFilter</code> tries to find a matching WebSocket endpoint for the request URI path; if the match is found, <code>WebSocketUpgradeFilter</code> performs the upgrade and does not invoke any other Filter or Servlet.
+From this point on, the communication happens with the WebSocket protocol, and HTTP components such as Filters and Servlets are not relevant anymore.</p>
+</div>
+<div class="paragraph">
+<p>If the HTTP request is not an upgrade to WebSocket, or <code>WebSocketUpgradeFilter</code> did not find a matching WebSocket endpoint for the request URI path, then the request is passed to the Filter chain of your web application, and eventually the request arrives to a Servlet to be processed (otherwise a <code>404 Not Found</code> response is returned to client).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jetty"><a class="anchor" href="#jetty"></a>Jetty APIs Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you write a WebSocket application using the Jetty WebSocket APIs, your code typically need to depend on just the Jetty WebSocket APIs to compile your application.
+However, at runtime you need to have the <em>implementation</em> of the Jetty WebSocket APIs in your class-path (or module-path).</p>
+</div>
+<div class="paragraph">
+<p>Jetty&#8217;s WebSocket APIs are provided by the following Maven artifact:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.eclipse.jetty.websocket&lt;/groupId&gt;
+  &lt;artifactId&gt;websocket-jetty-api&lt;/artifactId&gt;
+  &lt;version&gt;11.0.21-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Jetty&#8217;s implementation of the Jetty WebSocket APIs is provided by the following Maven artifact (and its transitive dependencies):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.eclipse.jetty.websocket&lt;/groupId&gt;
+  &lt;artifactId&gt;websocket-jetty-server&lt;/artifactId&gt;
+  &lt;version&gt;11.0.21-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>websocket-jetty-api</code> artifact and the <code>websocket-jetty-server</code> artifact (and its transitive dependencies) should be present in the server class-path (or module-path), and never in the web application&#8217;s <code>/WEB-INF/lib</code> directory.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To configure correctly your WebSocket application based on the Jetty WebSocket APIs, you need two steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure that Jetty <a href="#jetty-container">sets up</a> an instance of <code>JettyWebSocketServerContainer</code>.</p>
+</li>
+<li>
+<p>Use the <code>JettyWebSocketServerContainer</code> APIs in your applications to <a href="#jetty-endpoints">register your WebSocket endpoints</a> that implement your application logic.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can read more about the <a href="../client/websocket.html#architecture" class="xref page">Jetty WebSocket architecture</a>, which is common to both client-side and server-side, to get familiar with the terminology used in the following sections.</p>
+</div>
+<div class="sect2">
+<h3 id="jetty-container"><a class="anchor" href="#jetty-container"></a>Setting up <code>JettyWebSocketServerContainer</code></h3>
+<div class="paragraph">
+<p>Jetty sets up a <code>JettyWebSocketServerContainer</code> instance using <code>JettyWebSocketServletContainerInitializer</code>.</p>
+</div>
+<div class="paragraph">
+<p>When you deploy web applications using <a href="http.html#handler-use-webapp-context" class="xref page"><code>WebAppContext</code></a>, then  <code>JettyWebSocketServletContainerInitializer</code> is automatically discovered and initialized by Jetty when the web application starts, so that it sets up the <code>JettyWebSocketServerContainer</code>.
+In this way, you do not need to write any additional code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a WebAppContext with the given context path.
+WebAppContext handler = new WebAppContext("/path/to/webapp", "/ctx");
+server.setHandler(handler);
+
+// Starting the Server will start the WebAppContext.
+server.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On the other hand, when you deploy web applications using <a href="http.html#handler-use-servlet-context" class="xref page"><code>ServletContextHandler</code></a>, you have to write the code to ensure that the <code>JettyWebSocketServletContainerInitializer</code> is initialized, so that it sets up the <code>JettyWebSocketServerContainer</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Ensure that JettyWebSocketServletContainerInitializer is initialized,
+// to setup the JettyWebSocketServerContainer for this web application context.
+JettyWebSocketServletContainerInitializer.configure(handler, null);
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Calling <code>JettyWebSocketServletContainerInitializer.configure(...)</code> must be done <em>before</em> the <code>ServletContextHandler</code> is started, and configures the Jetty WebSocket implementation for that web application context.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="jetty-endpoints"><a class="anchor" href="#jetty-endpoints"></a>Configuring Endpoints</h3>
+<div class="paragraph">
+<p>Once you have <a href="#jetty-container">setup</a> the <code>JettyWebSocketServerContainer</code>, you can configure your <a href="../client/websocket.html#endpoints" class="xref page">WebSocket endpoints</a>.</p>
+</div>
+<div class="paragraph">
+<p>Differently from the <a href="#standard-endpoints">configuration of standard WebSocket endpoints</a>, WebSocket endpoint classes may be annotated with Jetty WebSocket API annotations, or extend the <code>org.eclipse.jetty.websocket.api.WebSocketListener</code> interface, but they are not automatically discovered, not even when deploying web applications using <a href="http.html#handler-use-webapp-context" class="xref page"><code>WebAppContext</code></a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When using the Jetty WebSocket APIs, WebSocket endpoints must always be explicitly configured.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>There are two ways of configuring WebSocket endpoints when using the Jetty WebSocket APIs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#jetty-endpoints-container">Using <code>JettyWebSocketServerContainer</code></a>, which is very similar to how WebSocket endpoints are configured when using the <a href="#standard-endpoints">standard <code>jakarta.websocket</code> APIs</a>, but also provides APIs to perform a direct, programmatic, WebSocket upgrade.</p>
+</li>
+<li>
+<p><a href="#jetty-endpoints-servlet">Using <code>JettyWebSocketServlet</code></a>, which may configured in <code>web.xml</code>, rather than in Java code.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="jetty-endpoints-container"><a class="anchor" href="#jetty-endpoints-container"></a>Using <code>JettyWebSocketServerContainer</code></h4>
+<div class="paragraph">
+<p>To register WebSocket endpoints using the Jetty WebSocket APIs you need to access the <code>JettyWebSocketServerContainer</code> APIs.</p>
+</div>
+<div class="paragraph">
+<p>The <code>JettyWebSocketServerContainer</code> instance is stored in the <code>ServletContext</code>, so it can be retrieved when the <code>ServletContext</code> is initialized, either from a <code>ServletContextListener</code> or from a <code>HttpServlet</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Ensure that JettyWebSocketServletContainerInitializer is initialized,
+// to setup the JettyWebSocketServerContainer for this web application context.
+JettyWebSocketServletContainerInitializer.configure(handler, null);
+
+// Add a WebSocket-initializer Servlet to register WebSocket endpoints.
+handler.addServlet(MyJettyWebSocketInitializerServlet.class, "/*");
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyJettyWebSocketInitializerServlet extends HttpServlet
+{
+    @Override
+    public void init() throws ServletException
+    {
+        // Retrieve the JettyWebSocketServerContainer.
+        JettyWebSocketServerContainer container = JettyWebSocketServerContainer.getContainer(getServletContext());
+
+        // Configure the JettyWebSocketServerContainer.
+        container.setMaxTextMessageSize(128 * 1024);
+
+        // Simple registration of your WebSocket endpoints.
+        container.addMapping("/ws/myURI", MyJettyWebSocketEndPoint.class);
+
+        // Advanced registration of your WebSocket endpoints.
+        container.addMapping("/ws/myOtherURI", (upgradeRequest, upgradeResponse) -&gt;
+            new MyOtherJettyWebSocketEndPoint()
+        );
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use this variant to set up the <code>JettyWebSocketServerContainer</code> and configure the WebSocket endpoints in one step:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Setup the JettyWebSocketServerContainer and the WebSocket endpoints for this web application context.
+JettyWebSocketServletContainerInitializer.configure(handler, (servletContext, container) -&gt;
+{
+    // Configure the ServerContainer.
+    container.setMaxTextMessageSize(128 * 1024);
+
+    // Add your WebSocket endpoint(s) to the JettyWebSocketServerContainer.
+    container.addMapping("/ws/myURI", MyJettyWebSocketEndPoint.class);
+
+    // Use JettyWebSocketCreator to have more control on the WebSocket endpoint creation.
+    container.addMapping("/ws/myOtherURI", (upgradeRequest, upgradeResponse) -&gt;
+    {
+        // Possibly inspect the upgrade request and modify the upgrade response.
+        upgradeResponse.setAcceptedSubProtocol("my-ws-protocol");
+
+        // Create the new WebSocket endpoint.
+        return new MyOtherJettyWebSocketEndPoint();
+    });
+});
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the call to <code>JettyWebSocketServerContainer.addMapping(...)</code>, you can specify a <em>path spec</em> (the first parameter) that can be configured as specified in <a href="#jetty-pathspec">this section</a>.</p>
+</div>
+<div class="paragraph">
+<p>When the <code>ServletContextHandler</code> is started, the <code>Configurator</code> lambda (the second parameter passed to <code>JettyWebSocketServletContainerInitializer.configure(...)</code>) is invoked and allows you to explicitly configure the WebSocket endpoints using the Jetty WebSocket APIs provided by <code>JettyWebSocketServerContainer</code>.</p>
+</div>
+<div class="paragraph">
+<p>Under the hood, the call to <code>JettyWebSocketServerContainer.addMapping(...)</code> installs the <code>org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter</code>, which is the component that intercepts HTTP requests to upgrade to WebSocket, described in <a href="#standard-upgrade">this section</a>.
+For more information about the configuration of <code>WebSocketUpgradeFilter</code> see also <a href="#configure-filter">this section</a>.</p>
+</div>
+<div class="paragraph">
+<p>One last alternative to register your WebSocket endpoints is to use a programmatic WebSocket upgrade via <code>JettyWebSocketServerContainer.upgrade(...)</code>, which allows you to use a standard <code>HttpServlet</code> subclass (rather than a <code>JettyWebSocketServlet</code> as explained in <a href="#jetty-endpoints-servlet">this section</a>) to perform a direct WebSocket upgrade when your application logic demands so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Ensure that JettyWebSocketServletContainerInitializer is initialized,
+// to setup the JettyWebSocketServerContainer for this web application context.
+JettyWebSocketServletContainerInitializer.configure(handler, null);
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProgrammaticWebSocketUpgradeServlet extends HttpServlet
+{
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        if (requiresWebSocketUpgrade(request))
+        {
+            // Retrieve the JettyWebSocketServerContainer.
+            JettyWebSocketServerContainer container = JettyWebSocketServerContainer.getContainer(getServletContext());
+
+            // Use a JettyWebSocketCreator to inspect the upgrade request,
+            // possibly modify the upgrade response, and create the WebSocket endpoint.
+            JettyWebSocketCreator creator = (upgradeRequest, upgradeResponse) -&gt; new MyJettyWebSocketEndPoint();
+
+            // Perform the direct WebSocket upgrade.
+            container.upgrade(creator, request, response);
+        }
+        else
+        {
+            // Normal handling of the HTTP request/response.
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When using <code>JettyWebSocketServerContainer.upgrade(...)</code>, the <code>WebSocketUpgradeFilter</code> is not installed, since the WebSocket upgrade is performed programmatically.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="jetty-endpoints-servlet"><a class="anchor" href="#jetty-endpoints-servlet"></a>Using <code>JettyWebSocketServlet</code></h4>
+<div class="paragraph">
+<p>An alternative way to register WebSocket endpoints using the Jetty WebSocket APIs is to use a <code>JettyWebSocketServlet</code> subclass (or even many different <code>JettyWebSocketServlet</code> subclasses).</p>
+</div>
+<div class="paragraph">
+<p>This method has the advantage that it does not install the <code>WebSocketUpgradeFilter</code> under the hood, because the WebSocket upgrade is handled directly by your <code>JettyWebSocketServlet</code> subclass.
+This may also have a performance benefit for non-WebSocket HTTP requests (as they will not pass through the <code>WebSocketUpgradeFilter</code>).</p>
+</div>
+<div class="paragraph">
+<p>Your <code>JettyWebSocketServlet</code> subclass may be declared and configured either in code or in <code>web.xml</code>.
+Declaring your <code>JettyWebSocketServlet</code> subclass explicitly in code or in <code>web.xml</code> also simplifies the declaration and configuration of other web components such as other Servlets and/or Filters (for example, it is easier to configure the <code>CrossOriginFilter</code>, see also <a href="#configure-filter">this section</a> for more information).</p>
+</div>
+<div class="paragraph">
+<p>For example, your <code>JettyWebSocketServlet</code> subclass may be declared in code in this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Create a Server with a ServerConnector listening on port 8080.
+Server server = new Server(8080);
+
+// Create a ServletContextHandler with the given context path.
+ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+server.setHandler(handler);
+
+// Setup the JettyWebSocketServerContainer to initialize WebSocket components.
+JettyWebSocketServletContainerInitializer.configure(handler, null);
+
+// Add your WebSocketServlet subclass to the ServletContextHandler.
+handler.addServlet(MyJettyWebSocketServlet.class, "/ws/*");
+
+// Starting the Server will start the ServletContextHandler.
+server.start();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyJettyWebSocketServlet extends JettyWebSocketServlet
+{
+    @Override
+    protected void configure(JettyWebSocketServletFactory factory)
+    {
+        // At most 1 MiB text messages.
+        factory.setMaxTextMessageSize(1048576);
+
+        // Add the WebSocket endpoint.
+        factory.addMapping("/ws/someURI", (upgradeRequest, upgradeResponse) -&gt;
+        {
+            // Possibly inspect the upgrade request and modify the upgrade response.
+
+            // Create the new WebSocket endpoint.
+            return new MyJettyWebSocketEndPoint();
+        });
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note how in the call to <code>JettyWebSocketServletContainerInitializer.configure(...)</code> the second parameter is <code>null</code>, because WebSocket endpoints are not created here, but instead by one (or more) <code>JettyWebSocketServlet</code> subclasses.
+Yet the call is necessary to create other WebSocket implementation components that are necessary also when using <code>JettyWebSocketServlet</code> subclasses.</p>
+</div>
+<div class="paragraph">
+<p>An HTTP upgrade request to WebSocket that matches your <code>JettyWebSocketServlet</code> subclass path mapping (specified above via <code>ServletContextHandler.addServlet(...)</code>) arrives at the Servlet and is inspected to verify whether it is a valid upgrade to WebSocket.</p>
+</div>
+<div class="paragraph">
+<p>If the HTTP request is a valid upgrade to WebSocket, <code>JettyWebSocketServlet</code> calls <code>configure(JettyWebSocketServletFactory factory)</code> that you have overridden in your subclass, so that your application can instantiate and return the WebSocket endpoint.
+After having obtained the WebSocket endpoint, <code>JettyWebSocketServlet</code> performs the WebSocket upgrade.
+From this point on, the communication happens with the WebSocket protocol, and HTTP components such as Filters and Servlets are not relevant anymore.</p>
+</div>
+<div class="paragraph">
+<p>If the HTTP request is not an upgrade to WebSocket, <code>JettyWebSocketServlet</code> delegates the processing to the superclass, <code>jakarta.servlet.HttpServlet</code>, which in turn invokes methods such as <code>doGet(...)</code> or <code>doPost(...)</code> depending on the HTTP method.
+If your <code>JettyWebSocketServlet</code> subclass did not override the <code>doXYZ(...)</code> method corresponding to the HTTP request, a <code>405 Method Not Allowed</code> response is returned to the client, as per the standard <code>HttpServlet</code> class implementation.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It is possible to use both <code>JettyWebSocketServerContainer</code> and <code>JettyWebSocketServlet</code>.</p>
+</div>
+<div class="paragraph">
+<p>However, it is typically best to avoid mixing the use of <code>JettyWebSocketServerContainer</code> with the use of <code>JettyWebSocketServlet</code>, so that all your WebSocket endpoints are initialized by the same code in one place only.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Using <code>JettyWebSocketServerContainer.addMapping(...)</code> will install the <code>WebSocketUpgradeFilter</code> under the hood, which by default will intercepts all HTTP requests to upgrade to WebSocket.
+However, as explained in <a href="#standard-upgrade">this section</a>, if <code>WebSocketUpgradeFilter</code> does not find a matching WebSocket endpoint for the request URI path, then the HTTP request is passed to the Filter chain of your web application and may arrive to your <code>JettyWebSocketServlet</code> subclass, where it would be processed and possibly result in a WebSocket upgrade.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="jetty-pathspec"><a class="anchor" href="#jetty-pathspec"></a>Custom PathSpec Mappings</h4>
+<div class="paragraph">
+<p>The <code>JettyWebSocketServerContainer.addMapping(...)</code> API maps a <em>path spec</em> to a <code>JettyWebSocketCreator</code> instance (typically a lambda expression).
+The path spec is matched against the WebSocket upgrade request URI to select the correspondent <code>JettyWebSocketCreator</code> to invoke.</p>
+</div>
+<div class="paragraph">
+<p>The path spec can have these forms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Servlet syntax, specified with <code>servlet|&lt;path spec&gt;</code>, where the <code>servlet|</code> prefix can be omitted if the path spec begins with <code>/</code> or <code>*.</code> (for example, <code>/ws</code>, <code>/ws/chat</code> or <code>*.ws</code>).</p>
+</li>
+<li>
+<p>Regex syntax, specified with <code>regex|&lt;path spec&gt;</code>, where the <code>regex|</code> prefix can be omitted if the path spec begins with <code>^</code> (for example, <code>^/ws/[0-9]+</code>).</p>
+</li>
+<li>
+<p>URI template syntax, specified with <code>uri-template|&lt;path spec&gt;</code> (for example <code>uri-template|/ws/chat/{room}</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Within the <code>JettyWebSocketCreator</code>, it is possible to access the path spec and, for example in case of URI templates, extract additional information in the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ServletContextHandler handler = new ServletContextHandler(server, "/ctx");
+
+// Configure the JettyWebSocketServerContainer.
+JettyWebSocketServletContainerInitializer.configure(handler, (servletContext, container) -&gt;
+{
+    container.addMapping("/ws/chat/{room}", (upgradeRequest, upgradeResponse) -&gt;
+    {
+        // Retrieve the URI template.
+        UriTemplatePathSpec pathSpec = (UriTemplatePathSpec)upgradeRequest.getServletAttribute(PathSpec.class.getName());
+
+        // Match the URI template.
+        Map&lt;String, String&gt; params = pathSpec.getPathParams(upgradeRequest.getRequestPath());
+        String room = params.get("room");
+
+        // Create the new WebSocket endpoint with the URI template information.
+        return new MyWebSocketRoomEndPoint(room);
+    });
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-filter"><a class="anchor" href="#configure-filter"></a>Advanced <code>WebSocketUpgradeFilter</code> Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>WebSocketUpgradeFilter</code> that handles the HTTP requests that upgrade to WebSocket is installed in these cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Either by the <code>JakartaWebSocketServletContainerInitializer</code>, as described in <a href="#standard">this section</a>.</p>
+</li>
+<li>
+<p>Or by a call to <code>JettyWebSocketServerContainer.addMapping(...)</code>, as described in <a href="#jetty">this section</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Typically, the <code>WebSocketUpgradeFilter</code> is not present in the <code>web.xml</code> configuration, and therefore the mechanisms above create a new <code>WebSocketUpgradeFilter</code> and install it <em>before</em> any other Filter declared in <code>web.xml</code>, under the default name of <code>"org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter"</code> and with path mapping <code>/*</code>.</p>
+</div>
+<div class="paragraph">
+<p>However, if the <code>WebSocketUpgradeFilter</code> is already present in <code>web.xml</code> under the default name, then the <code>ServletContainerInitializer</code>s will use that declared in <code>web.xml</code> instead of creating a new one.</p>
+</div>
+<div class="paragraph">
+<p>This allows you to customize:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The filter order; for example, by configuring the <code>CrossOriginFilter</code> (or other filters) for increased security or authentication <em>before</em> the <code>WebSocketUpgradeFilter</code>.</p>
+</li>
+<li>
+<p>The <code>WebSocketUpgradeFilter</code> configuration via <code>init-param</code>s, that affects all <code>Session</code> instances created by this filter.</p>
+</li>
+<li>
+<p>The <code>WebSocketUpgradeFilter</code> path mapping. Rather than the default mapping of <code>/*</code>, you can map the <code>WebSocketUpgradeFilter</code> to a more specific path such as <code>/ws/*</code>.</p>
+</li>
+<li>
+<p>The possibility to have multiple <code>WebSocketUpgradeFilter</code>s, mapped to different paths, each with its own configuration.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0"&gt;
+  &lt;display-name&gt;My WebSocket WebApp&lt;/display-name&gt;
+
+  &lt;!-- The CrossOriginFilter *must* be the first --&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+  &lt;filter&gt;
+    &lt;filter-name&gt;cross-origin&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.eclipse.jetty.servlets.CrossOriginFilter&lt;/filter-class&gt;
+    &lt;async-supported&gt;true&lt;/async-supported&gt;
+  &lt;/filter&gt;
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;cross-origin&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+  &lt;/filter-mapping&gt;
+
+  &lt;!-- Configure the default WebSocketUpgradeFilter --&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+  &lt;filter&gt;
+    &lt;!-- The filter name must be the default WebSocketUpgradeFilter name --&gt;
+    &lt;filter-name&gt;org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter&lt;/filter-name&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+    &lt;filter-class&gt;org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter&lt;/filter-class&gt;
+    &lt;!-- Configure at most 1 MiB text messages --&gt;
+    &lt;init-param&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+      &lt;param-name&gt;maxTextMessageSize&lt;/param-name&gt;
+      &lt;param-value&gt;1048576&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;async-supported&gt;true&lt;/async-supported&gt;
+  &lt;/filter&gt;
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter&lt;/filter-name&gt;
+    &lt;!-- Use a more specific path mapping for WebSocket requests --&gt;
+    &lt;url-pattern&gt;/ws/*&lt;/url-pattern&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+  &lt;/filter-mapping&gt;
+
+&lt;/web-app&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>CrossOriginFilter</code> is the first to protect against <a href="https://owasp.org/www-community/attacks/csrf">cross-site request forgery attacks</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The configuration for the <em>default</em> <code>WebSocketUpgradeFilter</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Note the use of the <em>default</em> <code>WebSocketUpgradeFilter</code> name.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Specific configuration for <code>WebSocketUpgradeFilter</code> parameters.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Use a more specific path mapping for <code>WebSocketUpgradeFilter</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note that using a more specific path mapping for WebSocket requests is also beneficial to the performance of normal HTTP requests: they do not go through the <code>WebSocketUpgradeFilter</code> (as they will not match its path mapping), saving the cost of analyzing them to see whether they are WebSocket upgrade requests or not.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="session.html">HTTP Session Management</a></span>
+  <span class="next"><a href="fastcgi.html">FastCGI Server Libraries</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="../../../../index.html">Docs</a></li>
+      <li><a href="../../../../../support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="../../../../../_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="../../../../../_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="../../../../../_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../../../_/js/site.js" data-ui-root-path="../../../../../_"></script>
+<script async src="../../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../../.." data-snippet-length="100" data-stylesheet="../../../../../_/css/search.css"></script>
+<script async src="../../../../../search-index.js"></script>
+  </body>
+</html>

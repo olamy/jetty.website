@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Building Jetty :: Eclipse Jetty</title>
+    <link rel="canonical" href="https://jetty.org/docs/contribution-guide/build/index.html">
+    <link rel="prev" href="../source/index.html">
+    <link rel="next" href="../standards/index.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="../../index.html">Documentation</a>
+        <a class="navbar-item" href="../../../support.html">Support</a>
+        <!--a class="navbar-item" href="../../../community.html">Community</a-->
+        <a class="navbar-item" href="../../../security.html">Security</a>
+        <a class="navbar-item" href="../../../download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="../index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="contribution-guide" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Contribution Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Participation and Contribution</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../eca/index.html">The Eclipse Contributor Agreement</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../source/index.html">Getting the source code</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Building Jetty</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../standards/index.html">Code Standards</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../documentation/index.html">Writing Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../patches/index.html">Submitting Patches</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../security/index.html">Security</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Contribution Guide</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Contribution Guide</a></div>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../jetty/12/index.html">Eclipse Jetty</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../jetty/12/index.html">12</a>
+        </li>
+        <li class="version">
+          <a href="../../jetty/11/index.html">11</a>
+        </li>
+        <li class="version">
+          <a href="../../jetty/10/index.html">10</a>
+        </li>
+      </ul>
+    </li>
+    </li>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Contribution Guide</a></li>
+    <li><a href="../index.html">Participation and Contribution</a></li>
+    <li><a href="index.html">Building Jetty</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.website/edit/main/contribution-guide/modules/ROOT/pages/build/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Building Jetty</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jetty&#8217;s uses <a href="http://maven.apache.org/">Apache Maven</a> for builds.
+To successfully build the project, you will also need a recent version of the <a href="https://www.oracle.com/java/technologies/downloads/">Java Development Kit (JDK)</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-build-requirements"><a class="anchor" href="#cg-build-requirements"></a>Maven and JDK requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here are the minimum Maven and JDK version build requirements for each actively maintained branch.</p>
+</div>
+<div class="paragraph">
+<div class="title">Build versioning requirements by branch</div>
+<p>|==
+| Branch | Maven Version | Minimum JDK | Recommended JDK</p>
+</div>
+<div class="paragraph">
+<p>| jetty-12.0.x | Maven 3.9.2+  | OpenJDK 17+ | OpenJDK 19
+| jetty-11.0.x | Maven 3.8.6+  | OpenJDK 11+ | OpenJDK 17
+| jetty-10.0.x | Maven 3.8.6+  | OpenJDK 11+ | OpenJDK 17
+|==</p>
+</div>
+<div class="paragraph">
+<p>To build the Jetty documentation, OpenJDK 19+ is required due to the use of the virtual thread APIs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-build-fast"><a class="anchor" href="#cg-build-fast"></a>Running a fast build</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To get started with Jetty as quickly as possible, navigate to your local copy of the Jetty repo and run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mvn -Pfast clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>-Pfast</code> flag tells Maven to bypass running tests and other checks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-build-full"><a class="anchor" href="#cg-build-full"></a>Running a full build</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To build Jetty and automatically run all tests, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The full build takes substantial time and memory, as it runs hundreds of test cases&#8201;&#8212;&#8201;many of which spin up embedded instances of Jetty itself.</p>
+</div>
+<div class="paragraph">
+<p>The build also runs stress tests that may require you (depending on your hardware or operating system) to set you file descriptor limit to a value greater than 2048.
+You can view or set your file descriptor limit by running:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ ulimit -n [new_value]</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Flagging flaky tests</div>
+==
+Not all test cases are as timing independent as they should be, which can result in intermittent test failures.
+You can help us track these flaky tests by opening an <a href="https://github.com/eclipse/jetty.project/issues">issue</a> when you come across one.
+==
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-build-cache"><a class="anchor" href="#cg-build-cache"></a>Maven Build Cache</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Per default, the build is using the <a href="https://maven.apache.org/extensions/maven-build-cache-extension">Maven Build Cache extension</a>
+this means you will use your local build cache, To disable it you can use the property</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mvn clean install -Dmaven.build.cache.enabled=false</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-build-parallel"><a class="anchor" href="#cg-build-parallel"></a>Executing tests in parallel</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jetty uses <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">Junit5&#8217;s parallel execution</a> to run test cases in parallel.
+This behavior is configurable via flags passed to Maven, like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">mvn install -Djunit.jupiter.execution.parallel.enabled=false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here are the available configuration flags:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>-Djunit.jupiter.execution.parallel.enabled=[BOOLEAN]</code></dt>
+<dd>
+<p>Disables parallel execution of tests.</p>
+</dd>
+<dt class="hdlist1"><code>-Djunit.jupiter.execution.parallel.config.fixed.parallelism=[NUMBER]</code></dt>
+<dd>
+<p>Configures the number of tests to be executed in parallel.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+==
+Certain tests cannot be run in parallel because they access or modify  <code>static</code> fields, and are tagged in the codebase with this annotation:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Isolated("Access static field of Configurations")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Maven will run these tests in isolation even when parallel execution is explicitly enabled.
+==</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-build-optional-tools"><a class="anchor" href="#cg-build-optional-tools"></a>Optional build tools</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://graphviz.org/">Graphviz</a>: used by Asciidoctor in the <code>jetty-documentation</code> module to produce various <a href="https://plantuml.com/">PlantUML</a> graphs.</p>
+</li>
+<li>
+<p><a href="https://www.docker.com/">Docker</a>: used to run some integration tests for testing third party integrations.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-build-artifacts"><a class="anchor" href="#cg-build-artifacts"></a>Build artifacts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the build is complete, you can find the built Jetty Maven artifacts in your Maven local repository, along with the following locations of note:</p>
+</div>
+<div class="paragraph">
+<p>|==
+| Branch(es)     | Location | Description</p>
+</div>
+<div class="paragraph">
+<p>| all            | <code>jetty-home/target/jetty-home-&lt;ver&gt;.tar.gz</code>  | The Jetty Home distribution
+| <code>jetty-12.0.x</code> | <code>jetty-ee10/jetty-ee10-runner/target/jetty-ee10-runner-&lt;ver&gt;.jar</code> | The Jetty Runner distribution for EE10/Servlet 6 (<code>jakarta.servlet</code>) webapps
+| <code>jetty-12.0.x</code> | <code>jetty-ee9/jetty-ee9-runner/target/jetty-ee9-runner-&lt;ver&gt;.jar</code>    | The Jetty Runner distribution for EE9/Servlet 5 (<code>jakarta.servlet</code>) webapps
+| <code>jetty-12.0.x</code> | <code>jetty-ee8/jetty-ee8-runner/target/jetty-ee8-runner-&lt;ver&gt;.jar</code>    | The Jetty Runner distribution for EE8/Servlet 4 (<code>javax.servlet</code>) webapps
+| <code>jetty-11.0.x</code> | <code>jetty-runner/target/jetty-runner-&lt;ver&gt;.jar</code> | The Jetty Runner distribution for EE9/Servlet 5 (<code>jakarta.servlet</code>) webapps
+| <code>jetty-10.0.x</code> | <code>jetty-runner/target/jetty-runner-&lt;ver&gt;.jar</code> | The Jetty Runner distribution for EE8/Servlet 4 (<code>javax.servlet</code>) webapps
+|==</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../source/index.html">Getting the source code</a></span>
+  <span class="next"><a href="../standards/index.html">Code Standards</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="../../index.html">Docs</a></li>
+      <li><a href="../../../support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="../../../_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="../../../_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="../../../_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

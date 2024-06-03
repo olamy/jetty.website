@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://jetty.org/docs/contribution-guide/build/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+<url>
+<loc>https://jetty.org/docs/contribution-guide/documentation/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+<url>
+<loc>https://jetty.org/docs/contribution-guide/eca/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+<url>
+<loc>https://jetty.org/docs/contribution-guide/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+<url>
+<loc>https://jetty.org/docs/contribution-guide/patches/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+<url>
+<loc>https://jetty.org/docs/contribution-guide/security/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+<url>
+<loc>https://jetty.org/docs/contribution-guide/source/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+<url>
+<loc>https://jetty.org/docs/contribution-guide/standards/index.html</loc>
+<lastmod>2024-06-03T05:47:07.648Z</lastmod>
+</url>
+</urlset>

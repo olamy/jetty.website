@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>WebSocket Client :: Eclipse Jetty</title>
+    <link rel="canonical" href="https://jetty.org/docs/jetty/12/programming-guide/client/websocket.html">
+    <link rel="prev" href="http3.html">
+    <link rel="next" href="../server/index.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="../../../../../_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="../../../../index.html">Documentation</a>
+        <a class="navbar-item" href="../../../../../support.html">Support</a>
+        <!--a class="navbar-item" href="../../../../../community.html">Community</a-->
+        <a class="navbar-item" href="../../../../../security.html">Security</a>
+        <a class="navbar-item" href="../../../../../download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="../../../../contribution-guide/index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="jetty" data-version="10">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../../index.html">Eclipse Jetty</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/index.html">Operations Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/begin/index.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/features/index.html">Eclipse Jetty Features</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/howtos/index.html">Eclipse Jetty How-Tos</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/arch/index.html">Architecture Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/start/index.html">Jetty Start Mechanism</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/start/start-jpms.html">Starting Jetty using JPMS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/modules/index.html">Jetty Modules</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/modules/custom.html">Custom Jetty Modules</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/modules/standard.html">Standard Modules</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/deploy/index.html">Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/server/index.html">Jetty Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/protocols/index.html">Jetty Connectors and Protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/keystore/index.html">Configuring SSL/TLS KeyStores</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/session/index.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/quickstart/index.html">Faster Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/annotations/index.html">Annotations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jsp/index.html">Java Server Pages</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jstl/index.html">JavaServer Pages Standard Tag Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jsf-taglibs/index.html">JavaServer Faces TagLibs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jndi/index.html">JNDI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jaas/index.html">JAAS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jaspi/index.html">JASPI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jmx/index.html">JMX Monitoring &amp; Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/troubleshooting/index.html">Troubleshooting</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/xml/index.html">Jetty XML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Programming Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Client Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="io-arch.html">I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http.html">HTTP Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http2.html">HTTP/2 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http3.html">HTTP/3 Client Library</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="websocket.html">WebSocket Client</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../server/index.html">Server Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/compliance.html">Server Compliance Modes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/http.html">HTTP Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/http2.html">HTTP/2 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/http3.html">HTTP/3 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/session.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/websocket.html">WebSocket Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/fastcgi.html">FastCGI Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../server/io-arch.html">Server I/O Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Maven and Jetty</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-maven-helloworld.html">Using Maven</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-maven-plugin.html">Using the Jetty Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-jspc-maven-plugin.html">Jetty Jspc Maven Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jetty Architecture</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/bean.html">Jetty Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/threads.html">Jetty Threading Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/io.html">Jetty I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/listener.html">Jetty Listeners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/jmx.html">Jetty JMX Support</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../troubleshooting/index.html">Troubleshooting Jetty</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/thread-dump.html">JVM Thread Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/component-dump.html">Jetty Component Tree Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/debugging.html">Debugging</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration/94-to-10.html">Migrating from Jetty 9.4.x to Jetty 10.0.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Eclipse Jetty</span>
+    <span class="version">10</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../../../contribution-guide/index.html">Contribution Guide</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../../../12/index.html">Eclipse Jetty</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../12/index.html">12</a>
+        </li>
+        <li class="version">
+          <a href="../../../11/index.html">11</a>
+        </li>
+        <li class="version is-current">
+          <a href="../../index.html">10</a>
+        </li>
+      </ul>
+    </li>
+    </li>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Eclipse Jetty</a></li>
+    <li><a href="../index.html">Programming Guide</a></li>
+    <li><a href="index.html">Client Libraries</a></li>
+    <li><a href="websocket.html">WebSocket Client</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">10</button>
+  <div class="version-menu">
+    <a class="version" href="../../../12/programming-guide/client/websocket.html">12</a>
+    <a class="version" href="../../../11/programming-guide/client/websocket.html">11</a>
+    <a class="version is-current" href="websocket.html">10</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.project/edit/jetty-10.0.x/documentation/jetty/modules/programming-guide/pages/client/websocket.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">WebSocket Client</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jetty&#8217;s <code>WebSocketClient</code> is a more powerful alternative to the WebSocket client provided by the standard JSR 356 <code>javax.websocket</code> APIs.</p>
+</div>
+<div class="paragraph">
+<p>Similarly to Jetty&#8217;s <a href="http.html" class="xref page"><code>HttpClient</code></a>, the <code>WebSocketClient</code> is non-blocking and asynchronous, making it very efficient in resource utilization.
+A synchronous, blocking, API is also offered for simpler cases.</p>
+</div>
+<div class="paragraph">
+<p>Since the first step of establishing a WebSocket communication is an HTTP request, <code>WebSocketClient</code> makes use of <code>HttpClient</code> and therefore depends on it.</p>
+</div>
+<div class="paragraph">
+<p>The Maven artifact coordinates are the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.eclipse.jetty.websocket&lt;/groupId&gt;
+  &lt;artifactId&gt;websocket-jetty-client&lt;/artifactId&gt;
+  &lt;version&gt;10.0.21-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="start"><a class="anchor" href="#start"></a>Starting WebSocketClient</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The main class is <code>org.eclipse.jetty.websocket.client.WebSocketClient</code>; you instantiate it, configure it, and then start it like may other Jetty components.
+This is a minimal example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Instantiate WebSocketClient.
+WebSocketClient webSocketClient = new WebSocketClient();
+
+// Configure WebSocketClient, for example:
+webSocketClient.setMaxTextMessageSize(8 * 1024);
+
+// Start WebSocketClient.
+webSocketClient.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, it is recommended that you explicitly pass an <code>HttpClient</code> instance to <code>WebSocketClient</code> so that you can have control over the HTTP configuration as well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Instantiate and configure HttpClient.
+HttpClient httpClient = new HttpClient();
+// For example, configure a proxy.
+httpClient.getProxyConfiguration().addProxy(new HttpProxy("localhost", 8888));
+
+// Instantiate WebSocketClient, passing HttpClient to the constructor.
+WebSocketClient webSocketClient = new WebSocketClient(httpClient);
+// Configure WebSocketClient, for example:
+webSocketClient.setMaxTextMessageSize(8 * 1024);
+
+// Start WebSocketClient; this implicitly starts also HttpClient.
+webSocketClient.start();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You may create multiple instances of <code>WebSocketClient</code>, but typically one instance is enough for most applications.
+Creating multiple instances may be necessary for example when you need to specify different configuration parameters for different instances.
+For example, you may need different instances when you need to configure the <code>HttpClient</code> differently: different transports, different proxies, different cookie stores, different authentications, etc.</p>
+</div>
+<div class="paragraph">
+<p>The configuration that is not WebSocket specific (such as idle timeout, etc.) should be directly configured on the associated <code>HttpClient</code> instance.</p>
+</div>
+<div class="paragraph">
+<p>The WebSocket specific configuration can be configured directly on the <code>WebSocketClient</code> instance.
+Configuring the <code>WebSocketClient</code> allows to give default values to various parameters, whose values may be overridden more specifically, as described in <a href="#session-configure">this section</a>.</p>
+</div>
+<div class="paragraph">
+<p>Refer to the  <code>WebSocketClient</code> <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/websocket/client/WebSocketClient.html">javadocs</a> for the setter methods available to customize the WebSocket specific configuration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stop"><a class="anchor" href="#stop"></a>Stopping WebSocketClient</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is recommended that when your application stops, you also stop the <code>WebSocketClient</code> instance (or instances) that you are using.</p>
+</div>
+<div class="paragraph">
+<p>Similarly to <a href="http.html#stop" class="xref page">stopping <code>HttpClient</code></a>, you want to stop <code>WebSocketClient</code> from a thread that is not owned by <code>WebSocketClient</code> itself, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Stop WebSocketClient.
+// Use LifeCycle.stop(...) to rethrow checked exceptions as unchecked.
+new Thread(() -&gt; LifeCycle.stop(webSocketClient)).start();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="connect"><a class="anchor" href="#connect"></a>Connecting to a Remote Host</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A WebSocket client may initiate the communication with the server either <a href="#connect-http11">using HTTP/1.1</a> or <a href="#connect-http2">using HTTP/2</a>.
+The two mechanism are quite different and detailed in the following sections.</p>
+</div>
+<div class="sect2">
+<h3 id="connect-http11"><a class="anchor" href="#connect-http11"></a>Using HTTP/1.1</h3>
+<div class="paragraph">
+<p>Initiating a WebSocket communication with a server using HTTP/1.1 is detailed in <a href="https://tools.ietf.org/html/rfc6455#section-1.8">RFC 6455</a>.</p>
+</div>
+<div class="paragraph">
+<p>A WebSocket client first establishes a TCP connection to the server, then sends an HTTP/1.1 <em>upgrade</em> request.</p>
+</div>
+<div class="paragraph">
+<p>If the server supports upgrading to WebSocket, it responds with HTTP status code <code>101</code>, and then switches the communication over that connection, either incoming or outgoing, to happen using the WebSocket protocol.</p>
+</div>
+<div class="paragraph">
+<p>When the client receives the HTTP status code <code>101</code>, it switches the communication over that connection, either incoming or outgoing, to happen using the WebSocket protocol.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqNkTFPwzAUhHf_ijfSSpBm7YBEo0IHhkgJYmFxnNfUSvIc2S79-xhKLCd1BOvd5_PpnmklDVzzHiou2karM9WZ6pQGqzkZZyFZZjzVK1LipFWPDjhj4JgTr9VFUgNH3hlkzMlWCjlwspB10uXsqc6VdHmh9Y5VoUSL9spMvIO1Q0QuUH-ijkj-AzZLhfvHIAy2IBQRCnu3YoHsoGuOA8osT8rXYgSXsJd9CQkcyjJP0of0g96GRvMat3DByvwUYL-sfzWWhPX6u4hGbjGAJjXHYEg38fBprfmWkRWml5h0mFm3eQ71Cjy7oyM8xf7w69zSi2Msw2GhxeRdkPx3690_lom8-gKbbRqo" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>In code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Use a standard, HTTP/1.1, HttpClient.
+HttpClient httpClient = new HttpClient();
+
+// Create and start WebSocketClient.
+WebSocketClient webSocketClient = new WebSocketClient(httpClient);
+webSocketClient.start();
+
+// The client-side WebSocket EndPoint that
+// receives WebSocket messages from the server.
+ClientEndPoint clientEndPoint = new ClientEndPoint();
+// The server URI to connect to.
+URI serverURI = URI.create("ws://domain.com/path");
+
+// Connect the client EndPoint to the server.
+CompletableFuture&lt;Session&gt; clientSessionPromise = webSocketClient.connect(clientEndPoint, serverURI);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>WebSocketClient.connect()</code> links the client-side WebSocket <em>endpoint</em> to a specific server URI, and returns a <code>CompletableFuture</code> of an <code>org.eclipse.jetty.websocket.api.Session</code>.</p>
+</div>
+<div class="paragraph">
+<p>The endpoint offers APIs to <em>receive</em> WebSocket data (or errors) from the server, while the session offers APIs to <em>send</em> WebSocket data to the server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connect-http2"><a class="anchor" href="#connect-http2"></a>Using HTTP/2</h3>
+<div class="paragraph">
+<p>Initiating a WebSocket communication with a server using HTTP/1.1 is detailed in <a href="https://tools.ietf.org/html/rfc8441">RFC 8441</a>.</p>
+</div>
+<div class="paragraph">
+<p>A WebSocket client establishes a TCP connection to the server or reuses an existing one currently used for HTTP/2, then sends an HTTP/2 <em>connect</em> request over an HTTP/2 stream.</p>
+</div>
+<div class="paragraph">
+<p>If the server supports upgrading to WebSocket, it responds with HTTP status code <code>200</code>, then switches the communication over that stream, either incoming or outgoing, to happen using HTTP/2 <code>DATA</code> frames wrapping WebSocket frames.</p>
+</div>
+<div class="paragraph">
+<p>When the client receives the HTTP status code <code>200</code>, it switches the communication over that stream, either incoming or outgoing, to happen using HTTP/2 <code>DATA</code> frames wrapping WebSocket frames.</p>
+</div>
+<div class="paragraph">
+<p>From an external point of view, it will look like client is sending chunks of an infinite HTTP/2 request upload, and the server is sending chunks of an infinite HTTP/2 response download, as they will exchange HTTP/2 <code>DATA</code> frames; but the HTTP/2 <code>DATA</code> frames will contain each one or more WebSocket frames that both client and server know how to deliver to the respective WebSocket endpoints.</p>
+</div>
+<div class="paragraph">
+<p>When either WebSocket endpoint decides to terminate the communication, the HTTP/2 stream will be closed as well.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNp1kbFugzAQhnee4sY2UtSoI0MlQqgyVGlUkLpkMeYaEOBD9tG8ft2mobYLI_99fP59Nm2jBqFFD6WQ7VnTqKqUOtLAWihjR6g4MhPVkyJZa-rRAiM6E1OLii6NOsOH6AxGkY25kc0gFEPaNdaTqepIjfW5o3csc5It8pXxZnvmYSbOUX-inommA6LACusnRwYxSFIKJd_dR068ttRVZIkiPT4UL_mN9DgH22fJLnvLTyrukWuqYkhfD4csLWwyaGKS1MVwwdL81Il-f5wUt8qwWn3X0igYHcgr_XeWYcGjieFxs7Ffjt5vGe52Ziv-y3gtglHYZpLBs31_hGRpRbukSE7qP764ijl3gLj-EN4u7W--yDboHVx7xv8FMGEdkw==" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>In code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Use the HTTP/2 transport for HttpClient.
+HTTP2Client http2Client = new HTTP2Client();
+HttpClient httpClient = new HttpClient(new HttpClientTransportOverHTTP2(http2Client));
+
+// Create and start WebSocketClient.
+WebSocketClient webSocketClient = new WebSocketClient(httpClient);
+webSocketClient.start();
+
+// The client-side WebSocket EndPoint that
+// receives WebSocket messages from the server.
+ClientEndPoint clientEndPoint = new ClientEndPoint();
+// The server URI to connect to.
+URI serverURI = URI.create("wss://domain.com/path");
+
+// Connect the client EndPoint to the server.
+CompletableFuture&lt;Session&gt; clientSessionPromise = webSocketClient.connect(clientEndPoint, serverURI);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use the <a href="http.html#transport-dynamic" class="xref page">dynamic <code>HttpClient</code> transport</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Use the dynamic HTTP/2 transport for HttpClient.
+HTTP2Client http2Client = new HTTP2Client();
+HttpClient httpClient = new HttpClient(new HttpClientTransportDynamic(new ClientConnectionFactoryOverHTTP2.HTTP2(http2Client)));
+
+// Create and start WebSocketClient.
+WebSocketClient webSocketClient = new WebSocketClient(httpClient);
+webSocketClient.start();
+
+ClientEndPoint clientEndPoint = new ClientEndPoint();
+URI serverURI = URI.create("wss://domain.com/path");
+
+// Connect the client EndPoint to the server.
+CompletableFuture&lt;Session&gt; clientSessionPromise = webSocketClient.connect(clientEndPoint, serverURI);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connect-custom-http-request"><a class="anchor" href="#connect-custom-http-request"></a>Customizing the Initial HTTP Request</h3>
+<div class="paragraph">
+<p>Sometimes you need to add custom cookies, or other HTTP headers, or specify a WebSocket sub-protocol to the HTTP request that initiates the WebSocket communication.</p>
+</div>
+<div class="paragraph">
+<p>You can do this by using overloaded versions of the <code>WebSocketClient.connect(&#8230;&#8203;)</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ClientEndPoint clientEndPoint = new ClientEndPoint();
+URI serverURI = URI.create("ws://domain.com/path");
+
+// Create a custom HTTP request.
+ClientUpgradeRequest customRequest = new ClientUpgradeRequest();
+// Specify a cookie.
+customRequest.getCookies().add(new HttpCookie("name", "value"));
+// Specify a custom header.
+customRequest.setHeader("X-Token", "0123456789ABCDEF");
+// Specify a custom sub-protocol.
+customRequest.setSubProtocols("chat");
+
+// Connect the client EndPoint to the server with a custom HTTP request.
+CompletableFuture&lt;Session&gt; clientSessionPromise = webSocketClient.connect(clientEndPoint, serverURI, customRequest);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connect-inspect-http-response"><a class="anchor" href="#connect-inspect-http-response"></a>Inspecting the Initial HTTP Response</h3>
+<div class="paragraph">
+<p>If you want to inspect the HTTP response returned by the server as a reply to the  HTTP request that initiates the WebSocket communication, you may provide a <code>JettyUpgradeListener</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ClientEndPoint clientEndPoint = new ClientEndPoint();
+URI serverURI = URI.create("ws://domain.com/path");
+
+// The listener to inspect the HTTP response.
+JettyUpgradeListener listener = new JettyUpgradeListener()
+{
+    @Override
+    public void onHandshakeResponse(HttpRequest request, HttpResponse response)
+    {
+        // Inspect the HTTP response here.
+    }
+};
+
+// Connect the client EndPoint to the server with a custom HTTP request.
+CompletableFuture&lt;Session&gt; clientSessionPromise = webSocketClient.connect(clientEndPoint, serverURI, null, listener);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="architecture"><a class="anchor" href="#architecture"></a>Jetty WebSocket Architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Jetty WebSocket architecture is organized around the concept of a logical <em>connection</em> between the client and the server.</p>
+</div>
+<div class="paragraph">
+<p>The connection may be physical, when connecting to the server using HTTP/1.1, as the WebSocket bytes are carried directly by the TCP connection.</p>
+</div>
+<div class="paragraph">
+<p>The connection may be virtual, when connecting to the server using HTTP/2, as the WebSocket bytes are wrapped into HTTP/2 <code>DATA</code> frames of an HTTP/2 stream.
+In this case, a single TCP connection may carry several WebSocket virtual connections, each wrapped in its own HTTP/2 stream.</p>
+</div>
+<div class="paragraph">
+<p>Each side of a WebSocket connection, either client or server, is made of two entities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <a href="#endpoints">WebSocket <em>endpoint</em></a>, the entity that <em>receives</em> WebSocket events.</p>
+</li>
+<li>
+<p>A <a href="#session">WebSocket <em>session</em></a>, the entity that offers an API to <em>send</em> WebSocket data (and to close the WebSocket connection), as well as to configure WebSocket connection parameters.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="endpoints"><a class="anchor" href="#endpoints"></a>WebSocket Endpoints</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A WebSocket endpoint is the entity that receives WebSocket events.</p>
+</div>
+<div class="paragraph">
+<p>The WebSocket events are the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <em>connect</em> event.
+This event is emitted when the WebSocket communication has been successfully established.
+Applications interested in the connect event receive the WebSocket <em>session</em> so that they can use it to send data to the remote peer.</p>
+</li>
+<li>
+<p>The <em>close</em> event.
+This event is emitted when the WebSocket communication has been closed.
+Applications interested in the close event receive a WebSocket status code and an optional close reason message.</p>
+</li>
+<li>
+<p>The <em>error</em> event.
+This event is emitted when the WebSocket communication encounters a fatal error, such as an I/O error (for example, the network connection has been broken), or a protocol error (for example, the remote peer sends an invalid WebSocket frame).
+Applications interested in the error event receive a <code>Throwable</code> that represent the error.</p>
+</li>
+<li>
+<p>The <em>message</em> event.
+The message event is emitted when a WebSocket message is received.
+Only one thread at a time will be delivering a message event to the <code>onMessage</code> method; the next message event will not be delivered until the previous call to the <code>onMessage</code> method has exited.
+Endpoints will always be notified of message events in the same order they were received over the network.
+The message event can be of two types:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Textual message event.
+Applications interested in this type of messages receive a <code>String</code> representing the UTF-8 bytes received.</p>
+</li>
+<li>
+<p>Binary message event.
+Applications interested in this type of messages receive a <code>byte[]</code> representing the raw bytes received.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="endpoints-listener"><a class="anchor" href="#endpoints-listener"></a>Listener Endpoints</h3>
+<div class="paragraph">
+<p>A WebSocket endpoint may implement the <code>org.eclipse.jetty.websocket.api.WebSocketListener</code> interface to receive WebSocket events:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ListenerEndPoint implements WebSocketListener <i class="conum" data-value="1"></i><b>(1)</b>
+{
+    private Session session;
+
+    @Override
+    public void onWebSocketConnect(Session session)
+    {
+        // The WebSocket connection is established.
+
+        // Store the session to be able to send data to the remote peer.
+        this.session = session;
+
+        // You may configure the session.
+        session.setMaxTextMessageSize(16 * 1024);
+
+        // You may immediately send a message to the remote peer.
+        session.getRemote().sendString("connected", WriteCallback.NOOP);
+    }
+
+    @Override
+    public void onWebSocketClose(int statusCode, String reason)
+    {
+        // The WebSocket connection is closed.
+
+        // You may dispose resources.
+        disposeResources();
+    }
+
+    @Override
+    public void onWebSocketError(Throwable cause)
+    {
+        // The WebSocket connection failed.
+
+        // You may log the error.
+        cause.printStackTrace();
+
+        // You may dispose resources.
+        disposeResources();
+    }
+
+    @Override
+    public void onWebSocketText(String message)
+    {
+        // A WebSocket textual message is received.
+
+        // You may echo it back if it matches certain criteria.
+        if (message.startsWith("echo:"))
+            session.getRemote().sendString(message.substring("echo:".length()), WriteCallback.NOOP);
+    }
+
+    @Override
+    public void onWebSocketBinary(byte[] payload, int offset, int length)
+    {
+        // A WebSocket binary message is received.
+
+        // Save only PNG images.
+        byte[] pngBytes = new byte[]{(byte)0x89, 'P', 'N', 'G'};
+        for (int i = 0; i &lt; pngBytes.length; ++i)
+        {
+            if (pngBytes[i] != payload[offset + i])
+                return;
+        }
+        savePNGImage(payload, offset, length);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Your listener class implements <code>WebSocketListener</code>.</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="message-streaming-reads"><a class="anchor" href="#message-streaming-reads"></a>Message Streaming Reads</h4>
+<div class="paragraph">
+<p>If you need to deal with large WebSocket messages, you may reduce the memory usage by streaming the message content.
+For large WebSocket messages, the memory usage may be large due to the fact that the text or the bytes must be accumulated until the message is complete before delivering the message event.</p>
+</div>
+<div class="paragraph">
+<p>To stream textual or binary messages, you must implement interface <code>org.eclipse.jetty.websocket.api.WebSocketPartialListener</code> instead of <code>WebSocketListener</code>.</p>
+</div>
+<div class="paragraph">
+<p>Interface <code>WebSocketPartialListener</code> exposes one method for textual messages, and one method to binary messages that receive <em>chunks</em> of, respectively, text and bytes that form the whole WebSocket message.</p>
+</div>
+<div class="paragraph">
+<p>You may accumulate the chunks yourself, or process each chunk as it arrives, or stream the chunks elsewhere, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class StreamingListenerEndpoint implements WebSocketPartialListener
+{
+    private Path textPath;
+
+    @Override
+    public void onWebSocketPartialText(String payload, boolean fin)
+    {
+        // Forward chunks to external REST service.
+        forwardToREST(payload, fin);
+    }
+
+    @Override
+    public void onWebSocketPartialBinary(ByteBuffer payload, boolean fin)
+    {
+        // Save chunks to file.
+        appendToFile(payload, fin);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="endpoints-annotated"><a class="anchor" href="#endpoints-annotated"></a>Annotated Endpoints</h3>
+<div class="paragraph">
+<p>A WebSocket endpoint may annotate methods with <code>org.eclipse.jetty.websocket.api.annotations.*</code> annotations to receive WebSocket events.
+Each annotated method may take an optional <code>Session</code> argument as its first parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WebSocket <i class="conum" data-value="1"></i><b>(1)</b>
+public class AnnotatedEndPoint
+{
+    private Session session;
+
+    @OnWebSocketConnect <i class="conum" data-value="2"></i><b>(2)</b>
+    public void onConnect(Session session)
+    {
+        // The WebSocket connection is established.
+
+        // Store the session to be able to send data to the remote peer.
+        this.session = session;
+
+        // You may configure the session.
+        session.setMaxTextMessageSize(16 * 1024);
+
+        // You may immediately send a message to the remote peer.
+        session.getRemote().sendString("connected", WriteCallback.NOOP);
+    }
+
+    @OnWebSocketClose <i class="conum" data-value="3"></i><b>(3)</b>
+    public void onClose(int statusCode, String reason)
+    {
+        // The WebSocket connection is closed.
+
+        // You may dispose resources.
+        disposeResources();
+    }
+
+    @OnWebSocketError <i class="conum" data-value="4"></i><b>(4)</b>
+    public void onError(Throwable cause)
+    {
+        // The WebSocket connection failed.
+
+        // You may log the error.
+        cause.printStackTrace();
+
+        // You may dispose resources.
+        disposeResources();
+    }
+
+    @OnWebSocketMessage <i class="conum" data-value="5"></i><b>(5)</b>
+    public void onTextMessage(Session session, String message) <i class="conum" data-value="3"></i><b>(3)</b>
+    {
+        // A WebSocket textual message is received.
+
+        // You may echo it back if it matches certain criteria.
+        if (message.startsWith("echo:"))
+            session.getRemote().sendString(message.substring("echo:".length()), WriteCallback.NOOP);
+    }
+
+    @OnWebSocketMessage <i class="conum" data-value="5"></i><b>(5)</b>
+    public void onBinaryMessage(byte[] payload, int offset, int length)
+    {
+        // A WebSocket binary message is received.
+
+        // Save only PNG images.
+        byte[] pngBytes = new byte[]{(byte)0x89, 'P', 'N', 'G'};
+        for (int i = 0; i &lt; pngBytes.length; ++i)
+        {
+            if (pngBytes[i] != payload[offset + i])
+                return;
+        }
+        savePNGImage(payload, offset, length);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the <code>@WebSocket</code> annotation at the class level to make it a WebSocket endpoint.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use the <code>@OnWebSocketConnect</code> annotation for the <em>connect</em> event.
+As this is the first event notified to the endpoint, you can configure the <code>Session</code> object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use the <code>@OnWebSocketClose</code> annotation for the <em>close</em> event.
+The method may take an optional <code>Session</code> as first parameter.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Use the <code>@OnWebSocketError</code> annotation for the <em>error</em> event.
+The method may take an optional <code>Session</code> as first parameter.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Use the <code>@OnWebSocketMessage</code> annotation for the <em>message</em> event, both for textual and binary messages.
+The method may take an optional <code>Session</code> as first parameter.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For binary messages, you may declare the annotated method with either or these two signatures:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@OnWebSocketMessage
+public void methodName(byte[] bytes, int offset, int length) { ... }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@OnWebSocketMessage
+public void methodName(ByteBuffer buffer) { ... }</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="message-streaming-reads-2"><a class="anchor" href="#message-streaming-reads-2"></a>Message Streaming Reads</h4>
+<div class="paragraph">
+<p>If you need to deal with large WebSocket messages, you may reduce the memory usage by streaming the message content.</p>
+</div>
+<div class="paragraph">
+<p>To stream textual or binary messages, you still use the <code>@OnWebSocketMessage</code> annotation, but you change the signature of the method to take, respectively a <code>Reader</code> and an <code>InputStream</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WebSocket
+public class StreamingAnnotatedEndpoint
+{
+    @OnWebSocketMessage
+    public void onTextMessage(Reader reader)
+    {
+        // Read chunks and forward.
+        forwardToREST(reader);
+    }
+
+    @OnWebSocketMessage
+    public void onBinaryMessage(InputStream stream)
+    {
+        // Save chunks to file.
+        appendToFile(stream);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>Reader</code> or <code>InputStream</code> only offer blocking APIs, so if the remote peers are slow in sending the large WebSocket messages, reading threads may be blocked in <code>Reader.read(char[])</code> or <code>InputStream.read(byte[])</code>, possibly exhausting the thread pool.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="session"><a class="anchor" href="#session"></a>WebSocket Session</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A WebSocket session is the entity that offers an API to send data to the remote peer, to close the WebSocket connection, and to configure WebSocket connection parameters.</p>
+</div>
+<div class="sect2">
+<h3 id="session-configure"><a class="anchor" href="#session-configure"></a>Configuring the Session</h3>
+<div class="paragraph">
+<p>You may configure the WebSocket session behavior using the <code>org.eclipse.jetty.websocket.api.Session</code> APIs.
+You want to do this as soon as you have access to the <code>Session</code> object, typically from the <a href="#endpoints"><em>connect</em> event</a> handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ConfigureEndpoint implements WebSocketListener
+{
+    @Override
+    public void onWebSocketConnect(Session session)
+    {
+        // Configure the max length of incoming messages.
+        session.setMaxTextMessageSize(16 * 1024);
+
+        // Configure the idle timeout.
+        session.setIdleTimeout(Duration.ofSeconds(30));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The settings that can be configured include:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">maxBinaryMessageSize</dt>
+<dd>
+<p>the maximum size in bytes of a binary message (which may be composed of multiple frames) that can be received.</p>
+</dd>
+<dt class="hdlist1">maxTextMessageSize</dt>
+<dd>
+<p>the maximum size in bytes of a text message (which may be composed of multiple frames) that can be received.</p>
+</dd>
+<dt class="hdlist1">maxFrameSize</dt>
+<dd>
+<p>the maximum payload size in bytes of any WebSocket frame that can be received.</p>
+</dd>
+<dt class="hdlist1">inputBufferSize</dt>
+<dd>
+<p>the input (read from network/transport layer) buffer size in bytes; it has no relationship with the WebSocket frame size or message size.</p>
+</dd>
+<dt class="hdlist1">outputBufferSize</dt>
+<dd>
+<p>the output (write to network/transport layer) buffer size in bytes; it has no relationship to the WebSocket frame size or message size.</p>
+</dd>
+<dt class="hdlist1">autoFragment</dt>
+<dd>
+<p>whether WebSocket frames are automatically fragmented to respect the maximum frame size.</p>
+</dd>
+<dt class="hdlist1">idleTimeout</dt>
+<dd>
+<p>the duration that a WebSocket connection may remain idle (that is, there is no network traffic, neither in read nor in write) before being closed by the implementation.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Please refer to the <code>Session</code> <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/websocket/api/Session.html">javadocs</a> for the complete list of configuration APIs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="session-send"><a class="anchor" href="#session-send"></a>Sending Data</h3>
+<div class="paragraph">
+<p>To send data to the remote peer, you need to obtain the <code>RemoteEndpoint</code> object from the <code>Session</code>, and then use its API to send data.</p>
+</div>
+<div class="paragraph">
+<p><code>RemoteEndpoint</code> offers two styles of APIs to send data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Blocking APIs, where the call returns when the data has been sent, or throws an <code>IOException</code> if the data cannot be sent.</p>
+</li>
+<li>
+<p>Non-blocking APIs, where a callback object is notified when the data has been sent, or when there was a failure sending the data.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="session-send-blocking"><a class="anchor" href="#session-send-blocking"></a>Blocking APIs</h4>
+<div class="paragraph">
+<p><code>RemoteEndpoint</code> blocking APIs throw <code>IOException</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WebSocket
+public class BlockingSendEndpoint
+{
+    @OnWebSocketMessage
+    public void onText(Session session, String text)
+    {
+        // Obtain the RemoteEndpoint APIs.
+        RemoteEndpoint remote = session.getRemote();
+
+        try
+        {
+            // Send textual data to the remote peer.
+            remote.sendString("data");
+
+            // Send binary data to the remote peer.
+            ByteBuffer bytes = readImageFromFile();
+            remote.sendBytes(bytes);
+
+            // Send a PING frame to the remote peer.
+            remote.sendPing(ByteBuffer.allocate(8).putLong(NanoTime.now()).flip());
+        }
+        catch (IOException x)
+        {
+            // No need to rethrow or close the session.
+            System.getLogger("websocket").log(System.Logger.Level.WARNING, "could not send data", x);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Blocking APIs are simpler to use since they can be invoked one after the other sequentially.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Sending large messages to the remote peer may cause the sending thread to block, possibly exhausting the thread pool.
+Consider using non-blocking APIs for large messages.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="session-send-non-blocking"><a class="anchor" href="#session-send-non-blocking"></a>Non-Blocking APIs</h4>
+<div class="paragraph">
+<p><code>RemoteEndpoint</code> non-blocking APIs have an additional callback parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WebSocket
+public class NonBlockingSendEndpoint
+{
+    @OnWebSocketMessage
+    public void onText(Session session, String text)
+    {
+        // Obtain the RemoteEndpoint APIs.
+        RemoteEndpoint remote = session.getRemote();
+
+        // Send textual data to the remote peer.
+        remote.sendString("data", new WriteCallback() <i class="conum" data-value="1"></i><b>(1)</b>
+        {
+            @Override
+            public void writeSuccess()
+            {
+                // Send binary data to the remote peer.
+                ByteBuffer bytes = readImageFromFile();
+                remote.sendBytes(bytes, new WriteCallback() <i class="conum" data-value="2"></i><b>(2)</b>
+                {
+                    @Override
+                    public void writeSuccess()
+                    {
+                        // Both sends succeeded.
+                    }
+
+                    @Override
+                    public void writeFailed(Throwable x)
+                    {
+                        System.getLogger("websocket").log(System.Logger.Level.WARNING, "could not send binary data", x);
+                    }
+                });
+            }
+
+            @Override
+            public void writeFailed(Throwable x)
+            {
+                // No need to rethrow or close the session.
+                System.getLogger("websocket").log(System.Logger.Level.WARNING, "could not send textual data", x);
+            }
+        });
+
+        // remote.sendString("wrong", WriteCallback.NOOP); // May throw WritePendingException! <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Non-blocking APIs require a <code>WriteCallback</code> parameter.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Note how the second send must be performed from inside the callback.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Sequential sends may throw <code>WritePendingException</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Non-blocking APIs are more difficult to use since you are required to meet the following condition:</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You cannot initiate another send of any kind until the previous send is completed.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you have initiated a text send, you cannot initiate a binary send, until the previous send has completed.</p>
+</div>
+<div class="paragraph">
+<p>Furthermore, if you have initiated a non-blocking send, you cannot initiate a blocking send, until the previous send has completed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This requirement is necessary to avoid unbounded buffering that could lead to <code>OutOfMemoryError</code>s.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We strongly recommend that you follow the condition above.</p>
+</div>
+<div class="paragraph">
+<p>However, there may be cases where you want to explicitly control the number of outgoing buffered messages using <code>RemoteEndpoint.setMaxOutgoingFrames(int)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Remember that trying to control the number of outgoing buffered messages is very difficult and tricky; you may set <code>maxOutgoingFrames=4</code> and have a situation where 6 threads try to concurrently send messages: threads 1 to 4 will be able to successfully buffer their messages, thread 5 may fail, but thread 6 may succeed because one of the previous threads completed its send.
+At this point you have an out-of-order message delivery that could be unexpected and very difficult to troubleshoot because it will happen non-deterministically.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>While non-blocking APIs are more difficult to use, they don&#8217;t block the sender thread and therefore use less resources, which in turn typically allows for greater scalability under load: with respect to blocking APIs, non-blocking APIs need less resources to cope with the same load.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="session-send-stream"><a class="anchor" href="#session-send-stream"></a>Streaming Send APIs</h4>
+<div class="paragraph">
+<p>If you need to send large WebSocket messages, you may reduce the memory usage by streaming the message content.</p>
+</div>
+<div class="paragraph">
+<p>Both blocking and non-blocking APIs offer <code>sendPartial*(&#8230;&#8203;)</code> methods that allow you to send a chunk of the whole message at a time, therefore reducing the memory usage since it is not necessary to have the whole message <code>String</code> or <code>byte[]</code> in memory to send it.</p>
+</div>
+<div class="paragraph">
+<p>Streaming sends using blocking APIs is quite simple:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WebSocket
+public class StreamSendBlockingEndpoint
+{
+    @OnWebSocketMessage
+    public void onText(Session session, String text)
+    {
+        try
+        {
+            RemoteEndpoint remote = session.getRemote();
+            while (true)
+            {
+                ByteBuffer chunk = readChunkToSend();
+                if (chunk == null)
+                {
+                    // No more bytes, finish the WebSocket message.
+                    remote.sendPartialBytes(ByteBuffer.allocate(0), true);
+                    break;
+                }
+                else
+                {
+                    // Send the chunk.
+                    remote.sendPartialBytes(chunk, false);
+                }
+            }
+        }
+        catch (IOException x)
+        {
+            x.printStackTrace();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Streaming sends using non-blocking APIs is more complicated, as you should wait (without blocking!) for the callbacks to complete.</p>
+</div>
+<div class="paragraph">
+<p>Fortunately, Jetty provides you with the <code>IteratingCallback</code> utility class (described in more details <a href="../arch/io.html#echo" class="xref page">in this section</a>) which greatly simplify the use of non-blocking APIs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WebSocket
+public class StreamSendNonBlockingEndpoint
+{
+    @OnWebSocketMessage
+    public void onText(Session session, String text)
+    {
+        RemoteEndpoint remote = session.getRemote();
+        new Sender(remote).iterate();
+    }
+
+    private class Sender extends IteratingCallback implements WriteCallback <i class="conum" data-value="1"></i><b>(1)</b>
+    {
+        private final RemoteEndpoint remote;
+        private boolean finished;
+
+        private Sender(RemoteEndpoint remote)
+        {
+            this.remote = remote;
+        }
+
+        @Override
+        protected Action process() throws Throwable <i class="conum" data-value="2"></i><b>(2)</b>
+        {
+            if (finished)
+                return Action.SUCCEEDED;
+
+            ByteBuffer chunk = readChunkToSend();
+            if (chunk == null)
+            {
+                // No more bytes, finish the WebSocket message.
+                remote.sendPartialBytes(ByteBuffer.allocate(0), true, this); <i class="conum" data-value="3"></i><b>(3)</b>
+                finished = true;
+                return Action.SCHEDULED;
+            }
+            else
+            {
+                // Send the chunk.
+                remote.sendPartialBytes(ByteBuffer.allocate(0), false, this); <i class="conum" data-value="3"></i><b>(3)</b>
+                return Action.SCHEDULED;
+            }
+        }
+
+        @Override
+        public void writeSuccess()
+        {
+            // When the send succeeds, succeed this IteratingCallback.
+            succeeded();
+        }
+
+        @Override
+        public void writeFailed(Throwable x)
+        {
+            // When the send fails, fail this IteratingCallback.
+            failed(x);
+        }
+
+        @Override
+        protected void onCompleteFailure(Throwable x)
+        {
+            x.printStackTrace();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Implementing <code>WriteCallback</code> allows to pass <code>this</code> to <code>sendPartialBytes(&#8230;&#8203;)</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>process()</code> method is called iteratively when each <code>sendPartialBytes(&#8230;&#8203;)</code> is completed.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Send the message chunks.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="session-ping"><a class="anchor" href="#session-ping"></a>Sending Ping/Pong</h3>
+<div class="paragraph">
+<p>The WebSocket protocol defines two special frame, named <code>Ping</code> and <code>Pong</code> that may be interesting to applications for these use cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Calculate the round-trip time with the remote peer.</p>
+</li>
+<li>
+<p>Keep the connection from being closed due to idle timeout&#8201;&#8212;&#8201;a heartbeat-like mechanism.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To handle <code>Ping</code>/<code>Pong</code> events, you may implement interface <code>org.eclipse.jetty.websocket.api.WebSocketPingPongListener</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>Ping</code>/<code>Pong</code> events are not supported when using annotations.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>Ping</code> frames may contain opaque application bytes, and the WebSocket implementation replies to them with a <code>Pong</code> frame containing the same bytes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class RoundTripListenerEndpoint implements WebSocketPingPongListener <i class="conum" data-value="1"></i><b>(1)</b>
+{
+    @Override
+    public void onWebSocketConnect(Session session)
+    {
+        // Send to the remote peer the local nanoTime.
+        ByteBuffer buffer = ByteBuffer.allocate(8).putLong(NanoTime.now()).flip();
+        session.getRemote().sendPing(buffer, WriteCallback.NOOP);
+    }
+
+    @Override
+    public void onWebSocketPong(ByteBuffer payload)
+    {
+        // The remote peer echoed back the local nanoTime.
+        long start = payload.getLong();
+
+        // Calculate the round-trip time.
+        long roundTrip = NanoTime.since(start);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The WebSocket endpoint class must implement <code>WebSocketPingPongListener</code></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="session-close"><a class="anchor" href="#session-close"></a>Closing the Session</h3>
+<div class="paragraph">
+<p>When you want to terminate the communication with the remote peer, you close the <code>Session</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WebSocket
+public class CloseEndpoint
+{
+    @OnWebSocketMessage
+    public void onText(Session session, String text)
+    {
+        if ("close".equalsIgnoreCase(text))
+            session.close(StatusCode.NORMAL, "bye");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Closing a WebSocket <code>Session</code> carries a status code and a reason message that the remote peer can inspect in the <em>close</em> event handler (see <a href="#endpoints">this section</a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The reason message is optional, and may be truncated to fit into the WebSocket frame sent to the client.
+It is best to use short tokens such as <code>"shutdown"</code>, or <code>"idle_timeout"</code>, etc. or even application specific codes such as <code>"0001"</code> or <code>"00AF"</code> that can be converted by the application into more meaningful messages.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="http3.html">HTTP/3 Client Library</a></span>
+  <span class="next"><a href="../server/index.html">Server Libraries</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="../../../../index.html">Docs</a></li>
+      <li><a href="../../../../../support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="../../../../../_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="../../../../../_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="../../../../../_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../../../_/js/site.js" data-ui-root-path="../../../../../_"></script>
+<script async src="../../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../../.." data-snippet-length="100" data-stylesheet="../../../../../_/css/search.css"></script>
+<script async src="../../../../../search-index.js"></script>
+  </body>
+</html>

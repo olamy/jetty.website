@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Jetty 12 Operations Guide :: Eclipse Jetty</title>
+<script>
+;(function (routes, prefix, hash, href) {
+  if (href = (hash && hash.startsWith(prefix) && routes[hash.slice(prefix.length)])) window.location.href = href
+})({
+  "og-begin": "begin/index.html",
+  "og-begin-download": "begin/index.html#download",
+  "og-begin-install": "begin/index.html#install",
+  "og-begin-start": "begin/index.html#start",
+  "og-begin-deploy": "begin/index.html#deploy",
+  "og-begin-deploy-war": "begin/index.html#deploy-war",
+  "og-begin-deploy-war-advanced": "begin/index.html#deploy-war-advanced",
+  "og-features": "features/index.html",
+  "og-howtos": "howtos/index.html",
+  "og-arch": "arch/index.html",
+  "og-arch-concepts": "arch/index.html#concepts",
+  "og-arch-modules": "arch/index.html#modules",
+  "og-arch-jetty-base": "arch/index.html#jetty-base",
+  "og-arch-start": "arch/index.html#start",
+  "og-start": "start/index.html",
+  "og-start-configure": "start/index.html#configure",
+  "og-start-configure-enable": "start/index.html#configure-enable",
+  "og-start-configure-disable": "start/index.html#configure-disable",
+  "og-start-configure-edit-ini": "start/index.html#configure-edit-ini",
+  "og-start-configure-enable-command-line": "start/index.html#configure-enable-command-line",
+  "og-start-configure-custom-module": "start/index.html#configure-custom-module",
+  "og-start-configure-custom-module-exec": "start/index.html#configure-custom-module-exec",
+  "og-start-configure-display": "start/index.html#configure-display",
+  "og-start-configure-dry-run": "start/index.html#configure-dry-run",
+  "og-start-start": "start/index.html#start",
+  "og-start-start-class-path": "start/index.html#start-class-path",
+  "og-start-start-xml": "start/index.html#start-xml",
+  "og-start-stop": "start/index.html#stop",
+  "og-start-stop-remote": "start/index.html#stop-remote",
+  "og-start-reference": "start/index.html#reference",
+  "og-start-start-jpms": "start/start-jpms.html",
+  "og-start-start-jpms-advanced": "start/start-jpms.html#advanced",
+  "og-modules": "modules/index.html",
+  "og-modules-names": "modules/index.html#names",
+  "og-modules-components": "modules/index.html#components",
+  "og-modules-properties": "modules/index.html#properties",
+  "og-modules-directives": "modules/index.html#directives",
+  "og-modules-directive-description": "modules/index.html#directive-description",
+  "og-modules-directive-tags": "modules/index.html#directive-tags",
+  "og-modules-directive-provides": "modules/index.html#directive-provides",
+  "og-modules-directive-depends": "modules/index.html#directive-depends",
+  "og-modules-directive-after": "modules/index.html#directive-after",
+  "og-modules-directive-before": "modules/index.html#directive-before",
+  "og-modules-directive-files": "modules/index.html#directive-files",
+  "og-modules-directive-libs": "modules/index.html#directive-libs",
+  "og-modules-directive-xml": "modules/index.html#directive-xml",
+  "og-modules-directive-ini": "modules/index.html#directive-ini",
+  "og-modules-directive-ini-template": "modules/index.html#directive-ini-template",
+  "og-modules-directive-exec": "modules/index.html#directive-exec",
+  "og-modules-directive-jpms": "modules/index.html#directive-jpms",
+  "og-modules-directive-license": "modules/index.html#directive-license",
+  "og-modules-directive-version": "modules/index.html#directive-version",
+  "og-modules-custom": "modules/custom.html",
+  "og-modules-custom-modify": "modules/custom.html#modify",
+  "og-modules-custom-create": "modules/custom.html#create",
+  "og-modules-standard": "modules/standard.html",
+  "og-module-alpn": "modules/standard.html#alpn",
+  "og-module-bytebufferpool": "modules/standard.html#bytebufferpool",
+  "og-module-console-capture": "modules/standard.html#console-capture",
+  "og-module-core-deploy": "modules/standard.html#core-deploy",
+  "og-module-cross-origin": "modules/standard.html#cross-origin",
+  "og-module-eeN-deploy": "modules/standard.html#eeN-deploy",
+  "og-module-http": "modules/standard.html#http",
+  "og-module-http-acceptors": "modules/standard.html#http-acceptors",
+  "og-module-http-selectors": "modules/standard.html#http-selectors",
+  "og-module-http2": "modules/standard.html#http2",
+  "og-module-http2c": "modules/standard.html#http2c",
+  "og-module-http3": "modules/standard.html#http3",
+  "og-module-http-forwarded": "modules/standard.html#http-forwarded",
+  "og-module-https": "modules/standard.html#https",
+  "og-module-jmx": "modules/standard.html#jmx",
+  "og-module-jmx-remote": "modules/standard.html#jmx-remote",
+  "og-module-requestlog": "modules/standard.html#requestlog",
+  "og-module-resources": "modules/standard.html#resources",
+  "og-module-server": "modules/standard.html#server",
+  "og-module-server-http-config": "modules/standard.html#server-http-config",
+  "og-module-server-config": "modules/standard.html#server-config",
+  "og-module-server-compliance": "modules/standard.html#server-compliance",
+  "og-module-scheduler-config": "modules/standard.html#scheduler-config",
+  "og-module-ssl": "modules/standard.html#ssl",
+  "og-module-ssl-connector": "modules/standard.html#ssl-connector",
+  "og-module-ssl-keystore-tls": "modules/standard.html#ssl-keystore-tls",
+  "og-module-ssl-reload": "modules/standard.html#ssl-reload",
+  "og-module-test-keystore": "modules/standard.html#test-keystore",
+  "og-module-threadpool": "modules/standard.html#threadpool",
+  "og-module-threadpool-virtual": "modules/standard.html#threadpool-virtual",
+  "og-module-threadpool-virtual-preview": "modules/standard.html#threadpool-virtual-preview",
+  "og-module-eeN-webapp": "modules/standard.html#eeN-webapp",
+  "og-module-well-known": "modules/standard.html#well-known",
+  "og-deploy": "deploy/index.html",
+  "og-deploy-hot-static": "deploy/index.html#hot-static",
+  "og-deploy-rules": "deploy/index.html#rules",
+  "og-deploy-rules-context-path": "deploy/index.html#rules-context-path",
+  "og-deploy-rules-environment": "deploy/index.html#rules-environment",
+  "og-deploy-jetty": "deploy/index.html#jetty",
+  "og-deploy-jndi": "deploy/index.html#jndi",
+  "og-deploy-virtual-hosts": "deploy/index.html#virtual-hosts",
+  "og-deploy-virtual-hosts-names": "deploy/index.html#virtual-hosts-names",
+  "og-deploy-virtual-hosts-config": "deploy/index.html#virtual-hosts-config",
+  "og-deploy-virtual-hosts-same-context": "deploy/index.html#virtual-hosts-same-context",
+  "og-deploy-virtual-hosts-port": "deploy/index.html#virtual-hosts-port",
+  "og-deploy-extract-war": "deploy/index.html#extract-war",
+  "og-deploy-jetty-override-web-xml": "deploy/index.html#jetty-override-web-xml",
+  "og-deploy-init-params": "deploy/index.html#init-params",
+  "og-server": "server/index.html",
+  "og-server-logging": "server/index.html#logging",
+  "og-server-logging-server": "server/index.html#logging-server",
+  "og-server-logging-server-default": "server/index.html#logging-server-default",
+  "og-server-logging-server-default-rolling": "server/index.html#logging-server-default-rolling",
+  "og-server-logging-server-custom": "server/index.html#logging-server-custom",
+  "og-server-logging-server-custom-logback": "server/index.html#logging-server-custom-logback",
+  "og-server-logging-server-custom-log4j2": "server/index.html#logging-server-custom-log4j2",
+  "og-server-logging-server-bridges": "server/index.html#logging-server-bridges",
+  "og-server-logging-server-bridge-jul": "server/index.html#logging-server-bridge-jul",
+  "og-server-logging-request": "server/index.html#logging-request",
+  "og-server-threadpool": "server/index.html#threadpool",
+  "og-server-threadpool-virtual": "server/index.html#threadpool-virtual",
+  "og-protocols": "protocols/index.html",
+  "og-protocols-http": "protocols/index.html#http",
+  "og-protocols-https": "protocols/index.html#https",
+  "og-protocols-http2": "protocols/index.html#http2",
+  "og-protocols-http2s": "protocols/index.html#http2s",
+  "og-protocols-http2c": "protocols/index.html#http2c",
+  "og-protocols-http3": "protocols/index.html#http3",
+  "og-protocols-websocket": "protocols/index.html#websocket",
+  "og-protocols-websocket-configure": "protocols/index.html#websocket-configure",
+  "og-protocols-websocket-disable": "protocols/index.html#websocket-disable",
+  "og-protocols-websocket-webapp-client": "protocols/index.html#websocket-webapp-client",
+  "og-protocols-fcgi": "protocols/index.html#fcgi",
+  "og-protocols-fcgi-configure": "protocols/index.html#fcgi-configure",
+  "og-protocols-ssl": "protocols/index.html#ssl",
+  "og-protocols-ssl-customize": "protocols/index.html#ssl-customize",
+  "og-protocols-ssl-customize-versions": "protocols/index.html#ssl-customize-versions",
+  "og-protocols-ssl-customize-ciphers": "protocols/index.html#ssl-customize-ciphers",
+  "og-protocols-ssl-renew": "protocols/index.html#ssl-renew",
+  "og-protocols-ssl-reload": "protocols/index.html#ssl-reload",
+  "og-protocols-ssl-conscrypt": "protocols/index.html#ssl-conscrypt",
+  "og-protocols-ssl-sni": "protocols/index.html#ssl-sni",
+  "og-protocols-proxy": "protocols/index.html#proxy",
+  "og-protocols-proxy-forwarded": "protocols/index.html#proxy-forwarded",
+  "og-protocols-proxy-protocol": "protocols/index.html#proxy-protocol",
+  "og-protocols-proxy-haproxy": "protocols/index.html#proxy-haproxy",
+  "og-keystore": "keystore/index.html",
+  "og-keystore-create": "keystore/index.html#create",
+  "og-keystore-create-many": "keystore/index.html#create-many",
+  "og-keystore-csr": "keystore/index.html#csr",
+  "og-keystore-csr-import": "keystore/index.html#csr-import",
+  "og-keystore-client-authn": "keystore/index.html#client-authn",
+  "og-session": "session/index.html",
+  "og-sessions": "session/index.html",
+  "og-session-overview": "session/index.html#overview",
+  "og-session-modules": "session/index.html#modules",
+  "og-session-base": "session/index.html#base",
+  "og-session-base-scavenge": "session/index.html#base-scavenge",
+  "og-session-cache": "session/index.html#cache",
+  "og-session-cache-hash": "session/index.html#cache-hash",
+  "og-session-cache-null": "session/index.html#cache-null",
+  "og-session-filesystem": "session/index.html#filesystem",
+  "og-session-jdbc": "session/index.html#jdbc",
+  "og-session-mongo": "session/index.html#mongo",
+  "og-session-infinispan": "session/index.html#infinispan",
+  "og-session-infinispan-remote": "session/index.html#infinispan-remote",
+  "og-session-infinispan-remote-query": "session/index.html#infinispan-remote-query",
+  "og-session-infinispan-embedded": "session/index.html#infinispan-embedded",
+  "og-session-infinispan-embedded-query": "session/index.html#infinispan-embedded-query",
+  "og-session-hazelcast": "session/index.html#hazelcast",
+  "og-session-hazelcast-remote": "session/index.html#hazelcast-remote",
+  "og-session-hazelcast-embedded": "session/index.html#hazelcast-embedded",
+  "og-session-gcloud": "session/index.html#gcloud",
+  "og-session-memcached": "session/index.html#memcached",
+  "og-session-usecases": "session/index.html#usecases",
+  "og-quickstart": "quickstart/index.html",
+  "og-annotations": "annotations/index.html",
+  "og-annotations-scanning": "annotations/index.html#scanning",
+  "og-container-include-jar-pattern": "annotations/index.html#og-container-include-jar-pattern",
+  "og-web-inf-include-jar-pattern": "annotations/index.html#og-web-inf-include-jar-pattern",
+  "og-annotations-scis": "annotations/index.html#scis",
+  "og-jsp": "jsp/index.html",
+  "og-jstl": "jstl/index.html",
+  "og-jsf-taglibs": "jsf-taglibs/index.html",
+  "og-jndi": "jndi/index.html",
+  "og-jndi-env": "jndi/index.html#env",
+  "og-jndi-resource": "jndi/index.html#resource",
+  "og-jndi-tx": "jndi/index.html#tx",
+  "og-jndi-link": "jndi/index.html#link",
+  "og-jndi-xml": "jndi/index.html#xml",
+  "og-jndi-scope": "jndi/index.html#scope",
+  "og-jaas": "jaas/index.html",
+  "og-jaas-configuration": "jaas/index.html#configuration",
+  "og-jaas-module": "jaas/index.html#module",
+  "og-jaas-webapp": "jaas/index.html#webapp",
+  "og-jaas-loginconf": "jaas/index.html#loginconf",
+  "og-jaas-loginmodules": "jaas/index.html#loginmodules",
+  "og-password": "jaas/index.html#og-password",
+  "og-jaspi": "jaspi/index.html",
+  "og-jaspi-configuration": "jaspi/index.html#configuration",
+  "og-jaspi-module": "jaspi/index.html#module",
+  "og-jaspi-xml": "jaspi/index.html#xml",
+  "og-jmx": "jmx/index.html",
+  "og-jmx-local": "jmx/index.html#local",
+  "og-jmx-remote": "jmx/index.html#remote",
+  "og-jmx-remote-ssh-tunnel": "jmx/index.html#remote-ssh-tunnel",
+  "og-jmx-remote-auth": "jmx/index.html#remote-auth",
+  "og-jmx-remote-secure": "jmx/index.html#remote-secure",
+  "og-tools": "tools/index.html",
+  "og-tools-password": "tools/index.html#password",
+  "og-troubleshooting": "troubleshooting/index.html",
+  "og-troubleshooting-dump": "troubleshooting/index.html#dump",
+  "og-troubleshooting-dump-start-stop": "troubleshooting/index.html#dump-start-stop",
+  "og-troubleshooting-dump-detailed": "troubleshooting/index.html#dump-detailed",
+  "og-troubleshooting-dump-example": "troubleshooting/index.html#dump-example",
+  "og-troubleshooting-logging": "troubleshooting/index.html#logging",
+  "og-troubleshooting-logging-backend": "troubleshooting/index.html#logging-backend",
+  "og-troubleshooting-logging-jmx": "troubleshooting/index.html#logging-jmx",
+  "og-troubleshooting-logging-subpackages": "troubleshooting/index.html#logging-subpackages",
+  "og-troubleshooting-debugging": "troubleshooting/index.html#debugging",
+  "og-xml": "xml/index.html",
+  "og-xml-syntax": "xml/index.html#syntax",
+  "og-xml-syntax-configure": "xml/index.html#syntax-configure",
+  "og-xml-syntax-arg": "xml/index.html#syntax-arg",
+  "og-xml-syntax-new": "xml/index.html#syntax-new",
+  "og-xml-syntax-call": "xml/index.html#syntax-call",
+  "og-xml-syntax-get": "xml/index.html#syntax-get",
+  "og-xml-syntax-set": "xml/index.html#syntax-set",
+  "og-xml-syntax-map": "xml/index.html#syntax-map",
+  "og-xml-syntax-put": "xml/index.html#syntax-put",
+  "og-xml-syntax-array": "xml/index.html#syntax-array",
+  "og-xml-syntax-ref": "xml/index.html#syntax-ref",
+  "og-xml-syntax-property": "xml/index.html#syntax-property",
+  "og-xml-syntax-system-property": "xml/index.html#syntax-system-property",
+  "og-xml-syntax-env": "xml/index.html#syntax-env",
+  "og-xml-syntax-types": "xml/index.html#syntax-types",
+  "og-xml-syntax-scope": "xml/index.html#syntax-scope"
+}, "#", window.location.hash)
+</script>
+    <link rel="canonical" href="https://jetty.org/docs/jetty/12/operations-guide/index.html">
+    <link rel="prev" href="../index.html">
+    <link rel="next" href="begin/index.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="../../../index.html">Documentation</a>
+        <a class="navbar-item" href="../../../../support.html">Support</a>
+        <!--a class="navbar-item" href="../../../../community.html">Community</a-->
+        <a class="navbar-item" href="../../../../security.html">Security</a>
+        <a class="navbar-item" href="../../../../download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="../../../contribution-guide/index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="jetty" data-version="12">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Eclipse Jetty</a></h3>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Operations Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="begin/index.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="features/index.html">Eclipse Jetty Features</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="howtos/index.html">Eclipse Jetty How-Tos</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="arch/index.html">Architecture Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="start/index.html">Jetty Start Mechanism</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="start/start-jpms.html">Starting Jetty using JPMS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="modules/index.html">Jetty Modules</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="modules/custom.html">Custom Jetty Modules</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="modules/standard.html">Standard Modules</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="deploy/index.html">Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="server/index.html">Jetty Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="protocols/index.html">Jetty Connectors and Protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="keystore/index.html">Configuring SSL/TLS KeyStores</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="session/index.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="quickstart/index.html">Faster Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="annotations/index.html">Annotations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jsp/index.html">Java Server Pages</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jstl/index.html">JavaServer Pages Standard Tag Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jsf-taglibs/index.html">JavaServer Faces TagLibs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jndi/index.html">JNDI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jaas/index.html">JAAS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jaspi/index.html">JASPI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jmx/index.html">JMX Monitoring &amp; Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tools/index.html">Jetty Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="troubleshooting/index.html">Troubleshooting</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="xml/index.html">Jetty XML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../programming-guide/index.html">Programming Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../programming-guide/client/index.html">Client Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/client/io-arch.html">I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/client/http.html">HTTP Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/client/http2.html">HTTP/2 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/client/http3.html">HTTP/3 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/client/websocket.html">WebSocket Client</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../programming-guide/server/index.html">Server Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/http.html">HTTP Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/http2.html">HTTP/2 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/http3.html">HTTP/3 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/compliance.html">Server Compliance Modes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/session.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/websocket.html">WebSocket Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/fastcgi.html">FastCGI Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/server/io-arch.html">Server I/O Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Maven and Jetty</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/maven-jetty/jetty-maven-helloworld.html">Using Maven</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/maven-jetty/jetty-maven-plugin.html">Using the Jetty Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/maven-jetty/jetty-jspc-maven-plugin.html">Jetty Jspc Maven Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jetty Architecture</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/arch/bean.html">Jetty Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/arch/threads.html">Jetty Threading Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/arch/io.html">Jetty I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/arch/listener.html">Jetty Listeners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/arch/jmx.html">Jetty JMX Support</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../programming-guide/troubleshooting/index.html">Troubleshooting Jetty</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/troubleshooting/logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/troubleshooting/thread-dump.html">JVM Thread Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/troubleshooting/state-tracking.html"><code>StateTrackingHandler</code></a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/troubleshooting/component-dump.html">Component Tree Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/troubleshooting/debugging.html">Remote Debugging</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/migration/94-to-10.html">Migrating from Jetty 9.4.x to Jetty 10.0.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../programming-guide/migration/11-to-12.html">Migrating from Jetty 11.0.x to Jetty 12.0.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Eclipse Jetty</span>
+    <span class="version">12</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../../contribution-guide/index.html">Contribution Guide</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Eclipse Jetty</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">12</a>
+        </li>
+        <li class="version">
+          <a href="../../11/index.html">11</a>
+        </li>
+        <li class="version">
+          <a href="../../10/index.html">10</a>
+        </li>
+      </ul>
+    </li>
+    </li>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Eclipse Jetty</a></li>
+    <li><a href="index.html">Operations Guide</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">12</button>
+  <div class="version-menu">
+    <a class="version is-current" href="index.html">12</a>
+    <a class="version" href="../../11/operations-guide/index.html">11</a>
+    <a class="version" href="../../10/operations-guide/index.html">10</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.project/edit/jetty-12.0.x/documentation/jetty/modules/operations-guide/pages/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Jetty 12 Operations Guide</h1>
+<div class="paragraph">
+<p>The Eclipse Jetty Operations Guide targets sysops, devops, and developers who want to install Eclipse Jetty as a standalone server to deploy web applications.</p>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../index.html">Eclipse Jetty</a></span>
+  <span class="next"><a href="begin/index.html">Getting Started</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="../../../index.html">Docs</a></li>
+      <li><a href="../../../../support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="../../../../_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="../../../../_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="../../../../_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../.." data-snippet-length="100" data-stylesheet="../../../../_/css/search.css"></script>
+<script async src="../../../../search-index.js"></script>
+  </body>
+</html>

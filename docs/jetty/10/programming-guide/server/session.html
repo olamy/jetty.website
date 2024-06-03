@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>HTTP Session Management :: Eclipse Jetty</title>
+    <link rel="canonical" href="https://jetty.org/docs/jetty/12/programming-guide/server/session.html">
+    <link rel="prev" href="http3.html">
+    <link rel="next" href="websocket.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="../../../../../_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="../../../../index.html">Documentation</a>
+        <a class="navbar-item" href="../../../../../support.html">Support</a>
+        <!--a class="navbar-item" href="../../../../../community.html">Community</a-->
+        <a class="navbar-item" href="../../../../../security.html">Security</a>
+        <a class="navbar-item" href="../../../../../download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="../../../../contribution-guide/index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="jetty" data-version="10">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../../index.html">Eclipse Jetty</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/index.html">Operations Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/begin/index.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/features/index.html">Eclipse Jetty Features</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/howtos/index.html">Eclipse Jetty How-Tos</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/arch/index.html">Architecture Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/start/index.html">Jetty Start Mechanism</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/start/start-jpms.html">Starting Jetty using JPMS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operations-guide/modules/index.html">Jetty Modules</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/modules/custom.html">Custom Jetty Modules</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operations-guide/modules/standard.html">Standard Modules</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/deploy/index.html">Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/server/index.html">Jetty Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/protocols/index.html">Jetty Connectors and Protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/keystore/index.html">Configuring SSL/TLS KeyStores</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/session/index.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/quickstart/index.html">Faster Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/annotations/index.html">Annotations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jsp/index.html">Java Server Pages</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jstl/index.html">JavaServer Pages Standard Tag Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jsf-taglibs/index.html">JavaServer Faces TagLibs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jndi/index.html">JNDI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jaas/index.html">JAAS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jaspi/index.html">JASPI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/jmx/index.html">JMX Monitoring &amp; Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/troubleshooting/index.html">Troubleshooting</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../operations-guide/xml/index.html">Jetty XML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Programming Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../client/index.html">Client Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/io-arch.html">I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/http.html">HTTP Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/http2.html">HTTP/2 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/http3.html">HTTP/3 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../client/websocket.html">WebSocket Client</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Server Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compliance.html">Server Compliance Modes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http.html">HTTP Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http2.html">HTTP/2 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="http3.html">HTTP/3 Server Library</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="session.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="websocket.html">WebSocket Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fastcgi.html">FastCGI Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="io-arch.html">Server I/O Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Maven and Jetty</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-maven-helloworld.html">Using Maven</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-maven-plugin.html">Using the Jetty Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../maven-jetty/jetty-jspc-maven-plugin.html">Jetty Jspc Maven Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jetty Architecture</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/bean.html">Jetty Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/threads.html">Jetty Threading Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/io.html">Jetty I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/listener.html">Jetty Listeners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../arch/jmx.html">Jetty JMX Support</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../troubleshooting/index.html">Troubleshooting Jetty</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/thread-dump.html">JVM Thread Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/component-dump.html">Jetty Component Tree Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../troubleshooting/debugging.html">Debugging</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration/94-to-10.html">Migrating from Jetty 9.4.x to Jetty 10.0.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Eclipse Jetty</span>
+    <span class="version">10</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../../../contribution-guide/index.html">Contribution Guide</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../../../12/index.html">Eclipse Jetty</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../12/index.html">12</a>
+        </li>
+        <li class="version">
+          <a href="../../../11/index.html">11</a>
+        </li>
+        <li class="version is-current">
+          <a href="../../index.html">10</a>
+        </li>
+      </ul>
+    </li>
+    </li>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Eclipse Jetty</a></li>
+    <li><a href="../index.html">Programming Guide</a></li>
+    <li><a href="index.html">Server Libraries</a></li>
+    <li><a href="session.html">HTTP Session Management</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">10</button>
+  <div class="version-menu">
+    <a class="version" href="../../../12/programming-guide/server/session.html">12</a>
+    <a class="version" href="../../../11/programming-guide/server/session.html">11</a>
+    <a class="version is-current" href="session.html">10</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.project/edit/jetty-10.0.x/documentation/jetty/modules/programming-guide/pages/server/session.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">HTTP Session Management</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sessions are a concept within the Servlet API which allow requests to store and retrieve information across the time a user spends in an application.
+Jetty provides a number of pluggable options for managing sessions.
+In this section we&#8217;ll look at the architecture of session support in Jetty, review the various pluggable options available and indicate what and how to customize should none of the existing options suit your usecase.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="architecture"><a class="anchor" href="#architecture"></a>Session Architecture</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Terminology</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">SessionIdManager</dt>
+<dd>
+<p>is responsible for allocation of session ids</p>
+</dd>
+<dt class="hdlist1">HouseKeeper</dt>
+<dd>
+<p>is responsible for orchestrating the detection and removal of expired sessions</p>
+</dd>
+<dt class="hdlist1">SessionHandler</dt>
+<dd>
+<p>is responsible for managing the lifecycle of sessions within its associated context</p>
+</dd>
+<dt class="hdlist1">SessionCache</dt>
+<dd>
+<p>is an L1 cache of in-use <code>Session</code> objects</p>
+</dd>
+<dt class="hdlist1">Session</dt>
+<dd>
+<p>is a stateful object representing a <code>HttpSession</code></p>
+</dd>
+<dt class="hdlist1">SessionData</dt>
+<dd>
+<p>encapsulates the attributes and metadata associated with a <code>Session</code></p>
+</dd>
+<dt class="hdlist1">SessionDataStore</dt>
+<dd>
+<p>is responsible for creating, storing and reading <code>SessionData</code></p>
+</dd>
+<dt class="hdlist1">CachingSessionDataStore</dt>
+<dd>
+<p>is an L2 cache of <code>SessionData</code></p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The session architecture can be represented like so:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNp1kbEOgjAQhvc-RcNowuBqjAsMGOMi8QEucGCT0pK26uLDS20RKHS7-_vdn_t7hhmOtEStmRQ0k10vNTO2zhm0CjpScdB6INQLFSFMGFQNVP-Zc30FAa19c2QhnxoviP0kebQAUfNNkwyqB27oORgojVQ4OlmQiTb27PWgtRghLgFN9gndpbV8i_RXr2KEgp_g2Bg3MQ-4ZSqSMPCyja3gPmHexMgp94Km0qPjN4xndTYrCxLa0TQ9zYEDzW73fI0dP4NZ7BQRfVhubv0FGOvYMQ==" alt="Diagram">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="idmgr"><a class="anchor" href="#idmgr"></a>The SessionIdManager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There is a maximum of one <code>SessionIdManager</code> per <code>Server</code> instance.
+Its purpose is to generate fresh, unique session ids and to coordinate the re-use of session ids amongst co-operating contexts.</p>
+</div>
+<div class="paragraph">
+<p>The <code>SessionIdManager</code> is agnostic with respect to the type of clustering technology chosen.</p>
+</div>
+<div class="paragraph">
+<p>Jetty provides a default implementation - the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionIdManager.html">DefaultSessionIdManager</a>  - which should meet the needs of most users.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you do not explicitly configure a <code>SessionIdManager</code>, then when the <code>SessionHandler</code> starts, it will use an instance of the <code>DefaultSessionIdManager</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="defaultidmgr"><a class="anchor" href="#defaultidmgr"></a>The DefaultSessionIdManager</h3>
+<div class="paragraph">
+<p>At startup, if no instance of the <code>HouseKeeper</code> has been explicitly set, the <code>DefaultSessionIdManager</code> will create one.</p>
+</div>
+<div id="workername" class="paragraph">
+<p>Also at startup, the <code>workerName</code> is determined.
+The <code>workerName</code> must be unique per <code>Server</code>, and identifies the server in a cluster.
+If a <code>workerName</code> has not been explicitly set, then the value is derived as follows:</p>
+</div>
+<div class="paragraph">
+<p>node[JETTY_WORKER_NAME]</p>
+</div>
+<div class="paragraph">
+<p>where <code>JETTY_WORKER_NAME</code> is an environment variable whose value can be an integer or string.
+If the environment variable is not set, then it defaults to <code>0</code>, yielding the default <code>workerName</code> of <code>"node0"</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>DefaultSessionIdManager</code> uses <code>SecureRandom</code> to generate unique session ids.</p>
+</div>
+<div class="paragraph">
+<p>The <code>SessionHandler</code> class, which is used by both the <code>ServletContextHandler</code> and the <code>WebAppContext</code> classes, will instantiate a <code>DefaultSessionIdManager</code> on startup if it does not detect one already present for the <code>Server</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of explicitly setting up a <code>DefaultSessionIdManager</code> with a <code>workerName</code> of <code>server3</code> in code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Server server = new Server();
+DefaultSessionIdManager idMgr = new DefaultSessionIdManager(server);
+//you must set the workerName unless you set the env viable JETTY_WORKER_NAME
+idMgr.setWorkerName("server3");
+server.setSessionIdManager(idMgr);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementing-a-custom-sessionidmanager"><a class="anchor" href="#implementing-a-custom-sessionidmanager"></a>Implementing a Custom SessionIdManager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the <code>DefaultSessionIdManager</code> does not meet your needs, you can extend it, or implement the <code>SessionIdManager</code> interface directly.</p>
+</div>
+<div class="paragraph">
+<p>When implementing a <code>SessionIdManager</code> pay particular attention to the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <code>getWorkerName()</code> method <em>must</em> return a name that is unique to the <code>Server</code> instance.
+The <code>workerName</code> becomes important in clustering scenarios because sessions can migrate from node to node:  the <code>workerName</code> identifies which node was last managing a <code>Session</code>.</p>
+</li>
+<li>
+<p>the contract of the <code>isIdInUse(String id)</code> method is very specific: a session id may <em>only</em> be reused <em>iff</em> it is already in use by another context.
+This restriction is important to support cross-context dispatch.</p>
+</li>
+<li>
+<p>you should be <em>very</em> careful to ensure that the <code>newSessionId(HttpServletRequest request, long created)</code> method does not return duplicate or predictable session ids.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="housekeeper"><a class="anchor" href="#housekeeper"></a>The HouseKeeper</h3>
+<div class="paragraph">
+<p>There is a maximum of one <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/HouseKeeper.html">HouseKeeper</a> per <code>SessionIdManager</code>.
+Its purpose is to periodically poll the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/SessionHandler.html">SessionHandlers</a> to clean out expired sessions.
+This operation is usually referred to as "scavenging" expired sessions.
+The scavenging interval is configured by the <code>setIntervalSec(long)</code> method.
+The default value is <code>600</code>sec, ie <code>10</code>mins.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The HouseKeeper semi-randomly adds an additional <code>10%</code> of the configured <code>intervalSec</code>.
+This is to help prevent sync-ing up of servers in a cluster that are all restarted at once, and slightly stagger their scavenge cycles to ensure any load on the persistent storage mechanism is spread out.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This code example shows how to configure a <code>HouseKeeper</code>, along with a <code>DefaultSessionIdManager</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Server server = new Server();
+DefaultSessionIdManager idMgr = new DefaultSessionIdManager(server);
+idMgr.setWorkerName("server7");
+server.setSessionIdManager(idMgr);
+
+HouseKeeper houseKeeper = new HouseKeeper();
+houseKeeper.setSessionIdManager(idMgr);
+//set the frequency of scavenge cycles
+houseKeeper.setIntervalSec(600L);
+idMgr.setSessionHouseKeeper(houseKeeper);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="handler"><a class="anchor" href="#handler"></a>The SessionHandler</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each context can have a single <code>SessionHandler</code>.
+The purpose of the <code>SessionHandler</code> is to interact with the <code>Request</code> and <code>Response</code> to create, maintain and propagate sessions.
+It also calls the context-level session listeners at appropriate points in the session lifecycle.</p>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h3>
+<div class="paragraph">
+<p>The majority of configuration for the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/SessionHandler.html">SessionHandler</a> can be done via <code>web.xml</code> <code>&lt;session-config&gt;</code> declarations, or the <code>javax.servlet.SessionCookieConfig</code> api.
+There are also a few jetty-specific configuration options that we will cover here:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">checkingRemoteSessionIdEncoding</dt>
+<dd>
+<p>Boolean, default <code>false</code>.
+This controls whether or not the <code>javax.servlet.http.Response.encodeURL(String)</code> method will include the session id as a path parameter when the URL is destined for a remote node.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>setting the <code>org.eclipse.jetty.servlet.CheckingRemoteSessionIdEncoding</code> context init paramter</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">setMaxInactiveInterval</dt>
+<dd>
+<p>Integer, seconds.
+This is the amount of time after which an unused session may be scavenged.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>defining the <code>&lt;session-config&gt;&lt;session-timeout/&gt;&lt;/session-config&gt;</code> element in <code>web.xml</code>, although take note that this element is specified in <em>minutes</em> but this method uses <em>seconds</em>.</p>
+</li>
+<li>
+<p>calling the <code>javax.servlet.ServletContext.setSessionTimeout(int)</code> method, where the timeout is configured in <em>minutes</em>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">setHttpOnly</dt>
+<dd>
+<p>Boolean, default <code>false</code>.
+If <code>true</code>, the session cookie will not be exposed to client-side scripting code.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>using <code>javax.servlet.SessionCookieConfig.setHttpOnly(boolean)</code> method</p>
+</li>
+<li>
+<p>defining the <code>&lt;session-config&gt;&lt;cookie-config&gt;&lt;http-only/&gt;&lt;/cookie-config&gt;&lt;/session-config&gt;</code> element in <code>web.xml</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div id="handler-refreshcookie" class="dlist">
+<dl>
+<dt class="hdlist1">refreshCookieAge</dt>
+<dd>
+<p>Integer, seconds, default is <code>-1</code>.
+This controls resetting the session cookie when <code>SessionCookieConfig.setMaxAge(int)</code> is non-zero.
+See also <a href="#handler-maxAge">setting the max session cookie age with an init parameter</a>.
+If the amount of time since the session cookie was last set exceeds this time, the session cookie is regenerated to keep the session cookie valid.</p>
+</dd>
+<dt class="hdlist1">sameSite</dt>
+<dd>
+<p><code>HttpCookie.SameSite</code>, default <code>null</code>.
+The values are <code>HttpCookie.SameSite.NONE</code>, <code>HttpCookie.SameSite.STRICT</code>, <code>HttpCookie.SameSite.LAX</code>.</p>
+</dd>
+<dt class="hdlist1">secureRequestOnly</dt>
+<dd>
+<p>Boolean, default <code>true</code>.
+If <code>true</code> and the request is HTTPS, the set session cookie will be marked as <code>secure</code>, meaning the client will only send the session cookie to the server on subsequent requests over HTTPS.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>using the <code>javax.servlet.SessionCookieConfig.setSecure(true)</code> method, in which case the set session cookie will <em>always</em> be marked as <code>secure</code>, even if the request triggering the creation of the cookie was not over HTTPS.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">sessionCookie</dt>
+<dd>
+<p>String, default is <code>JSESSIONID</code>.
+This is the name of the session cookie.
+It can alternatively be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>using <code>javax.servlet.SessionCookieConfig.setName(String)</code> method</p>
+</li>
+<li>
+<p>setting the <code>org.eclipse.jetty.servlet.SessionCookie</code> context init parameter.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">sessionIdPathParameterName</dt>
+<dd>
+<p>String, default is <code>jsessionid</code>.
+This is the name of the path parameter used to transmit the session id on request URLs, and on encoded URLS in responses.
+It can alternatively be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>setting the <code>org.eclipse.jetty.servlet.SessionIdPathParameterName</code> context init parameter</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">sessionTrackingModes</dt>
+<dd>
+<p><code>Set&lt;javax.servlet.SessionTrackingMode&gt;</code>.
+Default is <code>SessionTrackingMode.COOKIE</code>, <code>SessionTrackingMode.URL</code>.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>using the <code>setSessionTrackingModes(Set&lt;javax.servlet.SessionTrackingMode&gt;)</code> method</p>
+</li>
+<li>
+<p>using the <code>javax.servlet.ServletContext.setSessionTrackingModes&lt;Set&lt;javax.servlet.SessionTrackingMode&gt;)</code> method</p>
+</li>
+<li>
+<p>defining up to three <code>&lt;tracking-mode&gt;</code>s for the <code>&lt;session-config&gt;</code> element in <code>web.xml</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">usingCookies</dt>
+<dd>
+<p>Boolean, default <code>true</code>.
+Determines whether or not the <code>SessionHandler</code> will look for session cookies on requests, and will set session cookies on responses.
+If <code>false</code> session ids must be transmitted as path params on URLs.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>using the <code>setSessionTrackingModes(Set&lt;javax.servlet.SessionTrackingMode&gt;)</code> method</p>
+</li>
+<li>
+<p>using the <code>javax.servlet.ServletContext.setSessionTrackingModes&lt;Set&lt;javax.servlet.SessionTrackingMode&gt;)</code> method</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>There are also a few session settings that do not have SessionHandler setters, but can be configured with context init parameters:</p>
+</div>
+<div id="handler-maxAge" class="dlist">
+<dl>
+<dt class="hdlist1">org.eclipse.jetty.servlet.MaxAge</dt>
+<dd>
+<p>This is the maximum number of seconds that the session cookie will be considered to be valid.
+By default, the cookie has no maximum validity time.
+See also <a href="#handler-refreshcookie">refreshing the session cookie</a>.
+The value can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>calling the <code>SessionCookieConfig.setMaxAge(int)</code> method.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">org.eclipse.jetty.servlet.SessionDomain</dt>
+<dd>
+<p>String, default <code>null</code>.
+This is the domain of the session cookie.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>using the <code>javax.servlet.SessionCookieConfig.setDomain(String)</code> method</p>
+</li>
+<li>
+<p>defining the <code>&lt;session-config&gt;&lt;cookie-config&gt;&lt;domain/&gt;&lt;/cookie-config&gt;&lt;/session-config&gt;</code> element in <code>web.xml</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">org.eclipse.jetty.servlet.SessionPath</dt>
+<dd>
+<p>String, default <code>null</code>.
+This is used when creating a new session cookie.
+If nothing is configured, the context path is used instead, defaulting to <code>/</code>.
+This can also be configured by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>using the <code>javax.servlet.SessionCookieConfig.setPath(String)</code> method</p>
+</li>
+<li>
+<p>defining the <code>&lt;session-config&gt;&lt;cookie-config&gt;&lt;path/&gt;&lt;/cookie-config&gt;&lt;/session-config&gt;</code> element in <code>web.xml</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics"><a class="anchor" href="#statistics"></a>Statistics</h3>
+<div class="paragraph">
+<p>Some statistics about the sessions for a context can be obtained from the <code>SessionHandler</code>, either by calling the methods directly or via <code>jmx</code>:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">sessionsCreated</dt>
+<dd>
+<p>This is the total number of sessions that have been created for this context since Jetty started.</p>
+</dd>
+<dt class="hdlist1">sessionTimeMax</dt>
+<dd>
+<p>The longest period of time a session was valid in this context before being invalidated.</p>
+</dd>
+<dt class="hdlist1">sessionTimeMean</dt>
+<dd>
+<p>The average period of time a session in this context was valid.</p>
+</dd>
+<dt class="hdlist1">sessionTimeStdDev</dt>
+<dd>
+<p>The standard deviation of the session validity times for this context.</p>
+</dd>
+<dt class="hdlist1">sessionTimeTotal</dt>
+<dd>
+<p>The total time that all sessions in this context have remained valid.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>You can reset the statistics counters by either calling the following method directly on the the <code>SessionHandler</code>, or using <code>jmx</code>:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">statsReset</dt>
+<dd>
+<p>Resets the <code>SessionHandler</code> statistics counters.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cache"><a class="anchor" href="#cache"></a>The SessionCache</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There is one <code>SessionCache</code> per <code>SessionHandler</code>, and thus one per context.
+Its purpose is to provide an L1 cache of <code>Session</code> objects.
+Having a working set of <code>Session</code> objects in memory allows multiple simultaneous requests for the same session to share the same <code>Session</code> object.
+A <code>SessionCache</code> uses a <code>SessionDataStore</code> to create, read, store and delete the <code>SessionData</code> associated with the <code>Session</code>.</p>
+</div>
+<div class="paragraph">
+<p>There are two ways to create a <code>SessionCache</code> for a <code>SessionHandler</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>allow the <code>SessionHandler</code> to create one lazily at startup.
+The <code>SessionHandler</code> looks for a <code>SessionCacheFactory</code> bean on the server to produce the <code>SessionCache</code> instance.
+It then looks for a <code>SessionDataStoreFactory</code> bean on the server to produce a <code>SessionDataStore</code> instance to use with the <code>SessionCache</code>.</p>
+</li>
+<li>
+<p>pass a fully configured <code>SessionCache</code> instance to the <code>SessionHandler</code>.
+You are responsible for configuring both the <code>SessionCache</code> instance and its <code>SessionDataStore</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>More on <code>SessionDataStore</code>s <a href="#datastore">later</a>, in this section we will concentrate on the <code>SessionCache</code> and <code>SessionCacheFactory</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/AbstractSessionCache.html">AbstractSessionCache</a> provides most of the behaviour of <code>SessionCache</code>s.
+If you are implementing a custom <code>SessionCache</code> we strongly recommend you extend this base class, as the Servlet Specification has many subtleties and extending the base class ensures that your implementation will take account of them.</p>
+</div>
+<div class="paragraph">
+<p>Some of the important behaviours of <code>SessionCache</code>s are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">eviction</dt>
+<dd>
+<p>By default, sessions remain in a cache until they are expired or invalidated.
+If you have many or large sessions that are infrequently referenced you can use eviction to reduce the memory consumed by the cache.
+When a session is evicted, it is removed from the cache but it is <em>not</em> invalidated.
+If you have configured a <code>SessionDataStore</code> that persists or distributes the session in some way, it will continue to exist, and can be read back in when it needs to be referenced again.
+The eviction strategies are:</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">NEVER_EVICT</dt>
+<dd>
+<p>This is the default, sessions remain in the cache until expired or invalidated.</p>
+</dd>
+<dt class="hdlist1">EVICT_ON_SESSION_EXIT</dt>
+<dd>
+<p>When the last simultaneous request for a session finishes, the session will be evicted from the cache.</p>
+</dd>
+<dt class="hdlist1">EVICT_ON_INACTIVITY</dt>
+<dd>
+<p>If a session has not been referenced for a configurable number of seconds, then it will be evicted from the cache.</p>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">saveOnInactiveEviction</dt>
+<dd>
+<p>This controls whether a session will be persisted to the <code>SessionDataStore</code> if it is being evicted due to the EVICT_ON_INACTIVITY policy.
+Usually sessions are written to the <code>SessionDataStore</code> whenever the last simultaneous request exits the session.
+However, as <code>SessionDataStores</code> can be configured to <a href="#datastore-skip">skip some writes</a>, this option ensures that the session will be written out.</p>
+</dd>
+<dt class="hdlist1">saveOnCreate</dt>
+<dd>
+<p>Usually a session will be written through to the configured <code>SessionDataStore</code> when the last request for it finishes.
+In the case of a freshly created session, this means that it will not be persisted until the request is fully finished.
+If your application uses context forwarding or including, the newly created session id will not be available in the subsequent contexts.
+You can enable this feature to ensure that a freshly created session is immediately persisted after creation: in this way the session id will be available for use in other contexts accessed during the same request.</p>
+</dd>
+<dt class="hdlist1">removeUnloadableSessions</dt>
+<dd>
+<p>If a session becomes corrupted in the persistent store, it cannot be re-loaded into the <code>SessionCache</code>.
+This can cause noisy log output during scavenge cycles, when the same corrupted session fails to load over and over again.
+To prevent his, enable this feature and the <code>SessionCache</code> will ensure that if a session fails to be loaded, it will be deleted.</p>
+</dd>
+<dt class="hdlist1">invalidateOnShutdown</dt>
+<dd>
+<p>Some applications want to ensure that all cached sessions are removed when the server shuts down.
+This option will ensure that all cached sessions are invalidated.
+The <code>AbstractSessionCache</code> does not implement this behaviour, a subclass must implement the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/SessionCache.html#shutdown()">SessionCache.shutdown()</a> method.</p>
+</dd>
+<dt class="hdlist1">flushOnResponseCommit</dt>
+<dd>
+<p>This forces a "dirty" session to be written to the <code>SessionDataStore</code> just before a response is returned to the client, rather than waiting until the request is finished.
+A "dirty" session is one whose attributes have changed, or it has been freshly created.
+Using this option ensures that all subsequent requests - either to the same or a different node - will see the latest changes to the session.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Jetty provides two <code>SessionCache</code> implementations: the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionCache.html">DefaultSessionCache</a> and the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/NullSessionCache.html">NullSessionCache</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="hash"><a class="anchor" href="#hash"></a>The DefaultSessionCache</h3>
+<div class="paragraph">
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionCache.html">DefaultSessionCache</a> retains <code>Session</code> objects in memory in a <code>ConcurrentHashMap</code>.
+It is suitable for non-clustered and clustered deployments.
+For clustered deployments, a sticky load balancer is <strong>strongly</strong> recommended, otherwise you risk indeterminate session state as the session bounces around multiple nodes.</p>
+</div>
+<div class="paragraph">
+<p>It implements the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/SessionCache.html#shutdown()">SessionCache.shutdown()</a> method.</p>
+</div>
+<div class="paragraph">
+<p>It also provides some statistics on sessions, which are convenient to access either directly in code or remotely via jmx:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">current sessions</dt>
+<dd>
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionCache.html#getSessionsCurrent()">DefaultSessionCache.getSessionsCurrent()</a> reports the number of sessions in the cache at the time of the method call.</p>
+</dd>
+<dt class="hdlist1">max sessions</dt>
+<dd>
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionCache.html#getSessionsCurrent()">DefaultSessionCache.getSessionsMax()</a> reports the highest number of sessions in the cache at the time of the method call.</p>
+</dd>
+<dt class="hdlist1">total sessions</dt>
+<dd>
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionCache.html#getSessionsTotal()">DefaultSessionCache.getSessionsTotal()</a> reports the cumulative total of the number of sessions in the cache at the time of the method call.</p>
+</dd>
+<dt class="hdlist1">reset</dt>
+<dd>
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionCache.html#resetStats()">DefaultSessionCache.resetStats()</a> zeros out the statistics counters.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>If you create a <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/DefaultSessionCacheFactory.html">DefaultSessionFactory</a> and register it as <code>Server</code> bean, a <code>SessionHandler</code> will be able to lazily create a <code>DefaultSessionCache</code>.
+The <code>DefaultSessionCacheFactory</code> has all of the same configuration setters as a <code>DefaultSessionCache</code>.
+Alternatively, if you only have a single <code>SessionHandler</code>, or you need to configure a <code>DefaultSessionCache</code> differently for every <code>SessionHandler</code>, then you could dispense with the <code>DefaultSessionCacheFactory</code> and simply instantiate, configure and pass in the <code>DefaultSessionCache</code> yourself.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"> Server server = new Server();
+
+ DefaultSessionCacheFactory cacheFactory = new DefaultSessionCacheFactory();
+ //EVICT_ON_INACTIVE: evict a session after 60sec inactivity
+ cacheFactory.setEvictionPolicy(60);
+ //Only useful with the EVICT_ON_INACTIVE policy
+ cacheFactory.setSaveOnInactiveEvict(true);
+ cacheFactory.setFlushOnResponseCommit(true);
+ cacheFactory.setInvalidateOnShutdown(false);
+ cacheFactory.setRemoveUnloadableSessions(true);
+ cacheFactory.setSaveOnCreate(true);
+
+ //Add the factory as a bean to the server, now whenever a 
+ //SessionHandler starts it will consult the bean to create a new DefaultSessionCache
+ server.addBean(cacheFactory);</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t configure any <code>SessionCache</code> or <code>SessionCacheFactory</code>, the <code>SessionHandler</code> will automatically create a <code>DefaultSessionCache</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="null"><a class="anchor" href="#null"></a>The NullSessionCache</h3>
+<div class="paragraph">
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/NullSessionCache.html">NullSessionCache</a> does not actually cache any objects: each request uses a fresh <code>Session</code> object.
+It is suitable for clustered deployments without a sticky load balancer and non-clustered deployments when purely minimal support for sessions is needed.</p>
+</div>
+<div class="paragraph">
+<p>As no sessions are actually cached, of course functions like <code>invalidateOnShutdown</code> and all of the eviction strategies have no meaning for the <code>NullSessionCache</code>.</p>
+</div>
+<div class="paragraph">
+<p>There is a <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/NullSessionCacheFactory.html">NullSessionCacheFactory</a> which you can instantiate, configure and set as a <code>Server</code> bean to enable the <code>SessionHandler</code> to automatically create new <code>NullCache</code>s as needed.
+All of the same configuration options are available on the <code>NullSessionCacheFactory</code> as the <code>NullSessionCache</code> itself.
+Alternatively, if you only have a single <code>SessionHandler</code>, or you need to configure a <code>NullSessionCache</code> differently for every <code>SessionHandler</code>, then you could dispense with the <code>NullSessionCacheFactory</code> and simply instantiate, configure and pass in the <code>NullSessionCache</code> yourself.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Server server = new Server();
+NullSessionCacheFactory cacheFactory = new NullSessionCacheFactory();
+cacheFactory.setFlushOnResponseCommit(true);
+cacheFactory.setRemoveUnloadableSessions(true);
+cacheFactory.setSaveOnCreate(true);
+
+//Add the factory as a bean to the server, now whenever a 
+//SessionHandler starts it will consult the bean to create a new NullSessionCache
+server.addBean(cacheFactory);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="customcache"><a class="anchor" href="#customcache"></a>Implementing a Custom SessionCache</h3>
+<div class="paragraph">
+<p>As previously mentioned, we highly recommend that you extend the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/AbstractSessionCache.html">AbstractSessionCache</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="heterogeneous-caching"><a class="anchor" href="#heterogeneous-caching"></a>Heterogeneous Caching</h3>
+<div class="paragraph">
+<p>Using one of the <code>SessionCacheFactory</code>s will ensure that every time a <code>SessionHandler</code> starts it will create a new instance of the corresponding type of <code>SessionCache</code>.</p>
+</div>
+<div class="paragraph">
+<p>But, what if you deploy multiple webapps, and for one of them, you don&#8217;t want to use sessions?
+Or alternatively, you don&#8217;t want to use sessions, but you have one webapp that now needs them?
+In that case, you can configure the <code>SessionCacheFactory</code> appropriate to the majority, and then specifically create the right type of <code>SessionCache</code> for the others.
+Here&#8217;s an example where we configure the <code>DefaultSessionCacheFactory</code> to handle most webapps, but then specifically use a <code>NullSessionCache</code> for another:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Server server = new Server();
+
+DefaultSessionCacheFactory cacheFactory = new DefaultSessionCacheFactory();
+//NEVER_EVICT
+cacheFactory.setEvictionPolicy(SessionCache.NEVER_EVICT);
+cacheFactory.setFlushOnResponseCommit(true);
+cacheFactory.setInvalidateOnShutdown(false);
+cacheFactory.setRemoveUnloadableSessions(true);
+cacheFactory.setSaveOnCreate(true);
+
+//Add the factory as a bean to the server, now whenever a 
+//SessionHandler starts it will consult the bean to create a new DefaultSessionCache
+server.addBean(cacheFactory);
+
+ContextHandlerCollection contexts = new ContextHandlerCollection();
+server.setHandler(contexts);
+
+//Add a webapp that will use a DefaultSessionCache via the DefaultSessionCacheFactory
+WebAppContext app1 = new WebAppContext();
+app1.setContextPath("/app1");
+contexts.addHandler(app1);
+
+//Add a webapp that uses an explicit NullSessionCache instead
+WebAppContext app2 = new WebAppContext();
+app2.setContextPath("/app2");
+NullSessionCache nullSessionCache = new NullSessionCache(app2.getSessionHandler());
+nullSessionCache.setFlushOnResponseCommit(true);
+nullSessionCache.setRemoveUnloadableSessions(true);
+nullSessionCache.setSaveOnCreate(true);
+//If we pass an existing SessionCache instance to the SessionHandler, it must be
+//fully configured: this means we must also provide SessionDataStore
+nullSessionCache.setSessionDataStore(new NullSessionDataStore());
+app2.getSessionHandler().setSessionCache(nullSessionCache);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="datastore"><a class="anchor" href="#datastore"></a>The SessionDataStore</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/SessionDataStore.html">SessionDataStore</a> mediates the storage, retrieval and deletion of <code>SessionData</code>.
+There is one <code>SessionDataStore</code> per <code>SessionCache</code>.
+The server libraries provide a number of alternative <code>SessionDataStore</code> implementations.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNp9kTsOwjAMQPecIhfoDVggFT-JqScwwS2WIgfF7oI4PAMbjb3m-VnKs5IWjBOKUOURFCatDSUEYsU2Q97CkAuIxP1dtEFWAx-poIFOqdT1YcAzvLFkEGvvhWdikhewMXAdD8lAt8pLNViC_CReNjSE_6e4-wyD_X0L_LRuFl8xcvmSndH3nLy-2M3uK_1z9GeN83wBY-8GdA==" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/AbstractSessionDataStore.html">AbstractSessionDataStore</a> provides most of the behaviour common to <code>SessionDataStore</code>s:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">passivation</dt>
+<dd>
+<p>Supporting passivation means that session data is serialized.
+Some persistence mechanisms serialize, such as JDBC, GCloud Datastore etc.
+Others store an object in shared memory, e.g. Infinispan and thus don&#8217;t serialize session data.
+Whether or not a persistence technology entails passivation controls whether or not <code>HttpSessionActivationListener</code>s will be called.
+When implementing a custom <code>SessionDataStore</code> you need to decide whether or not passivation will be supported.</p>
+</dd>
+</dl>
+</div>
+<div id="datastore-skip" class="dlist">
+<dl>
+<dt class="hdlist1">savePeriod</dt>
+<dd>
+<p>This is an interval defined in seconds.
+It is used to reduce the frequency with which <code>SessionData</code> is written.
+Normally, whenever the last concurrent request leaves a <code>Session</code>, the <code>SessionData</code> for that <code>Session</code> is always persisted, even if the only thing that changed is the <code>lastAccessTime</code>.
+If the <code>savePeriod</code> is non-zero, the <code>SessionData</code> will not be persisted if no session attributes changed, <em>unless</em> the time since the last save exceeds the <code>savePeriod</code>.
+Setting a non-zero value can reduce the load on the persistence mechanism, but in a clustered environment runs the risk that other nodes will see the session as expired because it has not been persisted sufficiently recently.</p>
+</dd>
+<dt class="hdlist1">gracePeriod</dt>
+<dd>
+<p>The <code>gracePeriod</code> is an interval defined in seconds.
+It is an attempt to deal with the non-transactional nature of sessions with regard to finding sessions that have expired.
+In a clustered configuration - even with a sticky load balancer - it is always possible that a session is "live" on a node but not yet updated in the persistent store.
+This means that it can be hard to determine at any given moment whether a clustered session has truly expired.
+Thus, we use the <code>gracePeriod</code> to provide a bit of leeway around the moment of expiry during <a href="#housekeeper">scavenge</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>on every <a href="#housekeeper">scavenge</a> cycle an <code>AbstractSessionDataStore</code> searches for sessions that belong to the context that expired at least one <code>gracePeriod</code> ago</p>
+</li>
+<li>
+<p>infrequently the <code>AbstractSessionDataStore</code> searches for and summarily deletes sessions - from any context - that expired at least 10 <code>gracePeriod</code>s ago</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The trivial <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/NullSessionDataStore.html">NullSessionDataStore</a> - which does not persist sessions - is the default used by the <code>SessionHandler</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="datastore-file"><a class="anchor" href="#datastore-file"></a>The FileSessionDataStore</h3>
+<div class="paragraph">
+<p>The <code>FileSessionDataStore</code> supports persistent storage of session data in a filesystem.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Persisting sessions to the local file system should <strong>never</strong> be used in a clustered environment.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>One file represents one session in one context.</p>
+</div>
+<div class="paragraph">
+<p>File names follow this pattern:</p>
+</div>
+<div class="paragraph">
+<p>[expiry]_[contextpath]_[virtualhost]_[id]</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">expiry</dt>
+<dd>
+<p>This is the expiry time in milliseconds since the epoch.</p>
+</dd>
+<dt class="hdlist1">contextpath</dt>
+<dd>
+<p>This is the context path with any special characters, including <code>/</code>, replaced by the <code><em></code> underscore character.
+For example, a context path of <code>/catalog</code> would become <code>_catalog</code>.
+A context path of simply <code>/</code> becomes just <code>_</em></code>.</p>
+</dd>
+<dt class="hdlist1">virtualhost</dt>
+<dd>
+<p>This is the first virtual host associated with the context and has the form of 4 digits separated by <code>.</code> characters.
+If there are no virtual hosts associated with a context, then <code>0.0.0.0</code> is used:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[digit].[digit].[digit].[digit]</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">id</dt>
+<dd>
+<p>This is the unique id of the session.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Putting all of the above together as an example, a session with an id of <code>node0ek3vx7x2y1e7pmi3z00uqj1k0</code> for the context with path <code>/test</code> with no virtual hosts and an expiry of <code>1599558193150</code> would have a file name of:</p>
+</div>
+<div class="paragraph">
+<p><code>1599558193150__test_0.0.0.0_node0ek3vx7x2y1e7pmi3z00uqj1k0</code></p>
+</div>
+<div class="sect3">
+<h4 id="configuration-2"><a class="anchor" href="#configuration-2"></a>Configuration</h4>
+<div class="paragraph">
+<p>You can configure either a <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/FileSessionDataStore.html">FileSessionDataStore</a> individually, or a <code>FileSessionDataStoreFactory</code> if you want multiple <code>SessionHandler</code>s to use <code>FileSessionDataStore</code>s that are identically configured.
+The configuration methods are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">storeDir</dt>
+<dd>
+<p>This is a File that defines the location for storage of session files.
+If the directory does not exist at startup, it will be created.
+If you use the same <code>storeDir</code> for multiple <code>SessionHandlers</code>, then the sessions for all of those contexts are stored in the same directory.
+This is not a problem, as the name of the file is unique because it contains the context information.
+You <em>must</em> supply a value for this, otherwise startup of the <code>FileSessionDataStore</code> will fail.</p>
+</dd>
+<dt class="hdlist1">deleteUnrestorableFiles</dt>
+<dd>
+<p>Boolean, default <code>false</code>.
+If set to <code>true</code>, unreadable files will be deleted.
+This is useful to prevent repeated logging of the same error when the <a href="#housekeeper">scavenger</a> periodically (re-)attempts to load the corrupted information for a session in order to expire it.</p>
+</dd>
+<dt class="hdlist1">savePeriod</dt>
+<dd>
+<p>This is an interval defined in seconds.
+It is used to reduce the frequency with which <code>SessionData</code> is written.
+Normally, whenever the last concurrent request leaves a <code>Session</code>, the <code>SessionData</code> for that <code>Session</code> is always persisted, even if the only thing that changed is the <code>lastAccessTime</code>.
+If the <code>savePeriod</code> is non-zero, the <code>SessionData</code> will not be persisted if no session attributes changed, <em>unless</em> the time since the last save exceeds the <code>savePeriod</code>.
+Setting a non-zero value can reduce the load on the persistence mechanism, but in a clustered environment runs the risk that other nodes will see the session as expired because it has not been persisted sufficiently recently.</p>
+</dd>
+<dt class="hdlist1">gracePeriod</dt>
+<dd>
+<p>The <code>gracePeriod</code> is an interval defined in seconds.
+It is an attempt to deal with the non-transactional nature of sessions with regard to finding sessions that have expired.
+In a clustered configuration - even with a sticky load balancer - it is always possible that a session is "live" on a node but not yet updated in the persistent store.
+This means that it can be hard to determine at any given moment whether a clustered session has truly expired.
+Thus, we use the <code>gracePeriod</code> to provide a bit of leeway around the moment of expiry during <a href="#housekeeper">scavenge</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>on every <a href="#housekeeper">scavenge</a> cycle an <code>AbstractSessionDataStore</code> searches for sessions that belong to the context that expired at least one <code>gracePeriod</code> ago</p>
+</li>
+<li>
+<p>infrequently the <code>AbstractSessionDataStore</code> searches for and summarily deletes sessions - from any context - that expired at least 10 <code>gracePeriod</code>s ago</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s look at an example of configuring a <code>FileSessionDataStoreFactory</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Server server = new Server();
+
+//First lets configure a DefaultSessionCacheFactory
+DefaultSessionCacheFactory cacheFactory = new DefaultSessionCacheFactory();
+//NEVER_EVICT
+cacheFactory.setEvictionPolicy(SessionCache.NEVER_EVICT);
+cacheFactory.setFlushOnResponseCommit(true);
+cacheFactory.setInvalidateOnShutdown(false);
+cacheFactory.setRemoveUnloadableSessions(true);
+cacheFactory.setSaveOnCreate(true);
+
+//Add the factory as a bean to the server, now whenever a 
+//SessionHandler starts it will consult the bean to create a new DefaultSessionCache
+server.addBean(cacheFactory);
+
+//Now, lets configure a FileSessionDataStoreFactory
+FileSessionDataStoreFactory storeFactory = new FileSessionDataStoreFactory();
+storeFactory.setStoreDir(new File("/tmp/sessions"));
+storeFactory.setGracePeriodSec(3600);
+storeFactory.setSavePeriodSec(0);
+
+//Add the factory as a bean on the server, now whenever a
+//SessionHandler starts, it will consult the bean to create a new FileSessionDataStore
+//for use by the DefaultSessionCache
+server.addBean(storeFactory);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an alternate example, configuring a <code>FileSessionDataStore</code> directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//create a context
+WebAppContext app1 = new WebAppContext();
+app1.setContextPath("/app1");
+
+//First, we create a DefaultSessionCache
+DefaultSessionCache cache = new DefaultSessionCache(app1.getSessionHandler());
+cache.setEvictionPolicy(SessionCache.NEVER_EVICT);
+cache.setFlushOnResponseCommit(true);
+cache.setInvalidateOnShutdown(false);
+cache.setRemoveUnloadableSessions(true);
+cache.setSaveOnCreate(true);
+
+//Now, we configure a FileSessionDataStore
+FileSessionDataStore store = new FileSessionDataStore();
+store.setStoreDir(new File("/tmp/sessions"));
+store.setGracePeriodSec(3600);
+store.setSavePeriodSec(0);
+
+//Tell the cache to use the store
+cache.setSessionDataStore(store);
+
+//Tell the contex to use the cache/store combination
+app1.getSessionHandler().setSessionCache(cache);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="datastore-jdbc"><a class="anchor" href="#datastore-jdbc"></a>The JDBCSessionDataStore</h3>
+<div class="paragraph">
+<p>The <code>JDBCSessionDataStore</code> supports persistent storage of session data in a relational database.
+To do that, it requires a <code>DatabaseAdaptor</code> that handles the differences between databases (eg Oracle, Postgres etc), and a <code>SessionTableSchema</code> that allows for the customization of table and column names.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNpLzkksLlbwcnFyDk4tLs7Mz3NJLEkMLskvSuVKBkuB-EmJxamOKYkFQGGoKFRxSGJSTmpwckZqbiIXFzZDFJQMlRS0dHXBNLpRBDVg2gIA9T07JQ==" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p><code>SessionData</code> is stored in a table with one row per session.
+This is the table, with the table name, column names and type keywords at their default settings:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table:JettySessions</caption>
+<colgroup>
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3337%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">sessionId</th>
+<th class="tableblock halign-left valign-top">contextPath</th>
+<th class="tableblock halign-left valign-top">virtualHost</th>
+<th class="tableblock halign-left valign-top">lastNode</th>
+<th class="tableblock halign-left valign-top">accessTime</th>
+<th class="tableblock halign-left valign-top">lastAccessTime</th>
+<th class="tableblock halign-left valign-top">createTime</th>
+<th class="tableblock halign-left valign-top">cookieTime</th>
+<th class="tableblock halign-left valign-top">lastSavedTime</th>
+<th class="tableblock halign-left valign-top">expiryTime</th>
+<th class="tableblock halign-left valign-top">maxInterval</th>
+<th class="tableblock halign-left valign-top">map</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120 varchar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60 varchar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60 varchar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60 varchar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">blob</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The name of the table and all columns can be configured using the <code>SessionTableSchema</code> class described below.
+Many databases use different keywords for the <code>long</code>, <code>blob</code> and <code>varchar</code> types, so you can explicitly configure these if jetty cannot determine what they should be at runtime based on the metadata available from a db connection using the <code>DatabaseAdaptor</code> class described below.</p>
+</div>
+<div class="sect3">
+<h4 id="configuration-3"><a class="anchor" href="#configuration-3"></a>Configuration</h4>
+<div class="paragraph">
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/JDBCSessionDataStore.html">JDBCSessionDataStore</a> and corresponding <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/JDBCSessionDataStoreFactory.html">JDBCSessionDataStoreFactory</a> supports the following configuration:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">savePeriod</dt>
+<dd>
+<p>This is an interval defined in seconds.
+It is used to reduce the frequency with which <code>SessionData</code> is written.
+Normally, whenever the last concurrent request leaves a <code>Session</code>, the <code>SessionData</code> for that <code>Session</code> is always persisted, even if the only thing that changed is the <code>lastAccessTime</code>.
+If the <code>savePeriod</code> is non-zero, the <code>SessionData</code> will not be persisted if no session attributes changed, <em>unless</em> the time since the last save exceeds the <code>savePeriod</code>.
+Setting a non-zero value can reduce the load on the persistence mechanism, but in a clustered environment runs the risk that other nodes will see the session as expired because it has not been persisted sufficiently recently.</p>
+</dd>
+<dt class="hdlist1">gracePeriod</dt>
+<dd>
+<p>The <code>gracePeriod</code> is an interval defined in seconds.
+It is an attempt to deal with the non-transactional nature of sessions with regard to finding sessions that have expired.
+In a clustered configuration - even with a sticky load balancer - it is always possible that a session is "live" on a node but not yet updated in the persistent store.
+This means that it can be hard to determine at any given moment whether a clustered session has truly expired.
+Thus, we use the <code>gracePeriod</code> to provide a bit of leeway around the moment of expiry during <a href="#housekeeper">scavenge</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>on every <a href="#housekeeper">scavenge</a> cycle an <code>AbstractSessionDataStore</code> searches for sessions that belong to the context that expired at least one <code>gracePeriod</code> ago</p>
+</li>
+<li>
+<p>infrequently the <code>AbstractSessionDataStore</code> searches for and summarily deletes sessions - from any context - that expired at least 10 <code>gracePeriod</code>s ago</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">DatabaseAdaptor</dt>
+<dd>
+<p>The <code>DatabaseAdaptor</code> can connect to a database either via a <code>javax.sql.Datasource</code> or a <code>java.sql.Driver</code>.
+Additionally, a database-specific keyword can be configured for the <code>blob</code>, <code>varchar</code> and <code>long</code> types.
+Note that the <code>DatabaseAdaptor</code> tries to automatically detect the type of the database from the first connection and select the appropriate type keywords, however you may need to explicitly configure them if you&#8217;re not using <code>Postgres</code> or <code>Oracle</code>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">datasource</dt>
+<dd>
+<p>This can either be a <code>Datasource</code> instance or the jndi name of a <code>Datasource</code> to look up.</p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">DatabaseAdaptor datasourceAdaptor = new DatabaseAdaptor();
+datasourceAdaptor.setDatasourceName("/jdbc/myDS");</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">driverInfo</dt>
+<dd>
+<p>This is the name or instance of a jdbc <code>Driver</code> class and a connection url.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">DatabaseAdaptor driverAdaptor = new DatabaseAdaptor();
+driverAdaptor.setDriverInfo("com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1:3306/sessions?user=sessionsadmin");</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">blobType</dt>
+<dd>
+<p>Default <code>blob</code> or <code>bytea</code> for Postgres.</p>
+</dd>
+<dt class="hdlist1">longType</dt>
+<dd>
+<p>Default <code>bigint</code> or <code>number(20)</code> for Oracle.</p>
+</dd>
+<dt class="hdlist1">stringType</dt>
+<dd>
+<p>Default <code>varchar</code>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">SessionTableSchema</dt>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">schemaName</dt>
+<dt class="hdlist1">catalogName</dt>
+<dd>
+<p>The exact meaning of these two are dependent on your database vendor, but can broadly be described as further scoping for the session table name.
+See <a href="https://en.wikipedia.org/wiki/Database_schema" class="bare">https://en.wikipedia.org/wiki/Database_schema</a> and <a href="https://en.wikipedia.org/wiki/Database_catalog" class="bare">https://en.wikipedia.org/wiki/Database_catalog</a>.
+These extra scoping names can come into play at startup time when Jetty determines if the session table already exists, or otherwise creates it on-the-fly.
+If you have employed either of these concepts when you pre-created the session table, or you want to ensure that Jetty uses them when it auto-creates the session table, then you have two options: either set them explicitly, or let Jetty infer them from a database connection.
+If you leave them unset, then no scoping will be done.
+If you use the special value <code>INFERRED</code>, Jetty will determine them from a database connection.</p>
+</dd>
+<dt class="hdlist1">tableName</dt>
+<dd>
+<p>Default <code>JettySessions</code>.
+This is the name of the table in which session data is stored.</p>
+</dd>
+<dt class="hdlist1">accessTimeColumn</dt>
+<dd>
+<p>Default <code>accessTime</code>.
+This is the name of the column that stores the time - in ms since the epoch - at which a session was last accessed</p>
+</dd>
+<dt class="hdlist1">contextPathColumn</dt>
+<dd>
+<p>Default <code>contextPath</code>.
+This is the name of the column that stores the <code>contextPath</code> of a session.</p>
+</dd>
+<dt class="hdlist1">cookieTimeColumn</dt>
+<dd>
+<p>Default <code>cookieTime</code>.
+This is the name of the column that stores the time - in ms since the epoch - that the cookie was last set for a session.</p>
+</dd>
+<dt class="hdlist1">createTimeColumn</dt>
+<dd>
+<p>Default <code>createTime</code>.
+This is the name of the column that stores the time - in ms since the epoch - at which a session was created.</p>
+</dd>
+<dt class="hdlist1">expiryTimeColumn</dt>
+<dd>
+<p>Default <code>expiryTime</code>.
+This is name of the column that stores - in ms since the epoch - the time at which a session will expire.</p>
+</dd>
+<dt class="hdlist1">lastAccessTimeColumn</dt>
+<dd>
+<p>Default <code>lastAccessTime</code>.
+This is the name of the column that stores the time - in ms since the epoch - that a session was previously accessed.</p>
+</dd>
+<dt class="hdlist1">lastSavedTimeColumn</dt>
+<dd>
+<p>Default <code>lastSavedTime</code>.
+This is the name of the column that stores the time - in ms since the epoch - at which a session was last written.</p>
+</dd>
+<dt class="hdlist1">idColumn</dt>
+<dd>
+<p>Default <code>sessionId</code>.
+This is the name of the column that stores the id of a session.</p>
+</dd>
+<dt class="hdlist1">lastNodeColumn</dt>
+<dd>
+<p>Default <code>lastNode</code>.
+This is the name of the column that stores the <code>workerName</code> of the last node to write a session.</p>
+</dd>
+<dt class="hdlist1">virtualHostColumn</dt>
+<dd>
+<p>Default <code>virtualHost</code>.
+This is the name of the column that stores the first virtual host of the context of a session.</p>
+</dd>
+<dt class="hdlist1">maxIntervalColumn</dt>
+<dd>
+<p>Default <code>maxInterval</code>.
+This is the name of the column that stores the interval - in ms - during which a session can be idle before being considered expired.</p>
+</dd>
+<dt class="hdlist1">mapColumn</dt>
+<dd>
+<p>Default <code>map</code>.
+This is the name of the column that stores the serialized attributes of a session.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="datastore-mongo"><a class="anchor" href="#datastore-mongo"></a>The MongoSessionDataStore</h3>
+<div class="paragraph">
+<p>The <code>MongoSessionDataStore</code> supports persistence of <code>SessionData</code> in a nosql database.</p>
+</div>
+<div class="paragraph">
+<p>The best description for the document model for session information is found in the javadoc for the <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/nosql/mongodb/MongoSessionDataStore.html">MongoSessionDataStore</a>.
+In overview, it can be represented thus:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNpVyUEKgCAQRuG9pxg8TftOMOkUhmg4f1CEd0_IgjZv8T3P4IlVaAC2UVRDTkqXIZpz9FJoFeD8jbZCFNLHOnW0LifIAfsxUREHTku7DJQw7RDts5q31dQbsAIrCQ==" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The database contains a document collection for the sessions.
+Each document represents a session id, and contains one nested document per context in which that session id is used.
+For example, the session id <code>abcd12345</code> might be used by two contexts, one with path <code>/contextA</code> and one with path <code>/contextB</code>.
+In that case, the outermost document would refer to <code>abcd12345</code> and it would have a nested document for <code>/contextA</code> containing the session attributes for that context, and another nested document for <code>/contextB</code> containing the session attributes for that context.
+Remember, according to the Servlet Specification, a session id can be shared by many contexts, but the attributes must be unique per context.</p>
+</div>
+<div class="paragraph">
+<p>The outermost document contains these fields:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">id</dt>
+<dd>
+<p>The session id.</p>
+</dd>
+<dt class="hdlist1">created</dt>
+<dd>
+<p>The time (in ms since the epoch) at which the session was first created in any context.</p>
+</dd>
+<dt class="hdlist1">maxIdle</dt>
+<dd>
+<p>The time (in ms) for which an idle session is regarded as valid.
+As maxIdle times can be different for <code>Session</code>s from different contexts, this is the <em>shortest</em> maxIdle time.</p>
+</dd>
+<dt class="hdlist1">expiry</dt>
+<dd>
+<p>The time (in ms since the epoch) at which the session will expire.
+As the expiry time can be different for <code>Session</code>s from different contexts, this is the <em>shortest</em> expiry time.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Each nested context-specific document contains:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">attributes</dt>
+<dd>
+<p>The session attributes as a serialized map.</p>
+</dd>
+<dt class="hdlist1">lastSaved</dt>
+<dd>
+<p>The time (in ms since the epoch) at which the session in this context was saved.</p>
+</dd>
+<dt class="hdlist1">lastAccessed</dt>
+<dd>
+<p>The time (in ms since the epoch) at which the session in this context was previously accessed.</p>
+</dd>
+<dt class="hdlist1">accessed</dt>
+<dd>
+<p>The time (in ms since the epoch) at which this session was most recently accessed.</p>
+</dd>
+<dt class="hdlist1">lastNode</dt>
+<dd>
+<p>The <a href="#workername">workerName</a> of the last server that saved the session data.</p>
+</dd>
+<dt class="hdlist1">version</dt>
+<dd>
+<p>An object that is updated every time a session is written out for a context.</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="configuration-4"><a class="anchor" href="#configuration-4"></a>Configuration</h4>
+<div class="paragraph">
+<p>You can configure either a <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/nosql/mongodb/MongoSessionDataStore.html">MongoSessionDataStore</a> individually, or a <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/nosql/mongodb/MongoSessionDataStore.html">MongoSessionDataStoreFactory</a> if you want multiple <code>SessionHandler</code>s to use <code>MongoSessionDataStore</code>s that are identically configured.
+The configuration methods for the <code>MongoSessionDataStoreFactory</code> are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">savePeriod</dt>
+<dd>
+<p>This is an interval defined in seconds.
+It is used to reduce the frequency with which <code>SessionData</code> is written.
+Normally, whenever the last concurrent request leaves a <code>Session</code>, the <code>SessionData</code> for that <code>Session</code> is always persisted, even if the only thing that changed is the <code>lastAccessTime</code>.
+If the <code>savePeriod</code> is non-zero, the <code>SessionData</code> will not be persisted if no session attributes changed, <em>unless</em> the time since the last save exceeds the <code>savePeriod</code>.
+Setting a non-zero value can reduce the load on the persistence mechanism, but in a clustered environment runs the risk that other nodes will see the session as expired because it has not been persisted sufficiently recently.</p>
+</dd>
+<dt class="hdlist1">gracePeriod</dt>
+<dd>
+<p>The <code>gracePeriod</code> is an interval defined in seconds.
+It is an attempt to deal with the non-transactional nature of sessions with regard to finding sessions that have expired.
+In a clustered configuration - even with a sticky load balancer - it is always possible that a session is "live" on a node but not yet updated in the persistent store.
+This means that it can be hard to determine at any given moment whether a clustered session has truly expired.
+Thus, we use the <code>gracePeriod</code> to provide a bit of leeway around the moment of expiry during <a href="#housekeeper">scavenge</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>on every <a href="#housekeeper">scavenge</a> cycle an <code>AbstractSessionDataStore</code> searches for sessions that belong to the context that expired at least one <code>gracePeriod</code> ago</p>
+</li>
+<li>
+<p>infrequently the <code>AbstractSessionDataStore</code> searches for and summarily deletes sessions - from any context - that expired at least 10 <code>gracePeriod</code>s ago</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">dbName</dt>
+<dd>
+<p>This is the name of the database.</p>
+</dd>
+<dt class="hdlist1">collectionName</dt>
+<dd>
+<p>The name of the document collection.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>There are two alternative ways to specify the connection to mongodb:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">connectionString</dt>
+<dd>
+<p>This is a mongodb url, eg <code>mongodb://localhost</code></p>
+</dd>
+<dt class="hdlist1">host</dt>
+<dt class="hdlist1">port</dt>
+<dd>
+<p>This is the hostname and port number of the mongodb instance to contact.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s look at an example of configuring a <code>MongoSessionDataStoreFactory</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Server server = new Server();
+
+MongoSessionDataStoreFactory mongoSessionDataStoreFactory = new MongoSessionDataStoreFactory();
+mongoSessionDataStoreFactory.setGracePeriodSec(3600);
+mongoSessionDataStoreFactory.setSavePeriodSec(0);
+mongoSessionDataStoreFactory.setDbName("HttpSessions");
+mongoSessionDataStoreFactory.setCollectionName("JettySessions");
+
+// Either set the connectionString
+mongoSessionDataStoreFactory.setConnectionString("mongodb:://localhost:27017");
+// or alternatively set the host and port.
+mongoSessionDataStoreFactory.setHost("localhost");
+mongoSessionDataStoreFactory.setPort(27017);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cachingsessiondatastore"><a class="anchor" href="#cachingsessiondatastore"></a>The CachingSessionDataStore</h3>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNrLzCtJLUpLTE5VCE4tLs7Mz3NJLEn0TSzgSs5JLC5WcE5MzsjMS0eSCy7JL0rlysSmDSLFhUOPgpKhkoKWbkp-eZ4umI1mIRnaIBaimqNgU6Orq-CbmpsMNC81BVUSAPOiVDg=" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/CachingSessionDataStore.html">CachingSessionDataStore</a> is a special type of <code>SessionDataStore</code> that checks an L2 cache for <code>SessionData</code> before checking a delegate <code>SessionDataStore</code>.
+This can improve the performance of slow stores.</p>
+</div>
+<div class="paragraph">
+<p>The L2 cache is an instance of a <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/server/session/SessionDataMap.html">SessionDataMap</a>.
+Jetty provides one implementation of this L2 cache based on <code>memcached</code>, <a href="https://eclipse.dev/jetty/javadoc/jetty-10/org/eclipse/jetty/memcached/session/MemcachedSessionDataMap.html">MemcachedSessionDataMap</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="configuration-5"><a class="anchor" href="#configuration-5"></a>Configuration</h4>
+<div class="paragraph">
+<p>Here&#8217;s an example of how to programmatically configure <code>CachingSessionDataStore</code>s, using a <a href="#datastore-file">FileSessionDataStore</a> as a delegate, and <code>memcached</code> as the L2 cache:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Server server = new Server();
+
+//Make a factory for memcached L2 caches for SessionData
+MemcachedSessionDataMapFactory mapFactory = new MemcachedSessionDataMapFactory();
+mapFactory.setExpirySec(0); //items in memcached don't expire
+mapFactory.setHeartbeats(true); //tell memcached to use heartbeats
+mapFactory.setAddresses(new InetSocketAddress("localhost", 11211)); //use a local memcached instance
+mapFactory.setWeights(new int[] {100}); //set the weighting
+
+
+//Make a FileSessionDataStoreFactory for creating FileSessionDataStores
+//to persist the session data
+FileSessionDataStoreFactory storeFactory = new FileSessionDataStoreFactory();
+storeFactory.setStoreDir(new File("/tmp/sessions"));
+storeFactory.setGracePeriodSec(3600);
+storeFactory.setSavePeriodSec(0);
+
+//Make a factory that plugs the L2 cache into the SessionDataStore
+CachingSessionDataStoreFactory cachingSessionDataStoreFactory = new CachingSessionDataStoreFactory();
+cachingSessionDataStoreFactory.setSessionDataMapFactory(mapFactory);
+cachingSessionDataStoreFactory.setSessionStoreFactory(storeFactory);
+
+//Register it as a bean so that all SessionHandlers will use it
+//to make FileSessionDataStores that use memcached as an L2 SessionData cache.
+server.addBean(cachingSessionDataStoreFactory);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="http3.html">HTTP/3 Server Library</a></span>
+  <span class="next"><a href="websocket.html">WebSocket Server</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="../../../../index.html">Docs</a></li>
+      <li><a href="../../../../../support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="../../../../../_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="../../../../../_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="../../../../../_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../../../_/js/site.js" data-ui-root-path="../../../../../_"></script>
+<script async src="../../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../../.." data-snippet-length="100" data-stylesheet="../../../../../_/css/search.css"></script>
+<script async src="../../../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Writing Documentation :: Eclipse Jetty</title>
+    <link rel="canonical" href="https://jetty.org/docs/contribution-guide/documentation/index.html">
+    <link rel="prev" href="../standards/index.html">
+    <link rel="next" href="../patches/index.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="../../index.html">Documentation</a>
+        <a class="navbar-item" href="../../../support.html">Support</a>
+        <!--a class="navbar-item" href="../../../community.html">Community</a-->
+        <a class="navbar-item" href="../../../security.html">Security</a>
+        <a class="navbar-item" href="../../../download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="../index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="contribution-guide" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Contribution Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Participation and Contribution</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../eca/index.html">The Eclipse Contributor Agreement</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../source/index.html">Getting the source code</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../build/index.html">Building Jetty</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../standards/index.html">Code Standards</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Writing Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../patches/index.html">Submitting Patches</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../security/index.html">Security</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Contribution Guide</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Contribution Guide</a></div>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../jetty/12/index.html">Eclipse Jetty</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../jetty/12/index.html">12</a>
+        </li>
+        <li class="version">
+          <a href="../../jetty/11/index.html">11</a>
+        </li>
+        <li class="version">
+          <a href="../../jetty/10/index.html">10</a>
+        </li>
+      </ul>
+    </li>
+    </li>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Contribution Guide</a></li>
+    <li><a href="../index.html">Participation and Contribution</a></li>
+    <li><a href="index.html">Writing Documentation</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.website/edit/main/contribution-guide/modules/ROOT/pages/documentation/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Writing Documentation</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Another great way to contribute to Jetty is to help us write and maintain our documentation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-guides"><a class="anchor" href="#cg-documentation-guides"></a>Documentation guides</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jetty&#8217;s documentation is grouped into three guides, each written for a different target audience.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Operations Guide</dt>
+<dd>
+<p>Targets sysops, devops, and developers who want to run Jetty as a standalone web server.</p>
+</dd>
+<dt class="hdlist1">Programming Guide</dt>
+<dd>
+<p>Targets developers who want to use the Jetty libraries in their applications.</p>
+</dd>
+<dt class="hdlist1">Contribution Guide</dt>
+<dd>
+<p>Targets developers and writers who want to make contributions to the Jetty project.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-toolchain"><a class="anchor" href="#cg-documentation-toolchain"></a>The documentation toolchain</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jetty follows a <a href="https://www.writethedocs.org/guide/docs-as-code/">"docs as code"</a> philosophy, meaning <strong>we use the same tools to write and build our code and docs</strong>.
+As such, the docs are maintained directly within the Jetty codebase at <a href="https://github.com/eclipse/jetty.project/tree/jetty-12.0.x/documentation/jetty-documentation/src/main/asciidoc"><code>documentation/jetty-documentation/src/main/asciidoc/</code></a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-asciidoc"><a class="anchor" href="#cg-documentation-asciidoc"></a>AsciiDoc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Our docs are written in <a href="https://asciidoc.org/">AsciiDoc</a>, a markup language for writing technical content.
+AsciiDoc supports many advanced features, such as robust linking across different documentation sets, while remaining human-readable.</p>
+</div>
+<div class="paragraph">
+<p>Although Jetty takes advantage of many of these features, you don&#8217;t need to be an AsciiDoc expert to contribute to our documentation.
+If you <em>are</em> interested in learning the ins and outs of AsciiDoc, the <a href="https://docs.asciidoctor.org/asciidoc/latest/">official language documentation</a> is a good place to start.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-asciidoctor"><a class="anchor" href="#cg-documentation-asciidoctor"></a>Maven and Asciidoctor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO UPDATE FOR ANTORA</p>
+</div>
+<div class="paragraph">
+<p>In addition to using Maven to <a href="cg-build">build the Jetty codebase</a>, we use it to build our docs.
+During a build, Maven converts AsciiDoc-formatted docs into the HTML pages that you are reading right now.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://asciidoctor.org/">Asciidoctor</a> is the tool that actually performs this compilation step.
+Maven integrates with Asciidoctor via the <a href="https://docs.asciidoctor.org/maven-tools/latest/"><code>asciidoctor-maven-plugin</code></a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-build"><a class="anchor" href="#cg-documentation-build"></a>Building the docs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO UPDATE FOR ANTORA</p>
+</div>
+<div class="paragraph">
+<p>Since Jetty&#8217;s docs are maintained in <code>git</code> alongside the rest of the Jetty codebase, you&#8217;ll need to <a href="cg-source">check out a local copy</a> of the code to contribute to the docs.</p>
+</div>
+<div class="paragraph">
+<p>The docs are maintained as a separate module within Jetty, which means you can build the docs separately from the rest of the project.
+To do so, run <code>mvn clean install</code> from the <code>documentation/jetty-documentation</code> subdirectory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cd jetty.project/documentation
+$ mvn install
+&lt;...snip...&gt;
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 9.272 s
+[INFO] Finished at: 2018-04-09T13:06:10-05:00
+[INFO] Final Memory: 74M/247M
+[INFO] ------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+==
+You&#8217;ll see a lot of files getting downloaded during the build process.
+This is Maven setting up the execution environment, which it uses to generate the docs.
+==
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When the build completes, you can view the generated docs in your preferred web browser by opening <a href="file:///path/to/jetty.project/documentation/jetty-documentation/target/html/index.html" class="bare">file:///path/to/jetty.project/documentation/jetty-documentation/target/html/index.html</a> on your local filesystem.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-build-structure"><a class="anchor" href="#cg-documentation-build-structure"></a>Documentation project structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO UPDATE FOR ANTORA</p>
+</div>
+<div class="paragraph">
+<p>The documentation root is <a href="https://github.com/eclipse/jetty.project/tree/jetty-10.0.x/documentation/jetty-documentation"><code>documentation/jetty-documentation/</code></a>.
+Within this root directory are some files and subdirectories of note:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://github.com/eclipse/jetty.project/tree/jetty-10.0.x/documentation/jetty-documentation/src/main/asciidoc"><code>src/main/asciidoc</code></a></dt>
+<dd>
+<p>The primary root for all documentation content.</p>
+</dd>
+<dt class="hdlist1"><a href="https://github.com/eclipse/jetty.project/tree/jetty-10.0.x/documentation/jetty-documentation/src/main/asciidoc/config.adoc"><code>src/main/asciidoc/config.adoc</code></a></dt>
+<dd>
+<p>This file contains metadata and global variables shared across all the <a href="#cg-documentation-guides">documentation guides</a>.
+This configuration is used by Asciidoctor to correctly render the final docs.</p>
+</dd>
+<dt class="hdlist1"><code>src/main/asciidoc/*-guide</code></dt>
+<dd>
+<p>Secondary root directories for each individual <a href="#cg-documentation-guides">documentation guide</a>.</p>
+</dd>
+<dt class="hdlist1"><code>src/main/asciidoc/*-guide/index.adoc</code></dt>
+<dd>
+<p>Asciidoctor&#8217;s "point of entry" for each guide.
+Content is pulled into the guide via the <code>include::</code> directives in these index files.
+Also, guide-specific metadata and variables that wouldn&#8217;t belong in the root <code>config.adoc</code> can also be defined here.</p>
+</dd>
+<dt class="hdlist1"><code>target/&lt;format&gt;</code></dt>
+<dd>
+<p>The final build destination for any docs generated by Maven.
+By default, docs are generated into <code>target/html</code>, but other formats (e.g., <code>pdf</code> and <code>epub</code>) are available.
+This directory is not checked into <code>git</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-style"><a class="anchor" href="#cg-documentation-style"></a>Style guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following conventions are not set in stone, but you are encouraged to follow them where possible.
+Stylistically consistency helps keep the docs easy to both understand and maintain.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-style-prose"><a class="anchor" href="#cg-documentation-style-prose"></a>Ventilated prose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In markup, <strong>each sentence should be on its own line with a hard return at the end of the line</strong>.
+This practice is known variously as <a href="https://writetheasciidocs.netlify.app/ventilated-prose">ventilated prose</a> or <a href="https://rhodesmill.org/brandon/2012/one-sentence-per-line/">semantic linefeeds</a>.</p>
+</div>
+<div class="paragraph">
+<p>This practice makes for more readable file diffs, and also makes it easier to comment out individual lines or to move sentences around.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+==
+AsciiDoc treats a single line breaks just like a space, so it will render ventilated prose naturally.
+==
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-versions"><a class="anchor" href="#cg-documentation-versions"></a>Documenting versions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="cg-documentation-versions-multiple"><a class="anchor" href="#cg-documentation-versions-multiple"></a>Documenting multiple versions at once</h3>
+<div class="paragraph">
+<p>TODO UPDATE FOR ANTORA AND FORTHCOMING EE11</p>
+</div>
+<div class="paragraph">
+<p>Jetty 12 features many parallel modules with similar names and functionality, but which target different versions of Jakarta EE.
+For instance, the <code>ee8-deploy</code>, <code>ee9-deploy</code>, and <code>ee10-deploy</code> modules all behave similarly, except they target Jakarta EE8, EE9, and EE10, respectively.</p>
+</div>
+<div class="paragraph">
+<p>Whenever possible, <strong>try to consolidate these types of parallel references</strong>.
+For instance, you can quickly refer to all three of the aforementioned modules as a group by writing <code>ee{8,9,10}-deploy</code> or <code>eeN-deploy</code>.</p>
+</div>
+<div class="paragraph">
+<p>Another approach is to write your docs targeting one specific module, and tell the reader what substitution(s) they would need to make to target a different module.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+==
+When targeting a specific version in your docs for demonstration purposes, you should prefer to use the most recent version number.
+For the example above, this would mean targeting <code>ee12-deploy</code>.
+==
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Consolidating parallel references saves readers from having to sift through repetitive material, and helps us avoid maintaining multiple versions of nearly identical docs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cg-documentation-versions-multiple-example"><a class="anchor" href="#cg-documentation-versions-multiple-example"></a>Dealing with multiple versions in code examples</h3>
+<div class="paragraph">
+<p>Instead of referencing multiple versions in your code and command-line examples, it&#8217;s generally better to target one specific version, typically the latest (currently <code>ee12</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --add-modules=ee12-deploy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will work when copy-pasted into the command line.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+==
+You may want to remind the reader to change the <code>10</code> in the command to their preferred target version&#8201;&#8212;&#8201;although doing so isn&#8217;t strictly necessary for a simple example like above.
+==
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-license"><a class="anchor" href="#cg-documentation-license"></a>License blocks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each <code>.adoc</code> file should contain the license block that exists in the <code>index.adoc</code> file.
+For reference, here is a standard license header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>//
+// ====================================
+// Copyright (c) 1995 Mort Bay Consulting Pty Ltd and others.
+//
+// This program and the accompanying materials are made available under the
+// terms of the Eclipse Public License v. 2.0 which is available at
+// https://www.eclipse.org/legal/epl-2.0, or the Apache License, Version 2.0
+// which is available at https://www.apache.org/licenses/LICENSE-2.0.
+//
+// SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+// ====================================
+//</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-asciidoc-conventions"><a class="anchor" href="#cg-documentation-asciidoc-conventions"></a>AsciiDoc conventions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO UPDATE FOR ANTORA</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-asciidoc-conventions-ids"><a class="anchor" href="#cg-documentation-asciidoc-conventions-ids"></a>Custom IDs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We rely heavily on <a href="https://docs.asciidoctor.org/asciidoc/latest/sections/custom-ids/">custom IDs</a> for generating stable documentation URLs and linking within docs.</p>
+</div>
+<div class="paragraph">
+<p>At minimum, every chapter and top-level section should have its own custom ID; however, best practice is to give each subsection its own custom ID, too.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+==
+Custom IDs share a single global namespace, which means they must be unique across all documentation guides.
+To help deal with this constraint, we used different ID prefixes in each guide:
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Operations Guide: <code>og-</code></p>
+</li>
+<li>
+<p>Programming Guide: <code>pg-</code></p>
+</li>
+<li>
+<p>Contribution Guide: <code>cg-</code>
+==</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-asciidoc-conventions-images"><a class="anchor" href="#cg-documentation-asciidoc-conventions-images"></a>Images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Images should live in the <code>images/</code> directory of the guide they appear in.
+Use the <code>image::</code> directive to include an image, like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>image::small_powered_by.gif[image,width=145]</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/small_powered_by.gif" alt="image" width="145">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cg-documentation-asciidoc-conventions-admonitions"><a class="anchor" href="#cg-documentation-asciidoc-conventions-admonitions"></a>Admonitions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Admonitions (or "callout blocks") are useful for flagging information that doesn&#8217;t belong in the natural flow of text.
+Asciidoc supports five levels of admonition:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>[NOTE]</code></p>
+</li>
+<li>
+<p><code>[IMPORTANT]</code></p>
+</li>
+<li>
+<p><code>[TIP]</code></p>
+</li>
+<li>
+<p><code>[CAUTION]</code></p>
+</li>
+<li>
+<p><code>[WARNING]</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each admonition&#8217;s visual appearance and typical usage situation are as follows:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+==
+A note about the previous case to be aware of.
+==
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+==
+Important notes are marked with an icon.
+==
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+==
+Tips that make your life easier.
+==
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+==
+Places where you have to be careful what you are doing.
+==
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+==
+Where extreme care has to be taken.
+Data corruption or other nasty things may occur if these warnings are ignored.
+==
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../standards/index.html">Code Standards</a></span>
+  <span class="next"><a href="../patches/index.html">Submitting Patches</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="../../index.html">Docs</a></li>
+      <li><a href="../../../support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="../../../_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="../../../_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="../../../_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

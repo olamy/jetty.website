@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Jetty Start Mechanism :: Eclipse Jetty</title>
+    <link rel="canonical" href="https://jetty.org/docs/jetty/12/operations-guide/start/index.html">
+    <link rel="prev" href="../arch/index.html">
+    <link rel="next" href="start-jpms.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="../../../../../_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="../../../../index.html">Documentation</a>
+        <a class="navbar-item" href="../../../../../support.html">Support</a>
+        <!--a class="navbar-item" href="../../../../../community.html">Community</a-->
+        <a class="navbar-item" href="../../../../../security.html">Security</a>
+        <a class="navbar-item" href="../../../../../download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="../../../../contribution-guide/index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="jetty" data-version="11">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../../index.html">Eclipse Jetty</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Operations Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../begin/index.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../features/index.html">Eclipse Jetty Features</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../howtos/index.html">Eclipse Jetty How-Tos</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../arch/index.html">Architecture Overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Jetty Start Mechanism</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="start-jpms.html">Starting Jetty using JPMS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../modules/index.html">Jetty Modules</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../modules/custom.html">Custom Jetty Modules</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../modules/standard.html">Standard Modules</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../deploy/index.html">Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../server/index.html">Jetty Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../protocols/index.html">Jetty Connectors and Protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../keystore/index.html">Configuring SSL/TLS KeyStores</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../session/index.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart/index.html">Faster Web Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../annotations/index.html">Annotations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../jsp/index.html">Java Server Pages</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../jstl/index.html">JavaServer Pages Standard Tag Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../jsf-taglibs/index.html">JavaServer Faces TagLibs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../jndi/index.html">JNDI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../jaas/index.html">JAAS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../jaspi/index.html">JASPI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../jmx/index.html">JMX Monitoring &amp; Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../troubleshooting/index.html">Troubleshooting</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../xml/index.html">Jetty XML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../programming-guide/index.html">Programming Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../programming-guide/client/index.html">Client Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/client/io-arch.html">I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/client/http.html">HTTP Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/client/http2.html">HTTP/2 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/client/http3.html">HTTP/3 Client Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/client/websocket.html">WebSocket Client</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../programming-guide/server/index.html">Server Libraries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/compliance.html">Server Compliance Modes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/http.html">HTTP Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/http2.html">HTTP/2 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/http3.html">HTTP/3 Server Library</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/session.html">HTTP Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/websocket.html">WebSocket Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/fastcgi.html">FastCGI Server Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/server/io-arch.html">Server I/O Architecture</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Maven and Jetty</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/maven-jetty/jetty-maven-helloworld.html">Using Maven</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/maven-jetty/jetty-maven-plugin.html">Using the Jetty Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/maven-jetty/jetty-jspc-maven-plugin.html">Jetty Jspc Maven Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jetty Architecture</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/arch/bean.html">Jetty Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/arch/threads.html">Jetty Threading Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/arch/io.html">Jetty I/O Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/arch/listener.html">Jetty Listeners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/arch/jmx.html">Jetty JMX Support</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../programming-guide/troubleshooting/index.html">Troubleshooting Jetty</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/troubleshooting/logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/troubleshooting/thread-dump.html">JVM Thread Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/troubleshooting/component-dump.html">Jetty Component Tree Dump</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/troubleshooting/debugging.html">Debugging</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../programming-guide/migration/94-to-10.html">Migrating from Jetty 9.4.x to Jetty 10.0.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Eclipse Jetty</span>
+    <span class="version">11</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../../../contribution-guide/index.html">Contribution Guide</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../../../12/index.html">Eclipse Jetty</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../12/index.html">12</a>
+        </li>
+        <li class="version is-current">
+          <a href="../../index.html">11</a>
+        </li>
+        <li class="version">
+          <a href="../../../10/index.html">10</a>
+        </li>
+      </ul>
+    </li>
+    </li>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Eclipse Jetty</a></li>
+    <li><a href="../index.html">Operations Guide</a></li>
+    <li><a href="index.html">Jetty Start Mechanism</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">11</button>
+  <div class="version-menu">
+    <a class="version" href="../../../12/operations-guide/start/index.html">12</a>
+    <a class="version is-current" href="index.html">11</a>
+    <a class="version" href="../../../10/operations-guide/start/index.html">10</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.project/edit/jetty-11.0.x/documentation/jetty/modules/operations-guide/pages/start/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Jetty Start Mechanism</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure you have read the <a href="../arch/index.html" class="xref page">Jetty architecture section</a> if you are not familiar with the terms used in this section.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The Jetty start mechanism is invoked by executing <code>$JETTY_HOME/start.jar</code>, from within a <code>$JETTY_BASE</code> directory, with zero or more command line options:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ cd $JETTY_BASE
+$ java -jar $JETTY_HOME/start.jar ...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Jetty start mechanism has two main modes of operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <em>tool</em> mode, detailed in <a href="#configure">this section</a>, when it is used as a command line tool to configure the <code>$JETTY_BASE</code> directory by enabling modules, creating sub-directories and files, downloading files, etc.
+In this mode, the JVM started with <code>java -jar $JETTY_HOME/start.jar</code> performs the specified command and then exits.</p>
+</li>
+<li>
+<p>The <em>start</em> mode, detailed in <a href="#start">this section</a>, when it is used to start the JVM that runs Jetty with the specified configuration.
+In this mode, the JVM started with <code>java -jar $JETTY_HOME/start.jar</code> starts Jetty and does not exit until stopped, for example by hitting <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> on the terminal.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Refer to the <a href="#reference">Jetty start mechanism reference section</a> for the complete list of the available command line options.</p>
+</div>
+<div class="paragraph">
+<p>You want to use the Jetty start mechanism to <a href="#configure">configure your $JETTY_BASE</a> and then to <a href="#start">start Jetty</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure"><a class="anchor" href="#configure"></a>Configuring $JETTY_BASE</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Within the Jetty start mechanism, the source of configurations is layered in this order, from higher priority to lower priority:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The command line options.</p>
+</li>
+<li>
+<p>The <code>$JETTY_BASE</code> directory, and its files.</p>
+</li>
+<li>
+<p>The directory specified with the <code>--include-jetty-dir</code> option, and its files.</p>
+</li>
+<li>
+<p>The <code>$JETTY_HOME</code> directory, and its files.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="configure-enable"><a class="anchor" href="#configure-enable"></a>Enabling Modules</h3>
+<div class="paragraph">
+<p>You can enable Jetty modules persistently across restarts with the <code>--add-modules</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --add-modules=server,http</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Jetty start mechanism will look for the specified modules following the order specified above.
+In the common case (without a <code>--include-jetty-dir</code> directory), it will look in <code>$JETTY_BASE/modules/</code> first and then in <code>$JETTY_HOME/modules/</code>.</p>
+</div>
+<div class="paragraph">
+<p>Since the <code>server</code> and <code>http</code> modules are standard Jetty modules, they are present in <code>$JETTY_HOME/modules/</code> and loaded from there.</p>
+</div>
+<div class="paragraph">
+<p>When you enable a Jetty module, the Jetty start mechanism:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creates the correspondent <code>$JETTY_BASE/start.d/*.ini</code> module configuration file.
+The content of these <code>*.ini</code> files is copied from the <code>[ini-template]</code> section of the correspondent <code>*.mod</code> file.</p>
+</li>
+<li>
+<p>Executes the directives specified in <code>[files]</code> section (if present) of the <code>*.mod</code> file.
+This may simply create a file or a directory, or download files from the Internet.
+This step is performed transitively for all module dependencies.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, enabling the <code>server</code> and <code>http</code> modules results in the <code>$JETTY_BASE</code> directory to have the following structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$JETTY_BASE
+├── resources
+│   └── jetty-logging.properties
+└── start.d
+    ├── http.ini
+    └── server.ini</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>$JETTY_BASE/resources/jetty-logging.properties</code> is created by the <code>[files]</code> directives of the <code>logging-jetty</code> module, which is a transitive dependency of the <code>server</code> module.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-disable"><a class="anchor" href="#configure-disable"></a>Disabling Modules</h3>
+<div class="paragraph">
+<p>A module is enabled because the correspondent <code>$JETTY_BASE/start.d/*.ini</code> file contains a <code>--module=&lt;name&gt;</code> directive.</p>
+</div>
+<div class="paragraph">
+<p>Commenting out the <code>--module=&lt;name&gt;</code> directive effectively disables the module.</p>
+</div>
+<div class="paragraph">
+<p>Deleting the correspondent <code>$JETTY_BASE/start.d/*.ini</code> file also disables the module.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-edit-ini"><a class="anchor" href="#configure-edit-ini"></a>Editing <code>*.ini</code> Files</h3>
+<div class="paragraph">
+<p>You can now edit the <code>$JETTY_BASE/start.d/*.ini</code> configuration files, typically by uncommenting properties to change their default value.</p>
+</div>
+<div class="paragraph">
+<p>The <code>$JETTY_BASE/start.d/*.ini</code> configuration file may be missing, if the correspondent module is a transitive dependency.
+You can easily generate the configuration file by explicitly enabling the module, for example to generate the <code>$JETTY_BASE/start.d/logging-jetty.ini</code> configuration file you would issue the following command (the module order does not matter):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --add-modules=server,http,logging-jetty</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>$JETTY_BASE</code> directory structure is now:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$JETTY_BASE
+├── resources
+│   └── jetty-logging.properties
+└── start.d
+    ├── http.ini
+    ├── <mark>logging-jetty.ini</mark>
+    └── server.ini</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You want to edit the <code>$JETTY_BASE/start.d/*.ini</code> configuration files so that the configuration is applied every time Jetty is started (or re-started).</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>$JETTY_BASE/start.d/http.ini</code> contains the following property, commented out:</p>
+</div>
+<div class="listingblock">
+<div class="title">http.ini</div>
+<div class="content">
+<pre># jetty.http.port=8080</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can change the clear-text HTTP port Jetty listens to by uncommenting that property and changing its value:</p>
+</div>
+<div class="listingblock">
+<div class="title">http.ini</div>
+<div class="content">
+<pre>jetty.http.port=9876</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When Jetty is started (or re-started) this configuration is applied and Jetty will listen for clear-text HTTP/1.1 on port <code>9876</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-enable-command-line"><a class="anchor" href="#configure-enable-command-line"></a>Enabling Modules on Command Line</h3>
+<div class="paragraph">
+<p>You can also enable a module transiently, only for the current execution of the <code>java -jar $JETTY_HOME/start.jar</code> command.</p>
+</div>
+<div class="paragraph">
+<p>If you have an empty <code>$JETTY_BASE</code>, the following command enables the <code>server</code> and <code>http</code> modules, but does not create any <code>$JETTY_BASE/start.d/*.ini</code> files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --module=server,http</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since there are no <code>$JETTY_BASE/start.d/*.ini</code> files, you can only customize the properties via the command line, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --module=server,http jetty.http.port=9876</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enabling modules on the command line is useful to verify that the modules work as expected, or to try different configurations.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is possible to enable some module persistently via <code>--add-modules</code> and some other module transiently via <code>--module</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Remember that once the current execution terminates, the modules enabled transiently on the command line via <code>--module</code> and their configuration are not saved and will not be enabled on the next execution (unless you specify them again on the command line).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-custom-module"><a class="anchor" href="#configure-custom-module"></a>Adding Your Own Modules</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Refer to the <a href="../modules/custom.html" class="xref page">custom module section</a> for the details about how to create your own modules.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can add your own modules by adding a <code>$JETTY_BASE/modules/*.mod</code> file.</p>
+</div>
+<div class="paragraph">
+<p>For example, you may want to add a Postgres JDBC driver to the server class-path, to avoid that each deployed web application bring its own version. This allows you to control the exact Postgres JDBC driver version for all web applications.</p>
+</div>
+<div class="paragraph">
+<p>Create the <code>$JETTY_BASE/modules/postgresql.mod</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">postgresql.mod</div>
+<div class="content">
+<pre>[description]
+Postgres JDBC Driver Module
+
+[lib]
+lib/postgresql-${postgresql-version}.jar
+
+[files]
+maven://org.postgresql/postgresql/${postgresql-version}|lib/postgresql-${postgresql-version}.jar
+
+[ini]
+postgresql-version?=42.2.18
+
+[ini-template]
+## Postgres JDBC version.
+# postgresql-version=42.2.18</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then enable it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --add-modules=postgresql</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enabling the <code>postgresql</code> module will execute the <code>[files]</code> directive (downloading the <code>*.jar</code> file from Maven Central if not already present) and create the <code>$JETTY_BASE/start.d/postgresql.ini</code> with the content of the <code>[ini-template]</code> section.</p>
+</div>
+<div class="paragraph">
+<p>The <code>[lib]</code> section ensures that the specified file is in the server class-path when Jetty is started.</p>
+</div>
+<div class="paragraph">
+<p>You can <a href="#configure-display">display the Jetty configuration</a> to verify that the server class-path is correct.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-custom-module-exec"><a class="anchor" href="#configure-custom-module-exec"></a>Custom Module with JVM Options</h3>
+<div class="paragraph">
+<p>Using a custom Jetty module, you can customize the JVM startup options.</p>
+</div>
+<div class="paragraph">
+<p>This is useful if you need to start Jetty and want to specify JVM options such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-Xmx</code>, to specify the max heap size</p>
+</li>
+<li>
+<p><code>-Xlog:gc</code>, to specify the GC log file and options</p>
+</li>
+<li>
+<p><code>-javaagent</code>, to specify Java agents</p>
+</li>
+<li>
+<p><code>-XX:</code> options, for example to specify the GC implementation</p>
+</li>
+<li>
+<p><code>--enable-preview</code>, to enable Java preview features</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Start by creating <code>$JETTY_BASE/modules/jvm.mod</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">jvm.mod</div>
+<div class="content">
+<pre>[description]
+JVM Options Module
+
+[exec]
+-Xmx1g
+-Xlog:gc*,gc+stats=off:file=logs/gc.log:time,level,tags</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enable it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --add-modules=jvm</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since the module defines an <code>[exec]</code> section, it will fork <em>another</em> JVM when Jetty is started.</p>
+</div>
+<div class="paragraph">
+<p>This means that when you start Jetty, there will be <em>two</em> JVMs running: one created by you when you run <code>java -jar $JETTY_HOME/start.jar</code>, and another forked by the Jetty start mechanism with the JVM options you specified (that cannot be applied to an already running JVM).</p>
+</div>
+<div class="paragraph">
+<p>Again, you can <a href="#configure-dry-run">display the JVM command line</a> to verify that it is correct.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The second JVM forked by the Jetty start mechanism when one of the modules requires forking, for example a module that contains an <code>[exec]</code> section, may not be desirable, and may be avoided as explained in <a href="#configure-dry-run">this section</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-display"><a class="anchor" href="#configure-display"></a>Displaying the Configuration</h3>
+<div class="paragraph">
+<p>Once you have enabled and configured the <code>$JETTY_BASE</code>, you can display the configuration to verify that it is correct.</p>
+</div>
+<div class="paragraph">
+<p>Using the standard <code>server</code> and <code>http</code> Jetty modules, and the <code>postgresql</code> and <code>jvm</code> custom Jetty module defined above, you obtain:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --list-config</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">Enabled Modules:
+----------------
+  0) bytebufferpool            transitive provider of bytebufferpool for server
+                               ini template available with --add-module=bytebufferpool
+  1) resources                 transitive provider of resources for logging-jetty
+  2) logging/slf4j             transitive provider of logging/slf4j for logging-jetty
+                               dynamic dependency of logging-jetty
+  3) logging-jetty             transitive provider of logging for threadpool
+                               transitive provider of logging for server
+  4) threadpool                transitive provider of threadpool for server
+                               ini template available with --add-module=threadpool
+  5) jvm                       ${jetty.base}/start.d/jvm.ini
+  6) server                    ${jetty.base}/start.d/server.ini
+  7) http                      ${jetty.base}/start.d/http.ini
+  8) postgresql                ${jetty.base}/start.d/postgresql.ini
+
+Java Environment:
+-----------------
+ java.home = /path/to/java.home
+ java.vm.vendor = Eclipse Adoptium
+ java.vm.version = 21.0.3+9-LTS
+ java.vm.name = OpenJDK 64-Bit Server VM
+ java.vm.info = mixed mode, sharing
+ java.runtime.name = OpenJDK Runtime Environment
+ java.runtime.version = 21.0.3+9-LTS
+ java.io.tmpdir = /path/to/jetty.home-base/work
+ user.dir = /path/to/jetty.home-base
+ user.language = en
+ user.country = AU
+
+Jetty Environment:
+------------------
+ jetty.version = 11.0.22-SNAPSHOT
+ jetty.tag.version = jetty-11.0.22-SNAPSHOT
+ jetty.build = e4a89074f76fa8a8e52acff0fdf988664f8621e4
+ jetty.home = /path/to/jetty.home
+ jetty.base = /path/to/jetty.home-base
+
+Config Search Order:
+--------------------
+ &lt;command-line&gt;
+ ${jetty.base} -&gt; /path/to/jetty.home-base
+ ${jetty.home} -&gt; /path/to/jetty.home
+
+Forked JVM Arguments:
+---------------------
+ -Xmx1g
+ -Xlog:gc*,gc+stats=off:file=logs/gc.log:time,level,tags
+
+System Properties:
+------------------
+ (no system properties specified)
+
+Properties:
+-----------
+ java.version = 21.0.3
+ java.version.major = 21
+ java.version.micro = 3
+ java.version.minor = 0
+ java.version.platform = 21
+ jetty.base = /path/to/jetty.home-base
+ jetty.base.uri = file:///path/to/jetty.home-base
+ jetty.home = /path/to/jetty.home
+ jetty.home.uri = file:///path/to/jetty.home
+ jetty.webapp.addServerClasses = org.eclipse.jetty.logging.,${jetty.home.uri}/lib/logging/,org.slf4j.
+ postgresql-version = 42.2.18
+ runtime.feature.alpn = true
+ slf4j.version = 2.0.9
+
+Jetty Server Classpath:
+-----------------------
+Version Information on 10 entries in the classpath.
+Note: order presented here is how they would appear on the classpath.
+      changes to the --module=name command line options will be reflected here.
+ 0:                    (dir) | ${jetty.base}/resources
+ 1:                    2.0.9 | ${jetty.home}/lib/logging/slf4j-api-2.0.9.jar
+ 2:         11.0.22-SNAPSHOT | ${jetty.home}/lib/logging/jetty-slf4j-impl-11.0.22-SNAPSHOT.jar
+ 3:                    5.0.2 | ${jetty.home}/lib/jetty-jakarta-servlet-api-5.0.2.jar
+ 4:         11.0.22-SNAPSHOT | ${jetty.home}/lib/jetty-http-11.0.22-SNAPSHOT.jar
+ 5:         11.0.22-SNAPSHOT | ${jetty.home}/lib/jetty-server-11.0.22-SNAPSHOT.jar
+ 6:         11.0.22-SNAPSHOT | ${jetty.home}/lib/jetty-xml-11.0.22-SNAPSHOT.jar
+ 7:         11.0.22-SNAPSHOT | ${jetty.home}/lib/jetty-util-11.0.22-SNAPSHOT.jar
+ 8:         11.0.22-SNAPSHOT | ${jetty.home}/lib/jetty-io-11.0.22-SNAPSHOT.jar
+ 9:                  42.2.18 | ${jetty.base}/lib/postgresql-42.2.18.jar
+
+Jetty Active XMLs:
+------------------
+ ${jetty.home}/etc/jetty-bytebufferpool.xml
+ ${jetty.home}/etc/jetty-threadpool.xml
+ ${jetty.home}/etc/jetty.xml
+ ${jetty.home}/etc/jetty-http.xml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note how the configuration displayed above includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the list of enabled modules, the <code>postgresql</code> and <code>jvm</code> modules</p>
+</li>
+<li>
+<p>In the list of JVM arguments, those specified by the <code>jvm</code> module</p>
+</li>
+<li>
+<p>In the server class-path, the <code>*.jar</code> file specified by the <code>postgresql</code> module</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-dry-run"><a class="anchor" href="#configure-dry-run"></a>Displaying the JVM Command Line</h3>
+<div class="paragraph">
+<p>The Jetty start mechanism can display a full JVM command line that will start Jetty with the configuration you specified, with the <code>--dry-run</code> option:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --dry-run</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The full JVM command line generated by <code>--dry-run</code> can be split in various parts that can be used individually, for example in scripts.</p>
+</div>
+<div class="paragraph">
+<p>Furthermore, Jetty modules may specify the <code>--exec</code> option that will fork a second JVM to start Jetty, which may not be desirable.
+Some option, such as <code>--jpms</code>, imply <code>--exec</code>, as it won&#8217;t be possible to modify the module-path in the already started JVM.</p>
+</div>
+<div class="paragraph">
+<p>To start Jetty without forking a second JVM, the <code>--dry-run</code> option can be used to generate a command line that is then executed so that starting Jetty only spawns one JVM.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You can use the <code>--dry-run</code> option as explained below to avoid forking a second JVM when using modules that have the <code>[exec]</code> section, or the <code>--exec</code> option, or when using the <code>--jpms</code> option.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, using the <code>--dry-run</code> option with the <code>jvm.mod</code> introduced in <a href="#configure-custom-module-exec">this section</a> produces the following command line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --dry-run</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">/path/to/java.home/bin/java \
+-Djava.io.tmpdir=/path/to/jetty.home-base/work \
+-Djetty.home=/path/to/jetty.home \
+-Djetty.base=/path/to/jetty.home-base \
+-Xmx1g \
+'-Xlog:gc*,gc+stats=off:file=logs/gc.log:time,level,tags' \
+--class-path \
+/path/to/jetty.home-base/resources:/path/to/jetty.home/lib/logging/slf4j-api-2.0.9.jar:/path/to/jetty.home/lib/logging/jetty-slf4j-impl-11.0.22-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-jakarta-servlet-api-5.0.2.jar:/path/to/jetty.home/lib/jetty-http-11.0.22-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-server-11.0.22-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-xml-11.0.22-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-util-11.0.22-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-io-11.0.22-SNAPSHOT.jar \
+org.eclipse.jetty.xml.XmlConfiguration \
+java.version=21.0.3 \
+jetty.base=/path/to/jetty.home-base \
+jetty.base.uri=file:///path/to/jetty.home-base \
+jetty.home=/path/to/jetty.home \
+jetty.home.uri=file:///path/to/jetty.home \
+jetty.webapp.addServerClasses=org.eclipse.jetty.logging.,file:///path/to/jetty.home/lib/logging/,org.slf4j. \
+runtime.feature.alpn=true \
+slf4j.version=2.0.9 \
+/path/to/jetty.home/etc/jetty-bytebufferpool.xml \
+/path/to/jetty.home/etc/jetty-threadpool.xml \
+/path/to/jetty.home/etc/jetty.xml \
+/path/to/jetty.home/etc/jetty-http.xml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then run the generated command line.</p>
+</div>
+<div class="paragraph">
+<p>For example, in the Linux <code>bash</code> shell you can run it by wrapping it into <code>$(...)</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ $(java -jar $JETTY_HOME/start.jar --dry-run)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>--dry-run</code> option is quite flexible and below you can find a few examples of how to use it to avoid forking a second JVM, or generating scripts or creating an arguments file that can be passed to (a possibly alternative) <code>java</code> executable.</p>
+</div>
+<div class="paragraph">
+<p>To display the <code>java</code> executable used to start Jetty:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --dry-run=<mark>java</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">/path/to/java.home/bin/java</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To display the JVM options:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --dry-run=<mark>opts</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">-Djava.io.tmpdir=/path/to/jetty.home-base/work \
+-Djetty.home=/path/to/jetty.home \
+-Djetty.base=/path/to/jetty.home-base \
+-Xmx1g \
+'-Xlog:gc*,gc+stats=off:file=logs/gc.log:time,level,tags'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To display the JVM class-path:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --dry-run=<mark>path</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">--class-path \
+/path/to/jetty.home-base/resources:\
+/path/to/jetty.home/lib/logging/slf4j-api-2.0.9.jar:\
+/path/to/jetty.home/lib/logging/jetty-slf4j-impl-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-jakarta-servlet-api-5.0.2.jar:\
+/path/to/jetty.home/lib/jetty-http-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-server-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-xml-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-util-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-io-11.0.22-SNAPSHOT.jar</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To display the JVM class-path and module-path, if you want to <a href="start-jpms.html" class="xref page">start Jetty using JPMS</a> with the <code>--jpms</code> option:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar <mark>--jpms</mark> --dry-run=<mark>path</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">--module-path \
+/path/to/jetty.home/lib/logging/slf4j-api-2.0.9.jar:\
+/path/to/jetty.home/lib/logging/jetty-slf4j-impl-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-jakarta-servlet-api-5.0.2.jar:\
+/path/to/jetty.home/lib/jetty-http-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-server-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-xml-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-util-11.0.22-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-io-11.0.22-SNAPSHOT.jar \
+--class-path \
+/path/to/jetty.home-base/resources \
+--add-modules \
+ALL-MODULE-PATH</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To display the JVM main class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --dry-run=<mark>main</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">org.eclipse.jetty.xml.XmlConfiguration</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To display the JVM main class when <a href="start-jpms.html" class="xref page">starting Jetty using JPMS</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --jpms --dry-run=<mark>main</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">--module org.eclipse.jetty.xml/org.eclipse.jetty.xml.XmlConfiguration</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main class is typically Jetty&#8217;s <code>XmlConfiguration</code> class that accepts, as program arguments, a list of properties and a list of Jetty XML files to process.
+The Jetty XML files compose together the Jetty components that are then configured with the values from the command line properties.</p>
+</div>
+<div class="paragraph">
+<p>To display the program arguments passed to the main class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --dry-run=<mark>args</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">java.version=21.0.3 \
+jetty.base=/path/to/jetty.home-base \
+jetty.base.uri=file:///path/to/jetty.home-base \
+jetty.home=/path/to/jetty.home \
+jetty.home.uri=file:///path/to/jetty.home \
+jetty.webapp.addServerClasses=org.eclipse.jetty.logging.,file:///path/to/jetty.home/lib/logging/,org.slf4j. \
+runtime.feature.alpn=true \
+slf4j.version=2.0.9 \
+/path/to/jetty.home/etc/jetty-bytebufferpool.xml \
+/path/to/jetty.home/etc/jetty-threadpool.xml \
+/path/to/jetty.home/etc/jetty.xml \
+/path/to/jetty.home/etc/jetty-http.xml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note how the program arguments are a list of properties in the form <code>&lt;name&gt;=&lt;value&gt;</code> and a list of Jetty XML files.</p>
+</div>
+<div class="paragraph">
+<p>The various parts of the full JVM command line can be combined to leverage the arguments file feature (that is, specify the JVM options in a file rather than on the command line) that is built-in in the <code>java</code> executable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar --dry-run=<mark>opts,path,main,args</mark> > /tmp/jvm_cmd_line.txt
+$ /some/other/java @/tmp/jvm_cmd_line.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using <code>--dry-run=opts,path,main,args</code> can be used to avoid that the Jetty start mechanism forks a second JVM when using modules that require forking:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java $(java -jar $JETTY_HOME/start.jar --dry-run=opts,path,main,args)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output of different <code>--dry-run</code> executions can be creatively combined in a shell script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ OPTS=$(java -jar start.jar --dry-run=<mark>opts,path</mark>)
+$ MAIN=$(java -jar start.jar --dry-run=<mark>main</mark>)
+$ ARGS=$(java -jar start.jar --dry-run=<mark>args</mark>)
+$ java $OPTS -Dextra=opt $MAIN $ARGS extraProp=value extra.xml</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="start"><a class="anchor" href="#start"></a>Starting Jetty</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you have configured the <code>$JETTY_BASE</code> directory, as explained in <a href="#configure">this section</a>, you can start Jetty as a standalone server.</p>
+</div>
+<div class="paragraph">
+<p>In the <em>start</em> mode, the Jetty start mechanism computes a JVM command line with JVM options, system properties, class-path, module-path, main class and program arguments, and then executes it, forking a new JVM if necessary.</p>
+</div>
+<div class="paragraph">
+<p>The Jetty start mechanism performs these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Loads all the Jetty modules files (that have extension <code>*.mod</code>) from the <code>modules/</code> subdirectory of each configuration source directory (see <a href="#configure">this section</a> for the list of configuration sources).
+In this way, a Jetty module graph can be built in memory, where the module dependencies form the edges of the graph and each node contains the metadata information declared by each module (for example, the libraries that it needs, the XML files to process, and so on), in preparation for the next step.</p>
+</li>
+<li>
+<p>Reads the Jetty module configuration files (that have extension <code>*.ini</code>) from the <code>start.d/</code> subdirectory of each configuration source directory and from the command line.
+This step produces a list of <em>enabled</em> modules; for each enabled module all its dependencies are transitively resolved by navigating the graph built in the previous steps.</p>
+</li>
+<li>
+<p>Processes the list of enabled (explicitly and transitively) modules, gathering the list of libraries to add to the class-path, the JPMS directives to add to the command line, the properties and XML files to add as program arguments, etc., so that a full JVM command line can be generated.</p>
+</li>
+<li>
+<p>Executes the command line, either in-JVM or by forking a second JVM (if the <code>--exec</code> option is present or implied by other options such as <code>--jpms</code>), and waits for the JVM, or the forked JVM, to exit.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="start-class-path"><a class="anchor" href="#start-class-path"></a>Server Class-Path</h3>
+<div class="paragraph">
+<p>When the Jetty server is started in-JVM, the server class-path gathered by processing the enabled modules is organized in a <code>URLClassLoader</code>, the Jetty Start ClassLoader, that is a child of the System ClassLoader:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNpljjFPw0AMhff7FVb2VLBWbN0qmCoxdTGJm1x7Z1e2A1SI_06OROhQx_e-T8-2S-QrKmZ4w-4yqEzc7ySJgiuyzYjYg_1ZWVi6USXTLExUERuxl4_IA5wwWU3WUWVSeHwIQalz5CERNHtyv8HBUR32ry8NfAWAih9u5pRhl9DsWbAnbQAN7Lf-r9ZTd35pw-yzOIHGYXSQ0zqzXfDmjHpvFLKFc9lujfSdtHhHXprR_VrnKHWaPKY6f-Y1kneb8s1yH57adv3w-wfB_5AH" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The System ClassLoader only has <code>$JETTY_HOME/start.jar</code> in its class-path, since the JVM was started with <code>java -jar $JETTY_HOME/start.jar</code>.
+The Jetty Start ClassLoader has in its class-path the <code>*.jar</code> files gathered by processing the enabled modules, typically from <code>$JETTY_HOME/lib/jetty-*.jar</code>, but possibly also from <code>$JETTY_BASE/lib/*.jar</code> if custom modules extend the server class-path with their own <code>*.jar</code> files.</p>
+</div>
+<div class="paragraph">
+<p>When the Jetty server is started in a forked JVM, there will be two JVMs: one started by you with <code>java -jar $JETTY_HOME/start.jar</code> and one forked by the Jetty start mechanism.
+In the forked JVM, the System ClassLoader has the server class-path and/or module-path in its class-path, since the forked JVM is started with <code>java --class-path $JETTY_HOME/lib/jetty-server-&lt;version&gt;.jar:...</code>:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVkL1Ow0AQhPt7ipV7RySlC5pIFBFUkahoFnttX-y7jXbXhAjx7vgnmKOgoPxmRjs3p52PZxQM8Ipl1wgPsdpzzwImGHW0KJrTNRU4ctkKBxoDAyWOtljxxccGauw1dW5HJZLA9s45odIwNj1BdiCzKxwNxeDw_JQBKuhEI8CHA0iyx6saBdj3qPrIWJEs8VnejtnIRiC-aQ24_taL5d7mhOI-f3U_sHRUrbX1jP_t3bk_incFnKZxuZK8kUz9L3FRWrNzyp5TGsz3Kb-HG5KVm2nC-j95fv_z6gIyuKC3eUj2BUyzpyM=" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>It is worth mentioning that there are two standard Jetty modules that allow you to easily add entries to the Jetty server class-path:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>resources</code> module, that adds the <code>$JETTY_BASE/resources/</code> directory to the server class-path.
+This is useful if you have third party libraries that lookup resources from the class-path: just put those resources in the <code>$JETTY_BASE/resources/</code> directory.<br>
+Logging libraries often perform class-path lookup of their configuration files (for example, <code>log4j.properties</code>, <code>log4j.xml</code>, <code>logging.properties</code>, and <code>logback.xml</code>), so <code>$JETTY_BASE/resources/</code> is the ideal place to add those files.<br></p>
+</li>
+<li>
+<p>The the <code>ext</code> module, that adds all the <code>*.jar</code> files under the <code>$JETTY_BASE/lib/ext/</code> directory, and subdirectories recursively, to the server class-path.<br></p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>On one hand, the <code>ext</code> module provides a handy place to put third party libraries and their dependencies; on the other hand, the <code>$JETTY_BASE/lib/ext/</code> directory may become a confused mixture of many <code>*.jar</code> files from different third party libraries.</p>
+</div>
+<div class="paragraph">
+<p>Prefer to group third party libraries and their dependencies into their own directories using <a href="../modules/custom.html" class="xref page">custom modules</a>, or at least group them into <code>$JETTY_BASE/lib/ext/</code> subdirectories such as <code>$JETTY_BASE/lib/ext/util/</code> or <code>$JETTY_BASE/lib/ext/acme/</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-xml"><a class="anchor" href="#start-xml"></a>Assembling Jetty Components</h3>
+<div class="paragraph">
+<p>The Jetty start mechanism eventually invokes, by default, main class <code>org.eclipse.jetty.xml.XmlConfiguration</code>, passing properties and <a href="../xml/index.html" class="xref page">Jetty XML files</a> as program arguments.</p>
+</div>
+<div class="paragraph">
+<p>The Jetty XML files are nothing more than Java code in XML format.</p>
+</div>
+<div class="paragraph">
+<p>The XML files are processed to instantiate Jetty components such as <code>org.eclipse.jetty.server.Server</code> or <code>org.eclipse.jetty.util.ssl.SslContextFactory</code>.
+The components are then assembled together to provide the configured Jetty features.</p>
+</div>
+<div class="paragraph">
+<p>The Jetty XML files are parametrized using properties; a property is just a name/value pair.</p>
+</div>
+<div class="paragraph">
+<p>This parametrization of the XML files allows an XML file that resides in <code>$JETTY_HOME/etc/</code> to <em>declare</em> a property such as <code>jetty.http.port</code>, and allow this property to be set in a <code>$JETTY_BASE/start.d/http.ini</code> file, so that you don&#8217;t need to change the XML files in <code>$JETTY_HOME</code>, but only change files in your <code>$JETTY_BASE</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can write your own <a href="../modules/custom.html" class="xref page">custom modules</a> with your own Jetty XML files, and your own properties, to further customize Jetty.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stop"><a class="anchor" href="#stop"></a>Stopping Jetty</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When Jetty is started, the Jetty components that you have configured by enabling Jetty modules are assembled and started.</p>
+</div>
+<div class="paragraph">
+<p>If you have started Jetty from a terminal, you can exit the Jetty JVM by hitting <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> on the same terminal.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, from a different terminal, you can exit the Jetty JVM using <code>kill -INT &lt;pid&gt;</code> or <code>kill -TERM &lt;pid&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the three cases above, the JVM is exited, but by default Jetty components are not stopped.
+If you want to stop the Jetty components, to stop Jetty more gracefully, you can start Jetty with this property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar <mark>jetty.server.stopAtShutdown=true</mark></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This property can also be set in <code>$JETTY_BASE/start.d/server.ini</code> so that it is persistently configured across Jetty restarts (see also <a href="../modules/standard.html#server" class="xref page">the <code>server</code> module</a>).</p>
+</div>
+<div class="paragraph">
+<p>The <code>jetty.server.stopAtShutdown</code> property configures a JVM shutdown hook that is run, stopping the <code>Server</code> instance, when the JVM exits.</p>
+</div>
+<div class="paragraph">
+<p>Obviously, the JVM can also be stopped with <code>kill -KILL &lt;pid&gt;</code> that exits the process abruptly without running the JVM shutdown hooks.</p>
+</div>
+<div class="sect2">
+<h3 id="stop-remote"><a class="anchor" href="#stop-remote"></a>Stopping Jetty from Remote</h3>
+<div class="paragraph">
+<p>You can configure a Jetty server so that it can be stopped by remote clients using a command sent through a TCP socket.</p>
+</div>
+<div class="paragraph">
+<p>You can start Jetty with the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>stop.host</code>, the host name Jetty will bind to listen for stop commands. Defaults to <code>127.0.0.1</code> which means that the stop command can be issued only clients that run on the same host as Jetty.</p>
+</li>
+<li>
+<p><code>stop.port</code>, the port number Jetty will listen to for stop commands. Defaults to <code>-1</code>, which means that Jetty will not listen to any port.</p>
+</li>
+<li>
+<p><code>stop.key</code>, the password to verify when a stop command is received. Defaults to a password that is randomly generated and printed when Jetty starts.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar <mark>stop.port=8181</mark></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap"><mark>STOP.KEY=a6y1hktlvxmo</mark>
+<strong>2024-06-03 15:46:28.504:</strong>INFO :oejs.Server:main: jetty-11.0.22-SNAPSHOT; built: 2024-06-03T05:44:50.675Z; git: e4a89074f76fa8a8e52acff0fdf988664f8621e4; jvm 21.0.3+9-LTS
+<strong>2024-06-03 15:46:28.531:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@192d43ce{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+<strong>2024-06-03 15:46:28.544:</strong>INFO :oejs.Server:main: Started Server@12d4bf7e{STARTING}[11.0.22-SNAPSHOT,sto=5000] @470ms</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above, Jetty is started with just the <code>stop.port</code> property, and the <code>stop.key</code> is printed on the terminal when Jetty starts.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+You can choose your own <code>stop.key</code>, but make sure it&#8217;s a strong password.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A remote client can now use the Jetty start mechanism to stop the remote Jetty server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ java -jar $JETTY_HOME/start.jar <mark>--stop</mark> stop.port=8181 stop.key=&lt;stop.key&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the <code>--stop</code> command along with the <code>stop.port</code> and <code>stop.key</code> properties.
+The <code>stop.key</code> must be the same as the one of remote Jetty server, either the one you chose, or the one printed on the terminal when Jetty starts.</p>
+</div>
+<div class="paragraph">
+<p>Remote clients can wait for the remote Jetty server to shut down by specifying the <code>stop.wait</code> property with the number of seconds to wait:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --stop stop.port=8181 stop.key=&lt;stop.key&gt; stop.wait=15</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the time specified elapses, without the confirmation that the remote Jetty server stopped, then the <code>--stop</code> command exits with a non-zero return code.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="start-mechanism-logging"><a class="anchor" href="#start-mechanism-logging"></a>Start Mechanism Logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The steps performed by the Jetty start mechanism are logged by the <code>StartLog</code> class, that outputs directly, by default, to <code>System.err</code>.</p>
+</div>
+<div class="paragraph">
+<p>This is necessary to avoid that the Jetty start mechanism depend on logging libraries that may clash with those defined by Jetty logging modules, when Jetty is started in-VM.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This section is about the logging performed by the Jetty start mechanism <em>before</em> it configures and starts Jetty.
+See the <a href="../server/index.html#logging" class="xref page">logging section</a> for information about logging when Jetty starts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can enable DEBUG level logging with the <code>--debug</code> command line option, for both the <em>tool</em> and <em>start</em> modes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --debug ...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can send the start log output to a file, by default relative to <code>$JETTY_BASE</code>, with the <code>--start-log-file=&lt;file&gt;</code> option:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ java -jar $JETTY_HOME/start.jar --debug --start-log-file=start.log ...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is useful for capturing startup issues where the Jetty-specific logger has not yet kicked in due to a possible startup configuration error.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reference"><a class="anchor" href="#reference"></a>Usage Reference</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>Usage:
+
+$ java -jar $JETTY_HOME/start.jar [command] [options...]
+
+Commands can be of two types: report commands or configuration commands.
+Commands execute and then exit the JVM.
+Options can be specified with or without commands.
+When no command is specified, Jetty is started with the given options.
+
+Report Commands:
+----------------
+
+  --help
+                   Prints this help / usage information.
+
+  --version
+                   Prints the version information for Jetty and
+                   dependent jars, then exits.
+
+  --list-classpath
+                   Prints the class-path (or module-path) information that
+                   will be used to start Jetty.
+
+  --list-config
+                   Lists the resolved configuration that will be used to
+                   start Jetty.
+                   Output includes:
+                     o  Enabled Jetty modules
+                     o  Java environment
+                     o  Jetty environment
+                     o  Config file search order
+                     o  JVM arguments
+                     o  System properties
+                     o  Properties
+                     o  Java class-path or module-path
+                     o  XML configuration files
+
+  --list-modules
+                   Lists the modules defined in ${jetty.base}/modules/*.mod
+                   and then in ${jetty.home}/modules/*.mod.
+
+  --list-modules=&lt;tag&gt;(,&lt;tag&gt;)*
+                   Lists the modules by tag. Use '*' for all tags.
+                   Prefix a tag with '-' to exclude the tag.
+                   The special tag "internal" is always excluded unless it is
+                   explicitly included.
+
+  --list-all-modules
+                   Lists all modules.
+
+  --show-modules=&lt;module&gt;(,&lt;module&gt;)*
+                   Shows the detail of the listed modules, including
+                   dependencies, tags, libraries and XMLs.
+
+  --stop
+                   Sends a stop signal to the running Jetty instance.
+                   The running Jetty instance must have been started with a
+                   stop.port=&lt;port&gt; property and the --stop command must
+                   be executed with the same property.
+
+  --dry-run
+                   Prints the command line that start.jar generates,
+                   in a format usable by a POSIX compliant shell, then exits.
+                   This may be used to generate command lines into scripts:
+                     $ java -jar start.jar --dry-run &gt; jetty.sh
+
+  --dry-run=&lt;part&gt;(,&lt;part&gt;)*
+                   Prints specific parts of the command line in a format usable by
+                   a POSIX compliant shell. The parts are:
+                     o  "java" - the JVM to run
+                     o  "opts" - the JVM options (e.g. -D, -X and -XX flags)
+                     o  "path" - the JVM class-path and/or the JPMS module-path
+                     o  "main" - the main class to run
+                     o  "args" - the arguments passed to the main class
+
+Configure Commands:
+-------------------
+
+  --add-modules=&lt;moduleName&gt;(,&lt;moduleName&gt;)*
+                   Adds the given modules to the list of modules enabled at
+                   when Jetty starts.
+                   Transitive dependencies are followed and dependent
+                   modules may also explicitly added.
+                   Modules are added by creating an *.ini file in the
+                   ${jetty.base}/start.d/ directory.
+                   The *.ini file contains the --module option that enables
+                   the module, and any other option defined in the module's
+                   [ini-template] section.
+                   If the *.ini file specifies properties, these may be
+                   overridden by specifying the same properties on the
+                   command line.
+
+                   If a module is transitively enabled, its *.ini file will
+                   not be generated.
+                   To generate the *.ini file, the module must be explicitly
+                   listed in the --add-modules=... command.
+
+                   This option replaces the deprecated --add-to-start and
+                   --add-to-startd commands.
+
+  --create-start-d
+                   Creates a ${jetty.base}/start.d directory.
+                   If the ${jetty.base}/start.ini file exists, then it is
+                   moved into the ${jetty.base}/start.d/ directory.
+                   Using a ${jetty.base}/start.d/ directory is the default and
+                   this option is only needed to either force the creation of
+                   the ${jetty.base}/start.d/ directory, or to move a
+                   ${jetty.base}/start.ini file to ${jetty.base}/start.d/.
+
+  --create-start-ini
+                   Creates a ${jetty.base}/start.ini file.
+                   If a ${jetty.base}/start.d/ directory exists, then all
+                   the contained *.ini files are concatenated into the
+                   ${jetty.base}/start.ini file.
+
+  --update-ini
+                   Scans all the ${jetty.base}/start.d/*.ini files and updates
+                   any property with values specified on the command line.
+                   For example:
+                     $ java -jar ${jetty.host}/start.jar --update-ini jetty.http.port=8888
+
+  --create-files
+                   Creates any missing files that are required by enabled
+                   modules, as specified in their [files] section.
+                   This may download a file from the network if a HTTP URI
+                   is specified in the [files] section.
+
+  --write-module-graph=&lt;filename&gt;
+                   Creates a graphviz *.dot file of the module graph as it
+                   is configured for the current ${jetty.base}.
+                   See https://graphviz.org/ for details on how to post-process
+                   this file into the output best suited for your needs.
+
+Options:
+--------
+
+  --module=&lt;moduleName&gt;(,&lt;moduleName&gt;)*
+                   Enables a module for this execution.
+                   To enable a module for all future executions, use the
+                   --add-modules command.
+                   Note: this option is used in the ${jetty.base}/start.ini
+                   file or in ${jetty.base}/start.d/*.ini files created by
+                   the --add-modules command.
+
+  --lib=&lt;classpath&gt;
+                   Adds the specified class-path entries to the the server
+                   class-path (or module-path).
+
+  --download=&lt;http-uri&gt;|&lt;location&gt;
+                   Downloads a file from the given HTTP URI, if it does
+                   not already exist at the given location.
+                   Note: the location is always relative to ${jetty.base}.
+                   You might need to escape the pipe "\|" to use it in
+                   some shell environments.
+
+  --exec
+                   Executes the generated command line in a forked JVM
+                   (see the --dry-run command).
+                   This can be used when ${jetty.base}/start.d/*.ini files
+                   contain -D, -X or -XX arguments, but creates an extra
+                   JVM process.
+
+  --exec-properties=&lt;filename&gt;
+                   Assigns a fixed name to the file used to transfer
+                   properties to the sub process. This allows the
+                   generated properties file to be saved and reused.
+                   Without this option, a temporary file is used.
+
+  --commands=&lt;filename&gt;
+                   Uses each line of the specified file as arguments on the
+                   JVM command line.
+
+  --jpms
+                   Starts Jetty in JPMS mode in a forked JVM (see also the
+                   --dry-run command).
+                   The library *.jar files are set on the forked JVM module-path
+                   (rather than the forked JVM class-path), while directories
+                   are set on the forked JVM class-path.
+                   The main class is specified with the JPMS option
+                   --module &lt;moduleName&gt;/&lt;mainClassName&gt;.
+
+  --debug
+                   Enables debug output of the startup execution.
+                   Note: this does not setup debug logging for Jetty itself,
+                   only for the startup execution.
+                   If you want debug logging for Jetty, configure one of the
+                   available logging modules using the --add-modules command.
+
+  --start-log-file=&lt;filename&gt;
+                   A filename, relative to ${jetty.base}, where all startup
+                   output will be sent.  This is useful for capturing startup
+                   issues when the Jetty logging module has not yet started
+                   due to configuration errors.
+
+  --allow-insecure-http-downloads
+                   Allow the use of insecure `http://` scheme for content download.
+
+  --approve-all-licenses
+                   Approves all license questions from modules that have
+                   particular license requirements.
+                   Useful for enabling modules from a script, so that it
+                   does not require user interaction.
+
+  --skip-file-validation=&lt;moduleName&gt;(,&lt;moduleName&gt;)*
+                   Disables the creation of files as specified by the
+                   [files] section of the specified modules.
+                   Useful if a logging module specifies a *.properties
+                   config file, but you want to use that module with an
+                   *.xml config file instead.
+
+  --include-jetty-dir=&lt;path&gt;
+                   Includes the specified directory as a configuration source.
+                   This directory behaves similarly to ${jetty.base} but sits
+                   at a layer between ${jetty.home} and ${jetty.base}.
+                   Useful when you want to apply a common "corporate"
+                   configuration to all specific ${jetty.base} directories
+                   without having to modify ${jetty.home}.
+
+  jetty.home=&lt;directory&gt;
+                   Sets the ${jetty.home} directory.
+                   By default it is resolved from the start.jar file path.
+
+  jetty.base=&lt;directory&gt;
+                   Sets the ${jetty.base} directory.
+                   By default it is resolved from the current directory path.
+
+  stop.host=&lt;string&gt;
+                   Used with the --stop command.
+                   Specifies the host where the Jetty server to stop is
+                   running (defaults to 127.0.0.1).
+
+  stop.port=&lt;number&gt;
+                   Used with the --stop command.
+                   Specifies the port to use to contact the Jetty server
+                   to stop.
+
+  stop.key=&lt;alphanumeric&gt;
+                   Used with the --stop command.
+                   The passphrase required to stop the Jetty server.
+
+  stop.wait=&lt;number&gt;
+                   Used with the --stop command.
+                   The time, in seconds, to wait for confirmation that the
+                   running Jetty server has stopped.
+                   If not specified, the stopper will not wait.
+
+  maven.repo.uri=&lt;url&gt;
+                  The base URL to use to download Maven dependencies.
+                  Defaults to: https://repo1.maven.org/maven2/.
+
+  &lt;name&gt;=&lt;value&gt;
+                  Specifies a property value that overrides the same
+                  property defined in a ${jetty.base}/start.d/*.ini file,
+                  or in the [ini] section of a *.mod file.
+
+                  &lt;name&gt;=&lt;value&gt;
+                    Sets the property value unconditionally.
+                  &lt;name&gt;+=&lt;value&gt;
+                    Appends the given value to the existing value.
+                  &lt;name&gt;?=&lt;value&gt;
+                    Sets the property value only if it is not already set.
+
+  -D&lt;name&gt;=&lt;value&gt;
+                  Specifies a system property, as well as a start property.
+                  Note: this is a program argument that is interpreted and
+                  added to the existing JVM system properties.
+
+  &lt;xml-file&gt;
+                  Specifies a Jetty XML file relative to ${jetty.base}.
+                  This file is in addition to the Jetty XML files resolved
+                  from the [xml] sections of the enabled modules.</pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../arch/index.html">Architecture Overview</a></span>
+  <span class="next"><a href="start-jpms.html">Starting Jetty using JPMS</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="../../../../../_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="../../../../index.html">Docs</a></li>
+      <li><a href="../../../../../support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="../../../../../_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="../../../../../_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="../../../../../_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../../../_/js/site.js" data-ui-root-path="../../../../../_"></script>
+<script async src="../../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../../.." data-snippet-length="100" data-stylesheet="../../../../../_/css/search.css"></script>
+<script async src="../../../../../search-index.js"></script>
+  </body>
+</html>

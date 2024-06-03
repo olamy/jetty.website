@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Jetty Security :: Eclipse Jetty</title>
+    <link rel="canonical" href="https://jetty.org/security.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="./_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS4ZRD6HVM"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-VS4ZRD6HVM')</script>
+    <link rel="icon" href="./_/img/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://jetty.org"><img src="./_/img/jetty-logo.svg" alt="Eclipse Jetty" width="120"></a>
+      <a class="navbar-item" href="https://jetty.org">Eclipse Jetty</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+        <a class="navbar-item" href="docs/index.html">Documentation</a>
+        <a class="navbar-item" href="support.html">Support</a>
+        <!--a class="navbar-item" href="community.html">Community</a-->
+        <a class="navbar-item" href="security.html">Security</a>
+        <a class="navbar-item" href="download.html">Download</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Links</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project">Source Code</a>
+            <a class="navbar-item" href="https://github.com/jetty/jetty.project/issues">Issues</a>
+            <a class="navbar-item" href="docs/contribution-guide/index.html">Contributing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<main class="article">
+<div class="toolbar" role="navigation">
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+<div class="edit-this-page"><a href="https://github.com/jetty/jetty.website/edit/main/home/modules/ROOT/pages/security.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Page Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Jetty Security</h1>
+<div class="sect1">
+<h2 id="reporting-security-issues"><a class="anchor" href="#reporting-security-issues"></a>Reporting Security Issues</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are a couple of avenues for reporting security issues to the Jetty project. If the issue is directly related to Jetty itself, then reporting to the Jetty developers is encouraged. The most direct method is to mail <a href="mailto:security@jetty.org">security@jetty.org</a> or <a href="mailto:security@webtide.com">security@webtide.com</a>. We are flexible in how we work with reporters of security issues but reserve the right to act in the interests of the Jetty project in all circumstances.</p>
+</div>
+<div class="paragraph">
+<p>If the issue is related to Eclipse or its Jetty integration, we would like to encourage you to reach out to <a href="mailto:security@eclipse.org">security@eclipse.org</a>.</p>
+</div>
+<div class="paragraph">
+<p>If the issue is related to integrations with Jetty, we are happy to work with you to identify the proper entity, and either of the approaches above is okay.</p>
+</div>
+<div class="paragraph">
+<p>We prefer that security issues be reported directly to Jetty developers via email instead of GitHub issues since it has no facility to tag issues as private. We will actively delete issues that are opened in this way.</p>
+</div>
+<div class="paragraph">
+<p>For more information on how we handle security issues, please refer to our <a href="https://github.com/jetty/jetty.project/blob/jetty-12.0.x/SECURITY.md">Security Policy</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jetty-security-reports"><a class="anchor" href="#jetty-security-reports"></a>Jetty Security Reports</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Date</th>
+<th class="tableblock halign-left valign-top">ID</th>
+<th class="tableblock halign-left valign-top">Exploit</th>
+<th class="tableblock halign-left valign-top">Severity</th>
+<th class="tableblock halign-left valign-top">Affects</th>
+<th class="tableblock halign-left valign-top">Fixed Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/18/2023</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-26049">CVE-2023-26049</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8656;9.4.50, &#8656;10.013, &#8656;11.0.13, &#8656;12.0.0.alpha3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.51, 10.0.14, 11.0.14, 12.0.0.beta0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/18/2023</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-26048">CVE-2023-26048</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8656;9.4.50, &#8656;10.0.13, &#8656;11.0.13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.51, 10.0.14, 11.0.14</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7/5/2022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2191">CVE-2022-2191</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8656; 10.0.9, &#8656; 11.0.9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10.0.10, 11.0.10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7/5/2022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2047">CVE-2022-2047</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8656; 9.4.46, &#8656; 10.0.9, &#8656; 11.0.9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.47, 10.0.10, 11.0.10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7/5/2022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2048">CVE-2022-2048</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8656; 9.4.46, &#8656; 10.0.9, &#8656; 11.0.9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.47, 10.0.10, 11.0.10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7/15/2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34429">CVE-2021-34429</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.37 - 9.4.42, 10.0.1 - 10.0.5, 11.0.1 - 11.0.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.43, 10.0.6, 11.0.6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/22/2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34428">CVE-2021-34428</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8656; 9.4.40, &#8656; 10.0.2, &#8656; 11.0.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.41, 10.0.3, 11.0.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/8/2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28169">CVE-2021-28169</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8656; 9.4.40, &#8656; 10.0.2, &#8656; 11.0.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.41, 10.0.3, 11.0.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/1/2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28165">CVE-2021-28165</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.2.2 - 9.4.38, 10.0.0.alpha0 - 10.0.1, 11.0.0.alpha0 - 11.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.39, 10.0.2, 11.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/1/2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28164">CVE-2021-28164</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.37, 9.4.38</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.39</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/1/2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28163">CVE-2021-28163</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.32 - 9.4.38, 10.0.0.beta2 - 10.0.1, 11.0.0.beta2 - 11.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.39, 10.0.2, 11.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2/26/2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27223">CVE-2020-27223</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.6.v20170531 - 9.4.36.v20210114, 10.0.0, 11.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.37, 10.0.1, 11.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/17/2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27218">CVE-2020-27218</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.0.RC0 - 9.4.34, 10.0.0.alpha0 - 10.0.0.beta2, 11.0.0.alpha0 - 11.0.0.beta2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.35, 10.0.0.beta3, 11.0.0.beta3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10/19/2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27216">CVE-2020-27216</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.3.29, 9.4.33</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7/9/2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17638">CVE-2019-17638</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 9.4.27, &lt; = 9.4.29</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.30</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/25/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17632">CVE-2019-17632</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 9.4.21, &lt; = 9.4.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.24</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8/13/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9518">CVE-2019-9518</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8/13/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9516">CVE-2019-9516</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8/13/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9515">CVE-2019-9515</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8/13/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9514">CVE-2019-9514</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8/13/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9512">CVE-2019-9512</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8/13/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9511">CVE-2019-9511</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/11/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-10247">CVE-2019-10247</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Med</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.28, 9.3.27, 9.4.17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/11/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-10246">CVE-2019-10246</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.28, 9.3.27, 9.4.17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4/11/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-10241">CVE-2019-10241</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.27, 9.3.26, 9.4.16</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/25/2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12538">CVE-2018-12538</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 9.4.0, &lt; = 9.4.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.4.9</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/25/2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12536">CVE-2018-12536</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://cwe.mitre.org/data/definitions/209.html">CWE-202</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.25, 9.3.24, 9.4.11</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/25/2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7658">CVE-2017-7658</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://cwe.mitre.org/data/definitions/444.html">CWE-444</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://cwe.mitre.org/data/definitions/444.html">CWE-444</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.25, 9.3.24, 9.4.11</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/25/2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7657">CVE-2017-7657</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://cwe.mitre.org/data/definitions/444.html">CWE-444</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://cwe.mitre.org/data/definitions/444.html">CWE-444</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.25, 9.3.24, 9.4.11</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/25/2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7656">CVE-2017-7656</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://cwe.mitre.org/data/definitions/444.html">CWE-444</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://cwe.mitre.org/data/definitions/444.html">CWE-444</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; = 9.4.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.25, 9.3.24, 9.4.11</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5/31/2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4800">CVE-2016-4800</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 9.3.0, &lt; = 9.3.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.3.9</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2/24/2015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2080">CVE-2015-2080</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;=9.2.3 &lt;9.2.9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9.2.9</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12/29/2011</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-4461">CVE-2011-4461</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All versions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.6.0.RCO</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/5/2009</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555">CVE-2009-3555</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JVM 1.6u19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.01, 6.1.22</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12/22/2007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6672">CVE-2007-6672</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.rc0-6.1.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/5/2007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-5614">CVE-2007-5614</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;6.1.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.6rc1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/5/2007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-5613">CVE-2007-5613</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.6rc0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/3/2007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-5615">CVE-2007-5615</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;6.1.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.6rc0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/22/2006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-6969">CVE-2006-6969</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;6.1.0, &lt;6.0.2, &lt;5.1.12, &lt;4.2.27</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.0pre3, 6.0.2, 5.1.12, 4.2.27</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6/1/2006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2759">CVE-2006-2759</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;6.0.+, &lt;6.0.0Beta17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.0.0Beta17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/18/2005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2758">CVE-2006-2758</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;5.1.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.1.6, 6.0.0Beta4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://jetty.org"><img src="./_/img/jetty-logo.svg" alt="Eclipse Jetty" height="46" width="160"></a>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="docs/index.html">Docs</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li>Lists: <a href="http://dev.eclipse.org/mhonarc/lists/jetty-users/maillist.html" target="_blank" rel="noopener">users</a> - <a href="http://dev.eclipse.org/mhonarc/lists/jetty-dev/maillist.html" target="_blank" rel="noopener">dev</a></li>
+      <li><a href="https://github.com/eclipse/jetty.project" target="_blank" rel="noopener">Source</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/JettyProject" title="Follow us on X" target="_blank" rel="noopener"><img src="./_/img/x-logo.svg" alt="X logo" class="logo" width="24"><span class="handle">@JettyProject</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2008-2024 Webtide</p>
+    <p>The <a href="https://github.com/jetty/jetty.website" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Eclipse Jetty® is a trademarks of the Eclipse Foundation, Inc.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>This project is made possible by Webtide. Additional thanks to the <a href="https://eclipse.org" target="_blank" rel="noopener">Eclipse Foundation</a> for hosting this project.</p>
+    <p class="badges">
+      <a href="https://webtide.com" title="Development led by Webtide" target="_blank" rel="noopener"><img src="./_/img/webtide-logo.png" alt="Webtide Logo" width="100"></a>
+      <a href="https://jetbrains.com/idea" title="IntelliJ IDEA integration provided by JetBrains" target="_blank" rel="noopener"><img src="./_/img/jetbrains.svg" alt="Jetbrains Logo" width="24"></a>
+    </p>
+    <p>Authored in <a href="https://asciidoc.org" target="_blank" rel="noopener">AsciiDoc</a>.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="./_/js/site.js" data-ui-root-path="./_"></script>
+<script async src="./_/js/vendor/highlight.js"></script>
+<script src="./_/js/vendor/lunr.js"></script>
+<script src="./_/js/search-ui.js" id="search-ui-script" data-site-root-path="." data-snippet-length="100" data-stylesheet="./_/css/search.css"></script>
+<script async src="./search-index.js"></script>
+  </body>
+</html>
