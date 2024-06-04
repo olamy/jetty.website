@@ -482,61 +482,61 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 <div class="literalblock small">
 <div class="content">
 <pre class="nowrap">oejs.Server@27ce24aa{STARTING}[12.0.11-SNAPSHOT,sto=5000] - STARTING <i class="conum" data-value="1"></i><b>(1)</b>
-+= QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59981ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED <i class="conum" data-value="2"></i><b>(2)</b>
-|  +- org.eclipse.jetty.util.thread.ThreadPoolBudget@22555ebf
-|  += ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}} - STARTED
-|  |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59981ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
-|  |  +- ThreadIdPool@292b08d6{capacity=32}
++= QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59980ms,q=0}[ReservedThreadExecutor@45752059{capacity=32,threads=ThreadIdPool@34e9fd99{capacity=32}}] - STARTED <i class="conum" data-value="2"></i><b>(2)</b>
+|  +- org.eclipse.jetty.util.thread.ThreadPoolBudget@3c41ed1d
+|  += ReservedThreadExecutor@45752059{capacity=32,threads=ThreadIdPool@34e9fd99{capacity=32}} - STARTED
+|  |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59980ms,q=0}[ReservedThreadExecutor@45752059{capacity=32,threads=ThreadIdPool@34e9fd99{capacity=32}}] - STARTED
+|  |  +- ThreadIdPool@34e9fd99{capacity=32}
 |  +&gt; threads size=4
 |     +&gt; qtp1860513229-54 RUNNABLE tid=54 prio=5 SELECTING
 |     +&gt; qtp1860513229-57 TIMED_WAITING tid=57 prio=5 IDLE
-|     +&gt; qtp1860513229-55-acceptor-0@2f4a059e-ServerConnector@218dee07{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} RUNNABLE tid=55 prio=3 ACCEPTING
+|     +&gt; qtp1860513229-55-acceptor-0@718264b9-ServerConnector@18078bef{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} RUNNABLE tid=55 prio=3 ACCEPTING
 |     +&gt; qtp1860513229-56 TIMED_WAITING tid=56 prio=5 IDLE
 += oejut.ScheduledExecutorScheduler@52525845{STARTED} - STARTED
-+- org.eclipse.jetty.io.ArrayByteBufferPool@22ff4249{min=0,max=65536,buckets=16,heap=0/2102394880,direct=0/2102394880}
++- org.eclipse.jetty.io.ArrayByteBufferPool@5b12b668{min=0,max=65536,buckets=16,heap=0/2102394880,direct=0/2102394880}
 |  +&gt; direct size=16
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@5b12b668{capacity=4096,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@1165b38{capacity=8192,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@4c12331b{capacity=12288,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@7586beff{capacity=16384,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@3b69e7d1{capacity=20480,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@815b41f{capacity=24576,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@5542c4ed{capacity=28672,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@1573f9fc{capacity=32768,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6150c3ec{capacity=36864,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@44c03695{capacity=40960,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@7e6f74c{capacity=45056,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@dd05255{capacity=49152,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6a78afa0{capacity=53248,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@2f4948e4{capacity=57344,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@1f2586d6{capacity=61440,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@10683d9d{capacity=65536,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@3b69e7d1{capacity=4096,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@815b41f{capacity=8192,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@5542c4ed{capacity=12288,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@1573f9fc{capacity=16384,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6150c3ec{capacity=20480,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@44c03695{capacity=24576,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@7e6f74c{capacity=28672,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@dd05255{capacity=32768,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6a78afa0{capacity=36864,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@2f4948e4{capacity=40960,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@1f2586d6{capacity=45056,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@10683d9d{capacity=49152,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@3fc2959f{capacity=53248,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@5aa9e4eb{capacity=57344,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6989da5e{capacity=61440,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|  |  +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@385c9627{capacity=65536,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
 |  +&gt; indirect size=16
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@3fc2959f{capacity=4096,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@5aa9e4eb{capacity=8192,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6989da5e{capacity=12288,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@385c9627{capacity=16384,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@139982de{capacity=20480,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@682b2fa{capacity=24576,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@217ed35e{capacity=28672,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@7dcf94f8{capacity=32768,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@229f66ed{capacity=36864,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@31190526{capacity=40960,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@662ac478{capacity=45056,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6743e411{capacity=49152,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@3eb25e1a{capacity=53248,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@477b4cdf{capacity=57344,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@77c2494c{capacity=61440,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@f5958c9{capacity=65536,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
-+~ org.eclipse.jetty.util.resource.FileSystemPool@233795b6
-+= oejsh.DefaultHandler@3eb738bb{showContext=true,favIcon=true,STARTED} - STARTED
-+= oejsh.ContextHandlerCollection@5bda8e08{STARTED} - STARTED <i class="conum" data-value="3"></i><b>(3)</b>
-+= ServerConnector@218dee07{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED <i class="conum" data-value="4"></i><b>(4)</b>
-|  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59973ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@139982de{capacity=4096,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@682b2fa{capacity=8192,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@217ed35e{capacity=12288,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@7dcf94f8{capacity=16384,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@229f66ed{capacity=20480,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@31190526{capacity=24576,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@662ac478{capacity=28672,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@6743e411{capacity=32768,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@3eb25e1a{capacity=36864,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@477b4cdf{capacity=40960,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@77c2494c{capacity=45056,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@f5958c9{capacity=49152,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@233795b6{capacity=53248,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@3eb738bb{capacity=57344,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@5bda8e08{capacity=61440,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
+|     +&gt; org.eclipse.jetty.io.ArrayByteBufferPool$RetainedBucket@1e800aaa{capacity=65536,in-use=0/0,pooled/acquires=0/0(NaN%),non-pooled/evicts/removes/releases=0/0/0/0}
++~ org.eclipse.jetty.util.resource.FileSystemPool@185a6e9
++= oejsh.DefaultHandler@6f03482{showContext=true,favIcon=true,STARTED} - STARTED
++= oejsh.ContextHandlerCollection@9d5509a{STARTED} - STARTED <i class="conum" data-value="3"></i><b>(3)</b>
++= ServerConnector@18078bef{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED <i class="conum" data-value="4"></i><b>(4)</b>
+|  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59972ms,q=0}[ReservedThreadExecutor@45752059{capacity=32,threads=ThreadIdPool@34e9fd99{capacity=32}}] - STARTED
 |  +~ oejut.ScheduledExecutorScheduler@52525845{STARTED} - STARTED
-|  +~ org.eclipse.jetty.io.ArrayByteBufferPool@22ff4249{min=0,max=65536,buckets=16,heap=0/2102394880,direct=0/2102394880}
+|  +~ org.eclipse.jetty.io.ArrayByteBufferPool@5b12b668{min=0,max=65536,buckets=16,heap=0/2102394880,direct=0/2102394880}
 |  += HttpConnectionFactory@1c93084c[HTTP/1.1] - STARTED
-|  |  +- HttpConfiguration@3cd3e762{32768/8192,8192/8192,https://:0,[]}
+|  |  +- HttpConfiguration@62ddbd7e{32768/8192,8192/8192,https://:0,[]}
 |  |     +&gt; customizers size=0
 |  |     +&gt; formEncodedMethods size=2
 |  |     |  +&gt; POST
@@ -557,21 +557,21 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 |  |     +&gt; maxErrorDispatches=10
 |  |     +&gt; minRequestDataRate=0
 |  |     +&gt; minResponseDataRate=0
-|  |     +&gt; requestCookieCompliance=RFC6265@3b0090a4[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
-|  |     +&gt; responseCookieCompliance=RFC6265@3b0090a4[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
+|  |     +&gt; requestCookieCompliance=RFC6265@4116aac9[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
+|  |     +&gt; responseCookieCompliance=RFC6265@4116aac9[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
 |  |     +&gt; notifyRemoteAsyncErrors=true
 |  |     +&gt; relativeRedirectAllowed=false
-|  += ServerConnectorManager@1fa121e2[keys=0] - STARTED
-|  |  += oeji.ManagedSelector@74e52ef6{STARTED}[id=0 keys=0 selected=0 updates=0 selection:tot=0/avg=0.00/max=0] - STARTED <i class="conum" data-value="5"></i><b>(5)</b>
-|  |     += AdaptiveExecutionStrategy@1a677343/SelectorProducer@15de0b3c/PRODUCING/p=0/QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59968ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}][pc=0,pic=0,pec=0,epc=0]@2024-06-05T07:19:16.990200642+10:00 - STARTED
-|  |     |  +- SelectorProducer@15de0b3c
-|  |     |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59968ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
-|  |     +&gt; updates @ 2024-06-05T07:19:16.989435786+10:00 size=0
-|  |     +&gt; keys @ 2024-06-05T07:19:16.989626316+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
+|  += ServerConnectorManager@74e52ef6[keys=0] - STARTED
+|  |  += oeji.ManagedSelector@489115ef{STARTED}[id=0 keys=0 selected=0 updates=0 selection:tot=0/avg=0.00/max=0] - STARTED <i class="conum" data-value="5"></i><b>(5)</b>
+|  |     += AdaptiveExecutionStrategy@198b6731/SelectorProducer@7c6908d7/PRODUCING/p=0/QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59967ms,q=0}[ReservedThreadExecutor@45752059{capacity=32,threads=ThreadIdPool@34e9fd99{capacity=32}}][pc=0,pic=0,pec=0,epc=0]@2024-06-05T07:25:33.307088819+10:00 - STARTED
+|  |     |  +- SelectorProducer@7c6908d7
+|  |     |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59966ms,q=0}[ReservedThreadExecutor@45752059{capacity=32,threads=ThreadIdPool@34e9fd99{capacity=32}}] - STARTED
+|  |     +&gt; updates @ 2024-06-05T07:25:33.306104607+10:00 size=0
+|  |     +&gt; keys @ 2024-06-05T07:25:33.306465326+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
 |  +- sun.nio.ch.ServerSocketChannelImpl[/[0:0:0:0:0:0:0:0]:8080]
-|  +- qtp1860513229-55-acceptor-0@2f4a059e-ServerConnector@218dee07{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
-+- org.eclipse.jetty.util.component.HaltLifeCycleListener@489115ef
-+- org.eclipse.jetty.server.Server$DynamicErrorHandler@3857f613
+|  +- qtp1860513229-55-acceptor-0@718264b9-ServerConnector@18078bef{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
++- org.eclipse.jetty.util.component.HaltLifeCycleListener@3c9754d8
++- org.eclipse.jetty.server.Server$DynamicErrorHandler@3bf7ca37
 +&gt; startJarLoader@593634ad <i class="conum" data-value="7"></i><b>(7)</b>
 |  +&gt; URLs size=8
 |  |  +&gt; file:/path/to/jetty.home-base/resources/
@@ -618,11 +618,11 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 |     |           +&gt; package sun.util.resources.cldr.provider
 |     +&gt; Attributes core size=0
 +&gt; attributes size=0
-+&gt; org.eclipse.jetty.util.resource.FileSystemPool@233795b6
++&gt; org.eclipse.jetty.util.resource.FileSystemPool@185a6e9
    +&gt; buckets size=0
 key: +- bean, += managed, +~ unmanaged, +? auto, +: iterable, +] array, +@ map, +&gt; undefined <i class="conum" data-value="8"></i><b>(8)</b>
-JVM: Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.3+9-LTS; OS: Linux amd64 6.8.0-76060800daily20240311-generic; Jetty: 12.0.11-SNAPSHOT; CPUs: 32; mem(free/total/max): 997/1,016/16,040 MiB
-UTC: 2024-06-04T21:19:16.992992496Z; Australia/Brisbane: 2024-06-05T07:19:16.992992496+10:00</pre>
+JVM: Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.3+9-LTS; OS: Linux amd64 6.8.0-76060800daily20240311-generic; Jetty: 12.0.11-SNAPSHOT; CPUs: 32; mem(free/total/max): 998/1,016/16,040 MiB
+UTC: 2024-06-04T21:25:33.311404544Z; Australia/Brisbane: 2024-06-05T07:25:33.311404544+10:00</pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -837,8 +837,8 @@ Enables remote debugging
 <div class="content">
 <pre class="nowrap">WARN  : Forking second JVM due to forking module(s): [remote-debug]. Use --dry-run to generate the command line to avoid forking.
 <mark>Listening for transport dt_socket at address: 5005</mark>
-<strong>2024-06-05 07:19:18.228:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
-<strong>2024-06-05 07:19:18.241:</strong>INFO :oejs.Server:main: Started oejs.Server@4ba2ca36{STARTING}[12.0.11-SNAPSHOT,sto=5000] @200ms</pre>
+<strong>2024-06-05 07:25:34.682:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:25:34.698:</strong>INFO :oejs.Server:main: Started oejs.Server@4ba2ca36{STARTING}[12.0.11-SNAPSHOT,sto=5000] @322ms</pre>
 </div>
 </div>
 <div class="paragraph">
