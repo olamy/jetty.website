@@ -739,9 +739,9 @@ JVM Version &amp; Properties:
 
 Jetty Version &amp; Properties:
 ---------------------------
- jetty.version = 12.0.10
- jetty.tag.version = jetty-12.0.10
- jetty.build = e1c7a7ca02a913b7def99af8223ad4e2855425a6
+ jetty.version = 12.0.11-SNAPSHOT
+ jetty.tag.version = jetty-12.0.11-SNAPSHOT
+ jetty.build = 8b506b4f282f20dbb4b6c960f52ef3e2a658a515
  jetty.home = /path/to/jetty.home
  jetty.base = /path/to/jetty.home-base
 
@@ -783,12 +783,12 @@ Note: order presented here is how they would appear on the classpath.
       changes to the --module=name command line options will be reflected here.
  0:                    (dir) | ${jetty.base}/resources
  1:                   2.0.12 | ${jetty.home}/lib/logging/slf4j-api-2.0.12.jar
- 2:         12.0.10 | ${jetty.home}/lib/logging/jetty-slf4j-impl-12.0.10.jar
- 3:         12.0.10 | ${jetty.home}/lib/jetty-http-12.0.10.jar
- 4:         12.0.10 | ${jetty.home}/lib/jetty-server-12.0.10.jar
- 5:         12.0.10 | ${jetty.home}/lib/jetty-xml-12.0.10.jar
- 6:         12.0.10 | ${jetty.home}/lib/jetty-util-12.0.10.jar
- 7:         12.0.10 | ${jetty.home}/lib/jetty-io-12.0.10.jar
+ 2:         12.0.11-SNAPSHOT | ${jetty.home}/lib/logging/jetty-slf4j-impl-12.0.11-SNAPSHOT.jar
+ 3:         12.0.11-SNAPSHOT | ${jetty.home}/lib/jetty-http-12.0.11-SNAPSHOT.jar
+ 4:         12.0.11-SNAPSHOT | ${jetty.home}/lib/jetty-server-12.0.11-SNAPSHOT.jar
+ 5:         12.0.11-SNAPSHOT | ${jetty.home}/lib/jetty-xml-12.0.11-SNAPSHOT.jar
+ 6:         12.0.11-SNAPSHOT | ${jetty.home}/lib/jetty-util-12.0.11-SNAPSHOT.jar
+ 7:         12.0.11-SNAPSHOT | ${jetty.home}/lib/jetty-io-12.0.11-SNAPSHOT.jar
  8:                   42.6.0 | ${jetty.base}/lib/postgresql-42.6.0.jar
 
 Active XMLs: Jetty
@@ -865,7 +865,7 @@ You can use the <code>--dry-run</code> option as explained below to avoid forkin
 -Xmx1g \
 '-Xlog:gc*,gc+stats=off:file=logs/gc.log:time,level,tags' \
 --class-path \
-/path/to/jetty.home-base/resources:/path/to/jetty.home/lib/logging/slf4j-api-2.0.12.jar:/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.10.jar:/path/to/jetty.home/lib/jetty-http-12.0.10.jar:/path/to/jetty.home/lib/jetty-server-12.0.10.jar:/path/to/jetty.home/lib/jetty-xml-12.0.10.jar:/path/to/jetty.home/lib/jetty-util-12.0.10.jar:/path/to/jetty.home/lib/jetty-io-12.0.10.jar \
+/path/to/jetty.home-base/resources:/path/to/jetty.home/lib/logging/slf4j-api-2.0.12.jar:/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.11-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-http-12.0.11-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-server-12.0.11-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-xml-12.0.11-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-util-12.0.11-SNAPSHOT.jar:/path/to/jetty.home/lib/jetty-io-12.0.11-SNAPSHOT.jar \
 org.eclipse.jetty.xml.XmlConfiguration \
 java.version=21.0.3 \
 jetty.base=/path/to/jetty.home-base \
@@ -938,12 +938,12 @@ slf4j.version=2.0.12 \
 <pre class="nowrap">--class-path \
 /path/to/jetty.home-base/resources:\
 /path/to/jetty.home/lib/logging/slf4j-api-2.0.12.jar:\
-/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-http-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-server-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-xml-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-util-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-io-12.0.10.jar</pre>
+/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-http-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-server-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-xml-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-util-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-io-12.0.11-SNAPSHOT.jar</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -957,13 +957,13 @@ slf4j.version=2.0.12 \
 <div class="literalblock">
 <div class="content">
 <pre class="nowrap">--module-path \
+/path/to/jetty.home/lib/jetty-io-12.0.11-SNAPSHOT.jar:\
 /path/to/jetty.home/lib/logging/slf4j-api-2.0.12.jar:\
-/path/to/jetty.home/lib/jetty-http-12.0.10.jar:\
-/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-xml-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-server-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-io-12.0.10.jar:\
-/path/to/jetty.home/lib/jetty-util-12.0.10.jar \
+/path/to/jetty.home/lib/jetty-http-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-xml-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-server-12.0.11-SNAPSHOT.jar:\
+/path/to/jetty.home/lib/jetty-util-12.0.11-SNAPSHOT.jar \
 --class-path \
 /path/to/jetty.home-base/resources \
 --add-modules \
@@ -1226,10 +1226,10 @@ If you want to stop the Jetty components, to stop Jetty more gracefully, you can
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><mark>STOP.KEY=hk7e7rdbsem8</mark>
-<strong>2024-06-03 17:07:31.128:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:31.140:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@7cc0cdad{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
-<strong>2024-06-03 17:07:31.147:</strong>INFO :oejs.Server:main: Started oejs.Server@27ce24aa{STARTING}[12.0.10,sto=5000] @430ms</pre>
+<pre class="nowrap"><mark>STOP.KEY=47eoy03ye7y8</mark>
+<strong>2024-06-05 07:19:15.229:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:19:15.246:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@7cc0cdad{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+<strong>2024-06-05 07:19:15.257:</strong>INFO :oejs.Server:main: Started oejs.Server@27ce24aa{STARTING}[12.0.11-SNAPSHOT,sto=5000] @563ms</pre>
 </div>
 </div>
 <div class="paragraph">

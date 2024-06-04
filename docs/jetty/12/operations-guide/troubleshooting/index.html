@@ -481,16 +481,16 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 </div>
 <div class="literalblock small">
 <div class="content">
-<pre class="nowrap">oejs.Server@27ce24aa{STARTING}[12.0.10,sto=5000] - STARTING <i class="conum" data-value="1"></i><b>(1)</b>
-+= QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59982ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED <i class="conum" data-value="2"></i><b>(2)</b>
+<pre class="nowrap">oejs.Server@27ce24aa{STARTING}[12.0.11-SNAPSHOT,sto=5000] - STARTING <i class="conum" data-value="1"></i><b>(1)</b>
++= QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59981ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED <i class="conum" data-value="2"></i><b>(2)</b>
 |  +- org.eclipse.jetty.util.thread.ThreadPoolBudget@22555ebf
 |  += ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}} - STARTED
-|  |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59982ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
+|  |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59981ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
 |  |  +- ThreadIdPool@292b08d6{capacity=32}
 |  +&gt; threads size=4
 |     +&gt; qtp1860513229-54 RUNNABLE tid=54 prio=5 SELECTING
 |     +&gt; qtp1860513229-57 TIMED_WAITING tid=57 prio=5 IDLE
-|     +&gt; qtp1860513229-55-acceptor-0@6b8a4568-ServerConnector@18078bef{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} RUNNABLE tid=55 prio=3 ACCEPTING
+|     +&gt; qtp1860513229-55-acceptor-0@2f4a059e-ServerConnector@218dee07{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} RUNNABLE tid=55 prio=3 ACCEPTING
 |     +&gt; qtp1860513229-56 TIMED_WAITING tid=56 prio=5 IDLE
 += oejut.ScheduledExecutorScheduler@52525845{STARTED} - STARTED
 +- org.eclipse.jetty.io.ArrayByteBufferPool@22ff4249{min=0,max=65536,buckets=16,heap=0/2102394880,direct=0/2102394880}
@@ -531,8 +531,8 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 +~ org.eclipse.jetty.util.resource.FileSystemPool@233795b6
 += oejsh.DefaultHandler@3eb738bb{showContext=true,favIcon=true,STARTED} - STARTED
 += oejsh.ContextHandlerCollection@5bda8e08{STARTED} - STARTED <i class="conum" data-value="3"></i><b>(3)</b>
-+= ServerConnector@18078bef{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED <i class="conum" data-value="4"></i><b>(4)</b>
-|  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59975ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
++= ServerConnector@218dee07{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED <i class="conum" data-value="4"></i><b>(4)</b>
+|  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59973ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
 |  +~ oejut.ScheduledExecutorScheduler@52525845{STARTED} - STARTED
 |  +~ org.eclipse.jetty.io.ArrayByteBufferPool@22ff4249{min=0,max=65536,buckets=16,heap=0/2102394880,direct=0/2102394880}
 |  += HttpConnectionFactory@1c93084c[HTTP/1.1] - STARTED
@@ -563,25 +563,25 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 |  |     +&gt; relativeRedirectAllowed=false
 |  += ServerConnectorManager@1fa121e2[keys=0] - STARTED
 |  |  += oeji.ManagedSelector@74e52ef6{STARTED}[id=0 keys=0 selected=0 updates=0 selection:tot=0/avg=0.00/max=0] - STARTED <i class="conum" data-value="5"></i><b>(5)</b>
-|  |     += AdaptiveExecutionStrategy@1a677343/SelectorProducer@15de0b3c/PRODUCING/p=0/QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59970ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}][pc=0,pic=0,pec=0,epc=0]@2024-06-03T17:07:32.924932041+10:00 - STARTED
+|  |     += AdaptiveExecutionStrategy@1a677343/SelectorProducer@15de0b3c/PRODUCING/p=0/QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59968ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}][pc=0,pic=0,pec=0,epc=0]@2024-06-05T07:19:16.990200642+10:00 - STARTED
 |  |     |  +- SelectorProducer@15de0b3c
-|  |     |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59970ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
-|  |     +&gt; updates @ 2024-06-03T17:07:32.924178088+10:00 size=0
-|  |     +&gt; keys @ 2024-06-03T17:07:32.924364618+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
+|  |     |  +~ QueuedThreadPool[qtp1860513229]@6ee52dcd{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59968ms,q=0}[ReservedThreadExecutor@206a70ef{capacity=32,threads=ThreadIdPool@292b08d6{capacity=32}}] - STARTED
+|  |     +&gt; updates @ 2024-06-05T07:19:16.989435786+10:00 size=0
+|  |     +&gt; keys @ 2024-06-05T07:19:16.989626316+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
 |  +- sun.nio.ch.ServerSocketChannelImpl[/[0:0:0:0:0:0:0:0]:8080]
-|  +- qtp1860513229-55-acceptor-0@6b8a4568-ServerConnector@18078bef{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+|  +- qtp1860513229-55-acceptor-0@2f4a059e-ServerConnector@218dee07{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
 +- org.eclipse.jetty.util.component.HaltLifeCycleListener@489115ef
 +- org.eclipse.jetty.server.Server$DynamicErrorHandler@3857f613
 +&gt; startJarLoader@593634ad <i class="conum" data-value="7"></i><b>(7)</b>
 |  +&gt; URLs size=8
 |  |  +&gt; file:/path/to/jetty.home-base/resources/
 |  |  +&gt; file:/path/to/jetty.home/lib/logging/slf4j-api-2.0.12.jar
-|  |  +&gt; file:/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.10.jar
-|  |  +&gt; file:/path/to/jetty.home/lib/jetty-http-12.0.10.jar
-|  |  +&gt; file:/path/to/jetty.home/lib/jetty-server-12.0.10.jar
-|  |  +&gt; file:/path/to/jetty.home/lib/jetty-xml-12.0.10.jar
-|  |  +&gt; file:/path/to/jetty.home/lib/jetty-util-12.0.10.jar
-|  |  +&gt; file:/path/to/jetty.home/lib/jetty-io-12.0.10.jar
+|  |  +&gt; file:/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.11-SNAPSHOT.jar
+|  |  +&gt; file:/path/to/jetty.home/lib/jetty-http-12.0.11-SNAPSHOT.jar
+|  |  +&gt; file:/path/to/jetty.home/lib/jetty-server-12.0.11-SNAPSHOT.jar
+|  |  +&gt; file:/path/to/jetty.home/lib/jetty-xml-12.0.11-SNAPSHOT.jar
+|  |  +&gt; file:/path/to/jetty.home/lib/jetty-util-12.0.11-SNAPSHOT.jar
+|  |  +&gt; file:/path/to/jetty.home/lib/jetty-io-12.0.11-SNAPSHOT.jar
 |  +&gt; parent: jdk.internal.loader.ClassLoaders$AppClassLoader@4f2410ac
 |     +&gt; packages size=4
 |     |  +&gt; package org.eclipse.jetty.start.config
@@ -599,12 +599,12 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 |     |  +&gt; URLs size=8
 |     |  |  +&gt; file:/path/to/jetty.home-base/resources/
 |     |  |  +&gt; file:/path/to/jetty.home/lib/logging/slf4j-api-2.0.12.jar
-|     |  |  +&gt; file:/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.10.jar
-|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-http-12.0.10.jar
-|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-server-12.0.10.jar
-|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-xml-12.0.10.jar
-|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-util-12.0.10.jar
-|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-io-12.0.10.jar
+|     |  |  +&gt; file:/path/to/jetty.home/lib/logging/jetty-slf4j-impl-12.0.11-SNAPSHOT.jar
+|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-http-12.0.11-SNAPSHOT.jar
+|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-server-12.0.11-SNAPSHOT.jar
+|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-xml-12.0.11-SNAPSHOT.jar
+|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-util-12.0.11-SNAPSHOT.jar
+|     |  |  +&gt; file:/path/to/jetty.home/lib/jetty-io-12.0.11-SNAPSHOT.jar
 |     |  +&gt; parent: jdk.internal.loader.ClassLoaders$AppClassLoader@4f2410ac
 |     |     +&gt; packages size=4
 |     |     |  +&gt; package org.eclipse.jetty.start.config
@@ -621,8 +621,8 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 +&gt; org.eclipse.jetty.util.resource.FileSystemPool@233795b6
    +&gt; buckets size=0
 key: +- bean, += managed, +~ unmanaged, +? auto, +: iterable, +] array, +@ map, +&gt; undefined <i class="conum" data-value="8"></i><b>(8)</b>
-JVM: Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.3+9-LTS; OS: Linux amd64 6.8.0-76060800daily20240311-generic; Jetty: 12.0.10; CPUs: 32; mem(free/total/max): 997/1,016/16,040 MiB
-UTC: 2024-06-03T07:07:32.929562544Z; Australia/Brisbane: 2024-06-03T17:07:32.929562544+10:00</pre>
+JVM: Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.3+9-LTS; OS: Linux amd64 6.8.0-76060800daily20240311-generic; Jetty: 12.0.11-SNAPSHOT; CPUs: 32; mem(free/total/max): 997/1,016/16,040 MiB
+UTC: 2024-06-04T21:19:16.992992496Z; Australia/Brisbane: 2024-06-05T07:19:16.992992496+10:00</pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -837,8 +837,8 @@ Enables remote debugging
 <div class="content">
 <pre class="nowrap">WARN  : Forking second JVM due to forking module(s): [remote-debug]. Use --dry-run to generate the command line to avoid forking.
 <mark>Listening for transport dt_socket at address: 5005</mark>
-<strong>2024-06-03 17:07:34.105:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:34.120:</strong>INFO :oejs.Server:main: Started oejs.Server@4ba2ca36{STARTING}[12.0.10,sto=5000] @191ms</pre>
+<strong>2024-06-05 07:19:18.228:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:19:18.241:</strong>INFO :oejs.Server:main: Started oejs.Server@4ba2ca36{STARTING}[12.0.11-SNAPSHOT,sto=5000] @200ms</pre>
 </div>
 </div>
 <div class="paragraph">

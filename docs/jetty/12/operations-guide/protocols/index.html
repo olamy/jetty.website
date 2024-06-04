@@ -384,9 +384,9 @@ Recall that you must always issue the commands to enable Jetty modules from with
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><strong>2024-06-03 17:07:09.686:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:09.706:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@6302bbb1{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
-<strong>2024-06-03 17:07:09.712:</strong>INFO :oejs.Server:main: Started oejs.Server@27ce24aa{STARTING}[12.0.10,sto=5000] @555ms</pre>
+<pre class="nowrap"><strong>2024-06-05 07:18:53.769:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:18:53.789:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@6302bbb1{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+<strong>2024-06-05 07:18:53.800:</strong>INFO :oejs.Server:main: Started oejs.Server@27ce24aa{STARTING}[12.0.11-SNAPSHOT,sto=5000] @563ms</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -538,11 +538,11 @@ INFO  : Base directory was modified</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><strong>2024-06-03 17:07:11.934:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
-<strong>2024-06-03 17:07:12.179:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:12.197:</strong>INFO :oejus.SslContextFactory:main: x509=X509@132e0cc(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@7b205dbd[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
-<strong>2024-06-03 17:07:12.228:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@32f232a5<mark>{SSL, (ssl, http/1.1)}{0.0.0.0:8443}</mark>
-<strong>2024-06-03 17:07:12.232:</strong>INFO :oejs.Server:main: Started oejs.Server@488d1cd7{STARTING}[12.0.10,sto=5000] @758ms</pre>
+<pre class="nowrap"><strong>2024-06-05 07:18:56.207:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
+<strong>2024-06-05 07:18:56.562:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:18:56.587:</strong>INFO :oejus.SslContextFactory:main: x509=X509@132e0cc(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@7b205dbd[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
+<strong>2024-06-05 07:18:56.630:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@32f232a5<mark>{SSL, (ssl, http/1.1)}{0.0.0.0:8443}</mark>
+<strong>2024-06-05 07:18:56.636:</strong>INFO :oejs.Server:main: Started oejs.Server@488d1cd7{STARTING}[12.0.11-SNAPSHOT,sto=5000] @1063ms</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -699,11 +699,11 @@ The reason to configure both protocols is that you typically do not control the 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><strong>2024-06-03 17:07:13.543:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
-<strong>2024-06-03 17:07:13.753:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:13.769:</strong>INFO :oejus.SslContextFactory:main: x509=X509@6e4566f1(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@4b6e2263[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
-<strong>2024-06-03 17:07:13.795:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@54c62d71<mark>{SSL, (ssl, alpn, h2, http/1.1)}{0.0.0.0:8443}</mark>
-<strong>2024-06-03 17:07:13.799:</strong>INFO :oejs.Server:main: Started oejs.Server@4b23c30a{STARTING}[12.0.10,sto=5000] @806ms</pre>
+<pre class="nowrap"><strong>2024-06-05 07:18:58.020:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
+<strong>2024-06-05 07:18:58.332:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:18:58.349:</strong>INFO :oejus.SslContextFactory:main: x509=X509@6e4566f1(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@4b6e2263[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
+<strong>2024-06-05 07:18:58.377:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@54c62d71<mark>{SSL, (ssl, alpn, h2, http/1.1)}{0.0.0.0:8443}</mark>
+<strong>2024-06-05 07:18:58.380:</strong>INFO :oejs.Server:main: Started oejs.Server@4b23c30a{STARTING}[12.0.11-SNAPSHOT,sto=5000] @995ms</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -757,9 +757,9 @@ The reason to configure both protocols is that you typically do not control the 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><strong>2024-06-03 17:07:15.091:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:15.111:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@6f4a47c7<mark>{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8080}</mark>
-<strong>2024-06-03 17:07:15.121:</strong>INFO :oejs.Server:main: Started oejs.Server@6302bbb1{STARTING}[12.0.10,sto=5000] @577ms</pre>
+<pre class="nowrap"><strong>2024-06-05 07:18:59.611:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:18:59.624:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@6f4a47c7<mark>{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8080}</mark>
+<strong>2024-06-05 07:18:59.630:</strong>INFO :oejs.Server:main: Started oejs.Server@6302bbb1{STARTING}[12.0.11-SNAPSHOT,sto=5000] @497ms</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -864,13 +864,13 @@ c3 ab b8 f2 e0 53 03 2a 2f 2a</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><strong>2024-06-03 17:07:16.571:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
-<strong>2024-06-03 17:07:16.914:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:16.941:</strong>INFO :oejus.SslContextFactory:main: x509=X509@4d9ac0b4(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@130dca52[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
-<strong>2024-06-03 17:07:16.986:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@aafcffa{SSL, (ssl, alpn, h2)}{0.0.0.0:8443}
-<strong>2024-06-03 17:07:17.002:</strong>INFO :oejqs.QuicServerConnectionFactory:main: HTTP/3+QUIC support is experimental and not suited for production use.
-<strong>2024-06-03 17:07:17.002:</strong>INFO :oejs.AbstractConnector:main: Started QuicServerConnector@68044f4<mark>{h3, (h3)}{0.0.0.0:8444}</mark>
-<strong>2024-06-03 17:07:17.009:</strong>INFO :oejs.Server:main: Started oejs.Server@6c0d9d86{STARTING}[12.0.10,sto=5000] @1118ms</pre>
+<pre class="nowrap"><strong>2024-06-05 07:19:01.103:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
+<strong>2024-06-05 07:19:01.432:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:19:01.449:</strong>INFO :oejus.SslContextFactory:main: x509=X509@4d9ac0b4(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@130dca52[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
+<strong>2024-06-05 07:19:01.477:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@aafcffa{SSL, (ssl, alpn, h2)}{0.0.0.0:8443}
+<strong>2024-06-05 07:19:01.487:</strong>INFO :oejqs.QuicServerConnectionFactory:main: HTTP/3+QUIC support is experimental and not suited for production use.
+<strong>2024-06-05 07:19:01.487:</strong>INFO :oejs.AbstractConnector:main: Started QuicServerConnector@68044f4<mark>{h3, (h3)}{0.0.0.0:8444}</mark>
+<strong>2024-06-05 07:19:01.491:</strong>INFO :oejs.Server:main: Started oejs.Server@6c0d9d86{STARTING}[12.0.11-SNAPSHOT,sto=5000] @1083ms</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1879,9 +1879,9 @@ INFO  : Base directory was modified</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><strong>2024-06-03 17:07:19.366:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:19.379:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@4c583ecf<mark>{[proxy], ([proxy], http/1.1)}{0.0.0.0:8080}</mark>
-<strong>2024-06-03 17:07:19.385:</strong>INFO :oejs.Server:main: Started oejs.Server@68999068{STARTING}[12.0.10,sto=5000] @522ms</pre>
+<pre class="nowrap"><strong>2024-06-05 07:19:03.869:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:19:03.889:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@4c583ecf<mark>{[proxy], ([proxy], http/1.1)}{0.0.0.0:8080}</mark>
+<strong>2024-06-05 07:19:03.900:</strong>INFO :oejs.Server:main: Started oejs.Server@68999068{STARTING}[12.0.11-SNAPSHOT,sto=5000] @555ms</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1923,11 +1923,11 @@ INFO  : Base directory was modified</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap"><strong>2024-06-03 17:07:21.415:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
-<strong>2024-06-03 17:07:22.030:</strong>INFO :oejs.Server:main: jetty-12.0.10; built: 2024-06-02T23:08:37.115Z; git: e1c7a7ca02a913b7def99af8223ad4e2855425a6; jvm 21.0.3+9-LTS
-<strong>2024-06-03 17:07:22.056:</strong>INFO :oejus.SslContextFactory:main: x509=X509@78641d23(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@74589991[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
-<strong>2024-06-03 17:07:22.102:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@b1712f3<mark>{[proxy], ([proxy], ssl, http/1.1)}{0.0.0.0:8443}</mark>
-<strong>2024-06-03 17:07:22.109:</strong>INFO :oejs.Server:main: Started oejs.Server@1bd39d3c{STARTING}[12.0.10,sto=5000] @1350ms</pre>
+<pre class="nowrap"><strong>2024-06-05 07:19:05.806:</strong>WARN :oejk.KeystoreGenerator:main: Generating Test Keystore: DO NOT USE IN PRODUCTION!
+<strong>2024-06-05 07:19:06.056:</strong>INFO :oejs.Server:main: jetty-12.0.11-SNAPSHOT; built: 2024-06-04T21:16:57.980Z; git: 8b506b4f282f20dbb4b6c960f52ef3e2a658a515; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:19:06.073:</strong>INFO :oejus.SslContextFactory:main: x509=X509@78641d23(jetty-test-keystore,h=[localhost],a=[],w=[]) for Server@74589991[provider=null,keyStore=file:///path/to/jetty.home-base/etc/test-keystore.p12,trustStore=null]
+<strong>2024-06-05 07:19:06.104:</strong>INFO :oejs.AbstractConnector:main: Started ServerConnector@b1712f3<mark>{[proxy], ([proxy], ssl, http/1.1)}{0.0.0.0:8443}</mark>
+<strong>2024-06-05 07:19:06.108:</strong>INFO :oejs.Server:main: Started oejs.Server@1bd39d3c{STARTING}[12.0.11-SNAPSHOT,sto=5000] @810ms</pre>
 </div>
 </div>
 <div class="paragraph">
