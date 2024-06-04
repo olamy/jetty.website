@@ -473,167 +473,167 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 <div class="literalblock small">
 <div class="content">
 <pre class="nowrap">Server@12d4bf7e{STARTING}[11.0.22-SNAPSHOT,sto=5000] - STARTING <i class="conum" data-value="1"></i><b>(1)</b>
-+= QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59979ms,q=0}[ReservedThreadExecutor@4567f35d{reserved=0/20,pending=0}] - STARTED <i class="conum" data-value="2"></i><b>(2)</b>
-|  +- org.eclipse.jetty.util.thread.ThreadPoolBudget@5ffead27
-|  += ReservedThreadExecutor@4567f35d{reserved=0/20,pending=0} - STARTED
++= QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59980ms,q=0}[ReservedThreadExecutor@4f6ee6e4{reserved=0/20,pending=0}] - STARTED <i class="conum" data-value="2"></i><b>(2)</b>
+|  +- org.eclipse.jetty.util.thread.ThreadPoolBudget@4466af20
+|  += ReservedThreadExecutor@4f6ee6e4{reserved=0/20,pending=0} - STARTED
 |  |  +&gt; threads size=0
 |  +&gt; threads size=4
 |     +&gt; qtp1852584274-34 TIMED_WAITING tid=34 prio=5 IDLE
 |     +&gt; qtp1852584274-35 TIMED_WAITING tid=35 prio=5 IDLE
 |     +&gt; qtp1852584274-32 RUNNABLE tid=32 prio=5 SELECTING
 |     +&gt; qtp1852584274-33-acceptor-0@1bbf99d3-ServerConnector@16ec5519{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} RUNNABLE tid=33 prio=3 ACCEPTING
-+= AttributeContainerMap@294425a7{size=0} - STARTED
-+- ArrayByteBufferPool@12468a38{minBufferCapacity=0, maxBufferCapacity=65536, maxQueueLength=-1, factor=4096}
-|  +&gt; java.util.ArrayList@ddab8227(size=5)
++= AttributeContainerMap@5876a9af{size=0} - STARTED
++- ArrayByteBufferPool@6572421{minBufferCapacity=0, maxBufferCapacity=65536, maxQueueLength=-1, factor=4096}
+|  +&gt; java.util.ArrayList@2e8563f2(size=5)
 |     +: HeapMemory: 0/4204789760
 |     +: DirectMemory: 0/4204789760
 |     +: Indirect Buckets size=0
 |     +: Direct Buckets size=0
-|     +: org.eclipse.jetty.io.ArrayByteBufferPool$Retained@1aa7ecca{min=0,max=65536,buckets=16,heap=0/4204789760,direct=0/4204789760}
+|     +: org.eclipse.jetty.io.ArrayByteBufferPool$Retained@6b81ce95{min=0,max=65536,buckets=16,heap=0/4204789760,direct=0/4204789760}
 |        +&gt; direct size=16
-|        |  +&gt; RetainedBucket@59309333[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@2a798d51[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@6b81ce95[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@dd8ba08[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@2a798d51[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@245b4bdc[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@6d763516[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@6c64cb25[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@52bf72b5[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@6ae5aa72[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@37afeb11[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@222545dc[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@515aebb0[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@5c5eefef[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@dd8ba08[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@16293aa2[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@245b4bdc[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@5158b42f[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@6c64cb25[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@595b007d[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@6ae5aa72[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@72d1ad2e[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@222545dc[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@2d7275fc[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@5c5eefef[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@399f45b1[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@16293aa2[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@38c6f217[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@5158b42f[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@478190fc[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
 |        |  |  +&gt; entries size=0
-|        |  +&gt; RetainedBucket@595b007d[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
+|        |  +&gt; RetainedBucket@79e2c065[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
 |        |     +&gt; entries size=0
 |        +&gt; indirect size=16
-|           +&gt; RetainedBucket@72d1ad2e[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
+|           +&gt; RetainedBucket@3a93b025[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@2d7275fc[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
+|           +&gt; RetainedBucket@35cabb2a[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@399f45b1[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
+|           +&gt; RetainedBucket@7e07db1f[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@38c6f217[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
+|           +&gt; RetainedBucket@1189dd52[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@478190fc[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
+|           +&gt; RetainedBucket@36bc55de[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@79e2c065[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
+|           +&gt; RetainedBucket@564fabc8[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@3a93b025[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
+|           +&gt; RetainedBucket@16d04d3d[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@35cabb2a[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
+|           +&gt; RetainedBucket@49ec71f8[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@7e07db1f[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
+|           +&gt; RetainedBucket@1d2adfbe[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@1189dd52[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
+|           +&gt; RetainedBucket@36902638[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@36bc55de[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
+|           +&gt; RetainedBucket@223d2c72[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@564fabc8[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
+|           +&gt; RetainedBucket@8f4ea7c[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@16d04d3d[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
+|           +&gt; RetainedBucket@436813f3[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@49ec71f8[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
+|           +&gt; RetainedBucket@74fe5c40[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@1d2adfbe[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
+|           +&gt; RetainedBucket@3febb011[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
 |           |  +&gt; entries size=0
-|           +&gt; RetainedBucket@36902638[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
+|           +&gt; RetainedBucket@10e31a9a[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
 |              +&gt; entries size=0
 += ScheduledExecutorScheduler@69379752{STARTED} - STARTED
-+= HandlerList@223d2c72{STARTED} - STARTED <i class="conum" data-value="3"></i><b>(3)</b>
-|  += ContextHandlerCollection@8f4ea7c{STARTED} - STARTED
-|  += DefaultHandler@436813f3{STARTED} - STARTED
++= HandlerList@131774fe{STARTED} - STARTED <i class="conum" data-value="3"></i><b>(3)</b>
+|  += ContextHandlerCollection@158d2680{STARTED} - STARTED
+|  += DefaultHandler@77847718{STARTED} - STARTED
 += ServerConnector@16ec5519{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED <i class="conum" data-value="4"></i><b>(4)</b>
-|  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59969ms,q=0}[ReservedThreadExecutor@4567f35d{reserved=0/20,pending=0}] - STARTED
+|  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59970ms,q=0}[ReservedThreadExecutor@4f6ee6e4{reserved=0/20,pending=0}] - STARTED
 |  +~ ScheduledExecutorScheduler@69379752{STARTED} - STARTED
-|  +~ ArrayByteBufferPool@12468a38{minBufferCapacity=0, maxBufferCapacity=65536, maxQueueLength=-1, factor=4096}
-|  +- org.eclipse.jetty.io.ArrayByteBufferPool$Retained@1aa7ecca{min=0,max=65536,buckets=16,heap=0/4204789760,direct=0/4204789760}
+|  +~ ArrayByteBufferPool@6572421{minBufferCapacity=0, maxBufferCapacity=65536, maxQueueLength=-1, factor=4096}
+|  +- org.eclipse.jetty.io.ArrayByteBufferPool$Retained@6b81ce95{min=0,max=65536,buckets=16,heap=0/4204789760,direct=0/4204789760}
 |  |  +&gt; direct size=16
-|  |  |  +&gt; RetainedBucket@59309333[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@2a798d51[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@6b81ce95[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@dd8ba08[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@2a798d51[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@245b4bdc[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@6d763516[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@6c64cb25[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@52bf72b5[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@6ae5aa72[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@37afeb11[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@222545dc[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@515aebb0[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@5c5eefef[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@dd8ba08[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@16293aa2[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@245b4bdc[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@5158b42f[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@6c64cb25[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@595b007d[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@6ae5aa72[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@72d1ad2e[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@222545dc[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@2d7275fc[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@5c5eefef[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@399f45b1[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@16293aa2[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@38c6f217[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@5158b42f[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@478190fc[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
 |  |  |  |  +&gt; entries size=0
-|  |  |  +&gt; RetainedBucket@595b007d[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
+|  |  |  +&gt; RetainedBucket@79e2c065[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
 |  |  |     +&gt; entries size=0
 |  |  +&gt; indirect size=16
-|  |     +&gt; RetainedBucket@72d1ad2e[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@3a93b025[inUse=0,size=0,max=-1,closed=false]{capacity=4096,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@2d7275fc[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@35cabb2a[inUse=0,size=0,max=-1,closed=false]{capacity=8192,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@399f45b1[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@7e07db1f[inUse=0,size=0,max=-1,closed=false]{capacity=12288,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@38c6f217[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@1189dd52[inUse=0,size=0,max=-1,closed=false]{capacity=16384,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@478190fc[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@36bc55de[inUse=0,size=0,max=-1,closed=false]{capacity=20480,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@79e2c065[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@564fabc8[inUse=0,size=0,max=-1,closed=false]{capacity=24576,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@3a93b025[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@16d04d3d[inUse=0,size=0,max=-1,closed=false]{capacity=28672,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@35cabb2a[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@49ec71f8[inUse=0,size=0,max=-1,closed=false]{capacity=32768,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@7e07db1f[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@1d2adfbe[inUse=0,size=0,max=-1,closed=false]{capacity=36864,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@1189dd52[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@36902638[inUse=0,size=0,max=-1,closed=false]{capacity=40960,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@36bc55de[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@223d2c72[inUse=0,size=0,max=-1,closed=false]{capacity=45056,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@564fabc8[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@8f4ea7c[inUse=0,size=0,max=-1,closed=false]{capacity=49152,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@16d04d3d[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@436813f3[inUse=0,size=0,max=-1,closed=false]{capacity=53248,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@49ec71f8[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@74fe5c40[inUse=0,size=0,max=-1,closed=false]{capacity=57344,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@1d2adfbe[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@3febb011[inUse=0,size=0,max=-1,closed=false]{capacity=61440,inuse=0(0%)}
 |  |     |  +&gt; entries size=0
-|  |     +&gt; RetainedBucket@36902638[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
+|  |     +&gt; RetainedBucket@10e31a9a[inUse=0,size=0,max=-1,closed=false]{capacity=65536,inuse=0(0%)}
 |  |        +&gt; entries size=0
-|  +- org.eclipse.jetty.server.AbstractConnector$1@74fe5c40
+|  +- org.eclipse.jetty.server.AbstractConnector$1@7f3b84b8
 |  += HttpConnectionFactory@6646153[HTTP/1.1] - STARTED
-|  |  +- HttpConfiguration@57a3af25{32768/8192,8192/8192,https://:0,[]}
+|  |  +- HttpConfiguration@6adbc9d{32768/8192,8192/8192,https://:0,[]}
 |  |     +&gt; customizers size=0
 |  |     +&gt; formEncodedMethods size=2
 |  |     |  +&gt; POST
@@ -654,21 +654,21 @@ It is possible to configure the thread pool to dump the whole stack trace for ea
 |  |     +&gt; maxErrorDispatches=10
 |  |     +&gt; minRequestDataRate=0
 |  |     +&gt; minResponseDataRate=0
-|  |     +&gt; requestCookieCompliance=RFC6265@7f3b84b8[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
-|  |     +&gt; responseCookieCompliance=RFC6265@7f3b84b8[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
+|  |     +&gt; requestCookieCompliance=RFC6265@c8c12ac[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
+|  |     +&gt; responseCookieCompliance=RFC6265@c8c12ac[INVALID_COOKIES, OPTIONAL_WHITE_SPACE, SPACE_IN_VALUES]
 |  |     +&gt; notifyRemoteAsyncErrors=true
 |  |     +&gt; relativeRedirectAllowed=false
 |  += SelectorManager@ServerConnector@16ec5519{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} - STARTED
-|  |  += ManagedSelector@1623b78d{STARTED} id=0 keys=0 selected=0 updates=0 - STARTED <i class="conum" data-value="5"></i><b>(5)</b>
-|  |     += AdaptiveExecutionStrategy@c8c12ac/SelectorProducer@6adbc9d/PRODUCING/p=false/QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59963ms,q=0}[ReservedThreadExecutor@4567f35d{reserved=0/20,pending=0}][pc=0,pic=0,pec=0,epc=0]@2024-06-05T07:24:59.501760931+10:00 - STARTED
-|  |     |  +- SelectorProducer@6adbc9d
-|  |     |  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59963ms,q=0}[ReservedThreadExecutor@4567f35d{reserved=0/20,pending=0}] - STARTED
-|  |     +&gt; updates @ 2024-06-05T07:24:59.501043853+10:00 size=0
-|  |     +&gt; keys @ 2024-06-05T07:24:59.501460605+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
+|  |  += ManagedSelector@49139829{STARTED} id=0 keys=0 selected=0 updates=0 - STARTED <i class="conum" data-value="5"></i><b>(5)</b>
+|  |     += AdaptiveExecutionStrategy@9597028/SelectorProducer@6069db50/PRODUCING/p=false/QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59963ms,q=0}[ReservedThreadExecutor@4f6ee6e4{reserved=0/20,pending=0}][pc=0,pic=0,pec=0,epc=0]@2024-06-05T07:38:01.710830744+10:00 - STARTED
+|  |     |  +- SelectorProducer@6069db50
+|  |     |  +~ QueuedThreadPool[qtp1852584274]@6e6c3152{STARTED,4&lt;=4&lt;=200,i=2,r=-1,t=59963ms,q=0}[ReservedThreadExecutor@4f6ee6e4{reserved=0/20,pending=0}] - STARTED
+|  |     +&gt; updates @ 2024-06-05T07:38:01.710159001+10:00 size=0
+|  |     +&gt; keys @ 2024-06-05T07:38:01.710505918+10:00 size=0 <i class="conum" data-value="6"></i><b>(6)</b>
 |  +- sun.nio.ch.ServerSocketChannelImpl[/[0:0:0:0:0:0:0:0]:8080]
 |  +- qtp1852584274-33-acceptor-0@1bbf99d3-ServerConnector@16ec5519{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
-+- org.eclipse.jetty.util.component.HaltLifeCycleListener@4550bb58
-+= ErrorHandler@4ec4f3a0{STARTED} - STARTED
++- org.eclipse.jetty.util.component.HaltLifeCycleListener@4efbca5a
++= ErrorHandler@1b7cc17c{STARTED} - STARTED
 +&gt; startJarLoader@694f9431 <i class="conum" data-value="7"></i><b>(7)</b>
    +&gt; URLs size=9
    |  +&gt; file:/path/to/jetty.home-base/resources/
@@ -906,8 +906,8 @@ Enables remote debugging
 <div class="content">
 <pre class="nowrap">WARN  : Forking second JVM due to forking module(s): [remote-debug]. Use --dry-run to generate the command line to avoid forking.
 <mark>Listening for transport dt_socket at address: 5005</mark>
-<strong>2024-06-05 07:25:00.622:</strong>INFO :oejs.Server:main: jetty-11.0.22-SNAPSHOT; built: 2024-06-04T21:23:17.067Z; git: 5d4c778ee21a978f39004977bf598b87911dd26a; jvm 21.0.3+9-LTS
-<strong>2024-06-05 07:25:00.656:</strong>INFO :oejs.Server:main: Started Server@4d3167f4{STARTING}[11.0.22-SNAPSHOT,sto=5000] @257ms</pre>
+<strong>2024-06-05 07:38:02.804:</strong>INFO :oejs.Server:main: jetty-11.0.22-SNAPSHOT; built: 2024-06-04T21:36:22.431Z; git: 5d4c778ee21a978f39004977bf598b87911dd26a; jvm 21.0.3+9-LTS
+<strong>2024-06-05 07:38:02.837:</strong>INFO :oejs.Server:main: Started Server@4d3167f4{STARTING}[11.0.22-SNAPSHOT,sto=5000] @256ms</pre>
 </div>
 </div>
 <div class="paragraph">
